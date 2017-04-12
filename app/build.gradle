@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
-apply from: "../buildsystem/script/script-git-version.gradle"
 apply from: "../buildsystem/config.gradle"
+apply from: "../buildsystem/quality/quality.gradle"
+
 
 def globalConf = rootProject.ext
 def configuration = ext.configuration;
