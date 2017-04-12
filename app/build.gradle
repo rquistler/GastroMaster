@@ -1,29 +1,117 @@
 apply plugin: 'com.android.application'
+apply from: "../buildsystem/script/script-git-version.gradle"
+apply from: "../buildsystem/config.gradle"
+
+def globalConf = rootProject.ext
+def configuration = ext.configuration;
+
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+
+    compileSdkVersion configuration.compileSdkVersion
+    buildToolsVersion configuration.buildToolsVersion
+
     defaultConfig {
-        applicationId "de.hsb.gastromaster"
-        minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+
+        applicationId configuration.applicationId
+        minSdkVersion configuration.minSdkVersion
+        targetSdkVersion configuration.targetVersion
+        versionCode configuration.versionCode
+        versionName configuration.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    signingConfigs {
+
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storePassword 'android'
+            storeFile file('../buildsystem/keystore/debug.keystore')
+        }
+    }
+
     buildTypes {
-        release {
+
+        debug {
+
+            signingConfig signingConfigs.debug
             minifyEnabled false
+            shrinkResources false
+            testCoverageEnabled true
+            debuggable true
+            applicationIdSuffix ".debug"
+        }
+
+        release {
+
+            minifyEnabled true
+            shrinkResources true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+//    productFlavors {
+//
+//        staging {
+//
+//            applicationIdSuffix ".staging"
+//        }
+//
+//        production {
+//
+//            applicationIdSuffix ".production"
+//        }
+//    }
+
+    compileOptions {
+
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+
+        enabled = true
+    }
+
+    packagingOptions {
+
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    Map<String, String> dependencies = globalConf.dependencies
+
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    testCompile 'junit:junit:4.12'
+
+    compile dependencies.appCompat
+    compile dependencies.recyclerView
+    compile dependencies.cardView
+    compile dependencies.supportV4
+    compile dependencies.supportDesign
+
+    compile dependencies.rxJava
+    compile dependencies.rxAndroid
+
+    compile dependencies.dagger
+
+    annotationProcessor dependencies.daggerCompiler
+    testCompile dependencies.junit
 }

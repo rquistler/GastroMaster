@@ -1,0 +1,22 @@
+apply from: "../buildsystem/script/script-git-version.gradle"
+
+ext.configuration = [
+
+        compileSdkVersion   : 25,
+        buildToolsVersion   : "25.0.2",
+
+        applicationId       : "de.hsb.gastromaster",
+
+        minSdkVersion       : 16,
+        targetSdkVersion    : 25,
+
+        versionCode         : gitVersionCode,
+        versionName         : gitVersionName
+]
+
+task printVersion() {
+
+    println("Version Name: $gitVersionName")
+    println("Version Code: $gitVersionCode")
+    println("Version Code Time: $gitVersionCodeTime")
+}

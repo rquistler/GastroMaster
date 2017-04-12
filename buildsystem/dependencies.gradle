@@ -1,0 +1,26 @@
+ext {
+
+    supportLibraryVersion = '25.3.1'
+    daggerVersion = '2.10'
+    rxJavaVersion = '2.0.8'
+    rxAndroidVersion = '2.0.1'
+    junitVersion = '4.12'
+
+
+    dependencies = [
+
+            appCompat           : "com.android.support:appcompat-v7:$supportLibraryVersion",
+            recyclerView        : "com.android.support:recyclerview-v7:$supportLibraryVersion",
+            cardView            : "com.android.support:cardview-v7:$supportLibraryVersion",
+            supportV4           : "com.android.support:support-v4:$supportLibraryVersion",
+            supportDesign       : "com.android.support:design:$supportLibraryVersion",
+
+            junit               : "junit:junit:$junitVersion",
+
+            daggerCompiler      : "com.google.dagger:dagger-compiler:$daggerVersion",
+            dagger              : "com.google.dagger:dagger:$daggerVersion",
+
+            rxJava              : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
+            rxAndroid           : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    ]
+}
