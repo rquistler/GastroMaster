@@ -4,9 +4,11 @@ package de.hsb.gastromaster.data;
 public class Dish {
 
     private String name;
+    private double price;
 
-    public Dish(String name) {
+    public Dish(String name, double price) {
         this.name = name;
+        this.price = price;
     }
 
     public String getName() {
@@ -15,5 +17,13 @@ public class Dish {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }
