@@ -3,6 +3,8 @@ package de.hsb.gastromaster;
 import android.app.Application;
 import android.os.StrictMode;
 
+import com.squareup.leakcanary.LeakCanary;
+
 
 public class GastroMasterApp extends Application {
 
@@ -22,5 +24,13 @@ public class GastroMasterApp extends Application {
                     .penaltyLog()
                     .build());
         }
+
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+
+        LeakCanary.install(this);
     }
+
+
 }
