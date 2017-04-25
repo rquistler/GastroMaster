@@ -31,6 +31,4 @@ public class GastroMasterApp extends Application {
 
         LeakCanary.install(this);
     }
-
-
 }
