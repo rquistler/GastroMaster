@@ -8,18 +8,21 @@ public class Order {
     private double totalPrice;
     private int waitressId;
     private String date;
+    private Dish dish;
 
     public Order(int id,
                  String tableNumber,
                  double totalPrice,
                  int waitressId,
-                 String date) {
+                 String date,
+                 Dish dish) {
 
         this.id = id;
         this.tableNumber = tableNumber;
         this.totalPrice = totalPrice;
         this.waitressId = waitressId;
         this.date = date;
+        this.dish = dish;
     }
 
     public int getId() {
@@ -56,5 +59,17 @@ public class Order {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Dish getDish() {
+        return dish;
+    }
+
+    public void setDish(Dish dish) {
+        this.dish = dish;
     }
 }
