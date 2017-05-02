@@ -3,6 +3,8 @@ package de.hsb.gastromaster.data;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.hsb.gastromaster.data.stubs.DishStub;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 

@@ -1,4 +1,6 @@
-package de.hsb.gastromaster.data;
+package de.hsb.gastromaster.data.stubs;
+
+import de.hsb.gastromaster.data.IDish;
 
 /**
  * Created by cschaf on 02-May-17.
