@@ -8,14 +8,14 @@ public class Order {
     private double totalPrice;
     private int waitressId;
     private String date;
-    private Dish dish;
+    private IDish dish;
 
     public Order(int id,
                  String tableNumber,
                  double totalPrice,
                  int waitressId,
                  String date,
-                 Dish dish) {
+                 IDish dish) {
 
         this.id = id;
         this.tableNumber = tableNumber;
@@ -65,11 +65,11 @@ public class Order {
         this.id = id;
     }
 
-    public Dish getDish() {
+    public IDish getDish() {
         return dish;
     }
 
-    public void setDish(Dish dish) {
+    public void setDish(IDish dish) {
         this.dish = dish;
     }
 }

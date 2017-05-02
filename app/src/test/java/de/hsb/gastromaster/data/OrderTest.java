@@ -11,11 +11,11 @@ public class OrderTest {
     private static final double DELTA = 1e-15;
     private static final String DEFAULT_DATE = "31-1-1990:19.00.32";
     private Order order;
-    private Dish dish;
+    private IDish dish;
 
     @Before
     public void setup() {
-        dish = new Dish("Lasagne", 3.99);
+        dish = new DishStub();
         order = new Order(1, "1A", 0.0, 1, DEFAULT_DATE, dish);
     }
 
