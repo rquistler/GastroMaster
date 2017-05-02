@@ -3,7 +3,7 @@ package de.hsb.gastromaster.data.stubs;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.hsb.gastromaster.data.IDish;
+import de.hsb.gastromaster.data.order.dish.IDish;
 
 import static org.junit.Assert.assertEquals;
 

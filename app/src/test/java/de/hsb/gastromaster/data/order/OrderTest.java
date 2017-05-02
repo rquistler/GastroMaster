@@ -1,8 +1,11 @@
-package de.hsb.gastromaster.data;
+package de.hsb.gastromaster.data.order;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
+import de.hsb.gastromaster.data.order.dish.IDish;
 import de.hsb.gastromaster.data.stubs.DishStub;
 
 import static org.junit.Assert.assertEquals;
@@ -13,12 +16,16 @@ public class OrderTest {
     private static final double DELTA = 1e-15;
     private static final String DEFAULT_DATE = "31-1-1990:19.00.32";
     private Order order;
-    private IDish dish;
 
     @Before
     public void setup() {
-        dish = new DishStub();
-        order = new Order(1, "1A", 0.0, 1, DEFAULT_DATE, dish);
+        order = new Order(
+                1,
+                "1A",
+                0.0,
+                1,
+                DEFAULT_DATE,
+                new ArrayList<>());
     }
 
     @Test
@@ -29,7 +36,7 @@ public class OrderTest {
     @Test
     public void testIfIdGotNewValue() {
         order.setId(2);
-        assertEquals(order.getId() , 2);
+        assertEquals(order.getId(), 2);
     }
 
     @Test
@@ -78,16 +85,21 @@ public class OrderTest {
     }
 
     @Test
-    public void testHasDish() {
-        assertNotNull(order.getDish());
+    public void testHasDishList(){
+        assertNotNull(order.getDishList());
+    }
+
+    @Test
+    public void testIsDishListEmptyAfterInit() {
+        assertEquals(0, order.getDishList().size());
     }
 
 
     @Test
-    public void testIfDishGotNewValue() {
+    public void testIfDishListGotNewDish() {
 
-        Dish dish = new Dish("Schnitzel", 5.79);
-        order.setDish(dish);
-        assertEquals(order.getDish(), dish);
+        IDish dish = new DishStub();
+        order.getDishList().add(dish);
+        assertEquals(order.getDishList().get(0), dish);
     }
 }

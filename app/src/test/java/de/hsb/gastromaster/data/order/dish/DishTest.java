@@ -1,8 +1,10 @@
-package de.hsb.gastromaster.data;
+package de.hsb.gastromaster.data.order.dish;
 
 
 import org.junit.Before;
 import org.junit.Test;
+
+import de.hsb.gastromaster.data.order.dish.Dish;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,7 +15,29 @@ public class DishTest {
 
     @Before
     public void setup() {
-        dish = new Dish("Spaghetti", 6.70);
+        dish = new Dish(1, 1,"Spaghetti", 6.70);
+    }
+
+    @Test
+    public void testHasId(){
+        assertEquals(1, dish.getId());
+    }
+
+    @Test
+    public void testIfIdGotNewValue(){
+        dish.setId(2);
+        assertEquals(2, dish.getId());
+    }
+
+    @Test
+    public void testHasOrderId(){
+        assertEquals(1, dish.getOrderId());
+    }
+
+    @Test
+    public void testIfOrderIdGotNewValue(){
+        dish.setOrderId(2);
+        assertEquals(2, dish.getOrderId());
     }
 
     @Test

@@ -1,5 +1,9 @@
-package de.hsb.gastromaster.data;
+package de.hsb.gastromaster.data.order;
 
+
+import java.util.List;
+
+import de.hsb.gastromaster.data.order.dish.IDish;
 
 public class Order {
 
@@ -8,21 +12,21 @@ public class Order {
     private double totalPrice;
     private int waitressId;
     private String date;
-    private IDish dish;
+    private List<IDish> dishList;
 
     public Order(int id,
                  String tableNumber,
                  double totalPrice,
                  int waitressId,
                  String date,
-                 IDish dish) {
+                 List<IDish> dishList) {
 
         this.id = id;
         this.tableNumber = tableNumber;
         this.totalPrice = totalPrice;
         this.waitressId = waitressId;
         this.date = date;
-        this.dish = dish;
+        this.dishList = dishList;
     }
 
     public int getId() {
@@ -65,11 +69,7 @@ public class Order {
         this.id = id;
     }
 
-    public IDish getDish() {
-        return dish;
-    }
-
-    public void setDish(IDish dish) {
-        this.dish = dish;
+    public List<IDish> getDishList() {
+        return dishList;
     }
 }

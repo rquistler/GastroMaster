@@ -1,6 +1,6 @@
 package de.hsb.gastromaster.data.stubs;
 
-import de.hsb.gastromaster.data.IDish;
+import de.hsb.gastromaster.data.order.dish.IDish;
 
 /**
  * Created by cschaf on 02-May-17.
@@ -24,6 +24,26 @@ public class DishStub implements IDish {
 
     @Override
     public void setPrice(double price) {
+        return;
+    }
+
+    @Override
+    public int getId() {
+        return 1;
+    }
+
+    @Override
+    public void setId(int id) {
+        return;
+    }
+
+    @Override
+    public int getOrderId() {
+        return 1;
+    }
+
+    @Override
+    public void setOrderId(int orderId) {
         return;
     }
 }
