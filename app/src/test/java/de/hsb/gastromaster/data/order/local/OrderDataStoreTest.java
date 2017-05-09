@@ -4,6 +4,9 @@ package de.hsb.gastromaster.data.order.local;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
+import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.data.order.dish.IDish;
 import de.hsb.gastromaster.data.stubs.DishStub;
 
@@ -17,7 +20,7 @@ public class OrderDataStoreTest {
 
     @Before
     public void setUp(){
-        dishDataStore = new OrderDataStore();
+        dishDataStore = new OrderDataStore(new ArrayList<Order>(), new ArrayList<IDish>());
     }
 
     @Test
