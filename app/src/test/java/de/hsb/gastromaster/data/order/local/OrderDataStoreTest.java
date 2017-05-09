@@ -16,7 +16,7 @@ import static org.junit.Assert.assertThat;
 
 public class OrderDataStoreTest {
 
-    private OrderDataStore dishDataStore;
+    private IOrderDataStore dishDataStore;
 
     @Before
     public void setUp(){

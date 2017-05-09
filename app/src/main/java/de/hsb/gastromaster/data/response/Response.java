@@ -3,6 +3,8 @@ package de.hsb.gastromaster.data.response;
 
 import android.support.annotation.Nullable;
 
+import de.hsb.gastromaster.data.order.IOrder;
+
 public class Response<T> {
 
     @Nullable
@@ -17,6 +19,11 @@ public class Response<T> {
         this.entity = entity;
         this.isSuccessful = isSuccessful;
         this.errorMessage = errorMessage;
+    }
+
+    public Response(T entity, boolean isSuccessful) {
+        this.entity = entity;
+        this.isSuccessful = isSuccessful;
     }
 
     public T getEntity() {
