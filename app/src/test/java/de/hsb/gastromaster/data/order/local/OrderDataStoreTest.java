@@ -16,6 +16,7 @@ import de.hsb.gastromaster.data.stubs.OrderStub;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -64,6 +65,15 @@ public class OrderDataStoreTest {
     }
 
     @Test
+    public void testGetDishByIndexWithInvalidIndexShouldReturnAResponseWithError(){
+        orderDataStore.addDish(new Request<>(new DishStub()));
+        Response<IDish> response = orderDataStore.getDishByIndex(new Request<>(-1));
+        assertNull(response.getEntity());
+        assertEquals(response.isSuccessful(), false);
+        assertEquals(response.getErrorMessage(), "Dish not found");
+    }
+
+    @Test
     public void testIfReturnsTenDishes(){
         createTenDishesAndAddToStore();
         assertEquals(10, orderDataStore.getAllDishes().getEntity().size());
@@ -86,5 +96,14 @@ public class OrderDataStoreTest {
         orderDataStore.addOrder(new Request<>(new OrderStub()));
         Response<IOrder> response = orderDataStore.getOrderById(new Request<>(1));
         assertThat(response.getEntity(), instanceOf(IOrder.class));
+    }
+
+    @Test
+    public void testGetOrderByIdWithInvalidIdShouldReturnAResponseWithError(){
+        orderDataStore.addOrder(new Request<>(new OrderStub()));
+        Response<IOrder> response = orderDataStore.getOrderById(new Request<>(-1));
+        assertNull(response.getEntity());
+        assertEquals(response.isSuccessful(), false);
+        assertEquals(response.getErrorMessage(), "Order not found");
     }
 }
