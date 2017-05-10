@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.data.order.dish.IDish;
+import de.hsb.gastromaster.data.request.Request;
+import de.hsb.gastromaster.data.response.Response;
 import de.hsb.gastromaster.data.stubs.DishStub;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
@@ -16,39 +18,45 @@ import static org.junit.Assert.assertThat;
 
 public class OrderDataStoreTest {
 
-    private IOrderDataStore dishDataStore;
+    private IOrderDataStore orderDataStore;
 
     @Before
     public void setUp(){
-        dishDataStore = new OrderDataStore(new ArrayList<Order>(), new ArrayList<IDish>());
+        orderDataStore = new OrderDataStore(new ArrayList<>(), new ArrayList<>());
     }
 
     @Test
     public void testStoreIsEmptyAfterInitialization(){
-        assertEquals(0, dishDataStore.getNumberOfDishes());
+        Response<Integer> response = orderDataStore.getNumberOfDishes();
+        int numberOfDishes= response.getEntity();
+        assertEquals(numberOfDishes, 0);
     }
 
     @Test
     public void testContainsTenDishesAfterInsertedTenDishes(){
         createTenDishesAndAddToStore();
-        assertEquals(10, dishDataStore.getNumberOfDishes());
+        Response<Integer> response = orderDataStore.getNumberOfDishes();
+        int numberOfDishes= response.getEntity();
+
+        assertEquals(numberOfDishes, 10);
     }
 
     private void createTenDishesAndAddToStore() {
         for (int i = 0; i<10;i++){
-            dishDataStore.addDish(new DishStub());
+            orderDataStore.addDish(new Request<>(new DishStub()));
         }
     }
 
     @Test
     public void testIsTypeOfObjectInDishListOfTypeIDish(){
-        dishDataStore.addDish(new DishStub());
-        assertThat(dishDataStore.getDishByIndex(0), instanceOf(IDish.class));
+        orderDataStore.addDish(new Request<>(new DishStub()));
+        Response<IDish> response = orderDataStore.getDishByIndex(new Request<>(0));
+        assertThat(response.getEntity(), instanceOf(IDish.class));
     }
 
     @Test
     public void testIfReturnsTenDishes(){
         createTenDishesAndAddToStore();
-        assertEquals(10,dishDataStore.getAllDishes().size());
+        assertEquals(10, orderDataStore.getAllDishes().getEntity().size());
     }
 }

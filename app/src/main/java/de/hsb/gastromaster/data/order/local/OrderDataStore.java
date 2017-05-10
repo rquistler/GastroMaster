@@ -36,11 +36,7 @@ public class OrderDataStore implements IOrderDataStore {
 
     @Override
     public Response<IDish> getDishByIndex(Request<Integer> request) {
-        for (IDish dish : dishList) {
-            if (dish.getId() == request.getEntity()) {
-                return new Response<IDish>(dish, false);
-            }
-        }
+        if(dishList.size() >= request.getEntity())return new Response<IDish>(dishList.get(request.getEntity()), false);
         return new Response<IDish>(null, true, "Dish not found");
     }
 
