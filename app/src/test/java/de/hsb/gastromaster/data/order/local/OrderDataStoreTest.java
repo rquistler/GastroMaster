@@ -6,15 +6,18 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import de.hsb.gastromaster.data.order.IOrder;
 import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.data.order.dish.IDish;
 import de.hsb.gastromaster.data.request.Request;
 import de.hsb.gastromaster.data.response.Response;
 import de.hsb.gastromaster.data.stubs.DishStub;
+import de.hsb.gastromaster.data.stubs.OrderStub;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class OrderDataStoreTest {
 
@@ -47,6 +50,12 @@ public class OrderDataStoreTest {
         }
     }
 
+    private void createTenOrdersAndAddToStore() {
+        for (int i = 0; i<10;i++){
+            orderDataStore.addOrder(new Request<>(new OrderStub()));
+        }
+    }
+
     @Test
     public void testIsTypeOfObjectInDishListOfTypeIDish(){
         orderDataStore.addDish(new Request<>(new DishStub()));
@@ -58,5 +67,24 @@ public class OrderDataStoreTest {
     public void testIfReturnsTenDishes(){
         createTenDishesAndAddToStore();
         assertEquals(10, orderDataStore.getAllDishes().getEntity().size());
+    }
+
+    @Test
+    public void testIfOrderListContainsOneObjectAfterInsertedOneOrder(){
+        orderDataStore.addOrder(new Request<>(new OrderStub()));
+        assertEquals(orderDataStore.getAllOrder().getEntity().size(), 1);
+    }
+
+    @Test
+    public void testIfReturnsTenOrders(){
+        createTenOrdersAndAddToStore();
+        assertEquals(10, orderDataStore.getAllOrder().getEntity().size());
+    }
+
+    @Test
+    public void testIsTypeOfObjectInOrderListOfTypeIOrder(){
+        orderDataStore.addOrder(new Request<>(new OrderStub()));
+        Response<IOrder> response = orderDataStore.getOrderById(new Request<>(1));
+        assertThat(response.getEntity(), instanceOf(IOrder.class));
     }
 }
