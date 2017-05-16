@@ -5,6 +5,7 @@ import java.util.List;
 import de.hsb.gastromaster.data.order.local.IOrderDataStore;
 import de.hsb.gastromaster.data.request.Request;
 import de.hsb.gastromaster.data.response.Response;
+import io.reactivex.Single;
 
 public class OrderDataRepository implements IOrderDataRepository {
 
@@ -15,12 +16,12 @@ public class OrderDataRepository implements IOrderDataRepository {
     }
 
     @Override
-    public Response<Void> addOrder(Request<IOrder> request){
+    public Single<Response<Void>> addOrder(Request<IOrder> request) {
         return orderDataStore.addOrder(request);
     }
 
     @Override
-    public Response<List<IOrder>> getAllOrders(){
-       return orderDataStore.getAllOrder();
+    public Single<Response<List<IOrder>>> getAllOrders() {
+        return orderDataStore.getAllOrder();
     }
 }

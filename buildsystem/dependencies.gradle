@@ -2,8 +2,8 @@ ext {
 
     supportLibraryVersion = '25.3.1'
     supportTestVersion = '0.5'
-    daggerVersion = '2.10'
-    rxJavaVersion = '2.0.8'
+    daggerVersion = '2.11-rc2'
+    rxJavaVersion = '2.1.0'
     rxAndroidVersion = '2.0.1'
     junitVersion = '4.12'
     espressoVersion = '2.2.2'

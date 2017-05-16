@@ -6,23 +6,25 @@ import de.hsb.gastromaster.data.order.IOrder;
 import de.hsb.gastromaster.data.order.dish.IDish;
 import de.hsb.gastromaster.data.request.Request;
 import de.hsb.gastromaster.data.response.Response;
+import io.reactivex.Single;
 
 /**
  * Created by cschaf on 09-May-17.
  */
 
 public interface IOrderDataStore {
-    Response<Integer> getNumberOfDishes();
 
-    Response<Void> addDish(Request<IDish> request);
+    Single<Response<Integer>> getNumberOfDishes();
 
-    Response<IDish> getDishByIndex(Request<Integer> request);
+    Single<Response<Void>> addDish(Request<IDish> request);
 
-    Response<List<IDish>> getAllDishes();
+    Single<Response<IDish>> getDishByIndex(Request<Integer> request);
 
-    Response<Void> addOrder(Request<IOrder> request);
+    Single<Response<List<IDish>>> getAllDishes();
 
-    Response<IOrder> getOrderById(Request<Integer> request);
+    Single<Response<Void>> addOrder(Request<IOrder> request);
 
-    Response<List<IOrder>> getAllOrder();
+    Single<Response<IOrder>> getOrderById(Request<Integer> request);
+
+    Single<Response<List<IOrder>>> getAllOrder();
 }

@@ -2,10 +2,10 @@ package de.hsb.gastromaster.data.order;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.util.List;
 
-import de.hsb.gastromaster.data.order.local.OrderDataStore;
 import de.hsb.gastromaster.data.request.Request;
 import de.hsb.gastromaster.data.response.Response;
 import de.hsb.gastromaster.data.stubs.OrderDataStoreStub;
@@ -14,10 +14,14 @@ import de.hsb.gastromaster.data.stubs.OrderStub;
 import static junit.framework.Assert.assertEquals;
 
 public class OrderDataRepositoryTest {
+
     private IOrderDataRepository orderDataRepository;
 
     @Before
-    public void setup(){
+    public void setup() {
+
+        orderDataRepository = Mockito.mock(IOrderDataRepository.class);
+
         orderDataRepository = new OrderDataRepository(new OrderDataStoreStub());
     }
 
@@ -30,7 +34,7 @@ public class OrderDataRepositoryTest {
 
     @Test
     public void testIfNumberOfOdersIsZeroAfterInit() {
-        Response<List<IOrder>> response =  orderDataRepository.getAllOrders();
+        Response<List<IOrder>> response = orderDataRepository.getAllOrders();
         assertEquals(response.getEntity().size(), 0);
     }
 }
