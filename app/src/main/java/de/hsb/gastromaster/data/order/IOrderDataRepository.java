@@ -11,6 +11,7 @@ import io.reactivex.Single;
  */
 
 public interface IOrderDataRepository {
+
     Single<Response<Void>> addOrder(Request<IOrder> request);
 
     Single<Response<List<IOrder>>> getAllOrders();

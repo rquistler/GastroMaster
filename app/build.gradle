@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 apply from: "../buildsystem/config.gradle"
 apply from: "../buildsystem/quality/quality.gradle"
 
@@ -108,6 +109,7 @@ dependencies {
     compile dependencies.cardView
     compile dependencies.supportV4
     compile dependencies.supportDesign
+    compile dependencies.constraintLayout
 
     compile dependencies.rxJava
     compile dependencies.rxAndroid
@@ -128,4 +130,7 @@ dependencies {
     debugCompile dependencies.leakCanary
     releaseCompile dependencies.leakCanaryNoOp
     testCompile dependencies.leakCanaryNoOp
+}
+repositories {
+    mavenCentral()
 }

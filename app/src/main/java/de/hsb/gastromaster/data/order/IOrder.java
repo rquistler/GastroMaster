@@ -9,6 +9,7 @@ import de.hsb.gastromaster.data.order.dish.IDish;
  */
 
 public interface IOrder {
+
     int getId();
 
     String getTableNumber();
