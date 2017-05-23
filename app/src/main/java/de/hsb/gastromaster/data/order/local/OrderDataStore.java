@@ -1,6 +1,7 @@
 package de.hsb.gastromaster.data.order.local;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hsb.gastromaster.data.order.IOrder;
@@ -11,14 +12,10 @@ import io.reactivex.Single;
 
 public class OrderDataStore implements IOrderDataStore {
 
-    private List<IDish> dishList;
-    private List<IOrder> orderList;
+    private List<IDish> dishList = new ArrayList<>();
+    private List<IOrder> orderList = new ArrayList<>();
 
-    public OrderDataStore(List<IOrder> orderList,
-                          List<IDish> dishList) {
-
-        this.dishList = dishList;
-        this.orderList = orderList;
+    public OrderDataStore() {
     }
 
     @Override

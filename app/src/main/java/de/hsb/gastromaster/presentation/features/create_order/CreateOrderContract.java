@@ -1,14 +1,16 @@
 package de.hsb.gastromaster.presentation.features.create_order;
 
 
+import de.hsb.gastromaster.data.order.IOrder;
+
 public interface CreateOrderContract {
 
-    interface CreateOrderView {
-
+    interface View {
+        void showMessage(String message);
     }
 
-    interface CreateOrderPresenter {
-
-
+    interface Presenter {
+        void init();
+        void createOrder(IOrder order);
     }
 }
