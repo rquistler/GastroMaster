@@ -65,4 +65,11 @@ public class OrderStub implements IOrder {
         dishArrayList.add(dish);
         return dishArrayList;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        IOrder comparedTo = (IOrder)obj;
+        return comparedTo.getTableNumber().equals("1A")
+                && comparedTo.getId() == 1;
+    }
 }

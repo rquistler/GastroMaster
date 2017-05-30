@@ -43,10 +43,10 @@ public class CreateOrderFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        FragmentCreateOrderBinding binding = DataBindingUtil.inflate(
-                inflater, R.layout.fragment_create_order, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_create_order, container, false);
 
         binding.setView(this);
+
         return binding.getRoot();
     }
 

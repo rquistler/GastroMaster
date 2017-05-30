@@ -6,7 +6,8 @@ import de.hsb.gastromaster.data.order.dish.IDish;
  * Created by cschaf on 02-May-17.
  */
 
-public class DishStub implements IDish {
+public class DishStub implements IDish{
+
     @Override
     public String getName() {
         return "Salami Pizza";
@@ -45,5 +46,12 @@ public class DishStub implements IDish {
     @Override
     public void setOrderId(int orderId) {
         return;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        IDish comparedTo = (IDish) obj;
+
+        return comparedTo.getName().equals("Salami Pizza");
     }
 }

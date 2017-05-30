@@ -31,6 +31,7 @@ public class OrderDataStore implements IOrderDataStore {
     public Single<Response<Void>> addDish(Request<IDish> request) {
 
         return Single.<Response<Void>>create(singleEmitter -> {
+
             dishList.add(request.getEntity());
 
             singleEmitter.onSuccess(new Response<Void>(null, true));
@@ -41,12 +42,14 @@ public class OrderDataStore implements IOrderDataStore {
     public Single<Response<IDish>> getDishByIndex(Request<Integer> request) {
 
         return Single.create(singleEmitter -> {
+
             if (request.getEntity() >= 0
                     &&
                     request.getEntity() <= dishList.size()) {
 
-                singleEmitter.onSuccess(new Response<IDish>(dishList.get(request.getEntity()), false));
+                singleEmitter.onSuccess(new Response<IDish>(dishList.get(request.getEntity()), true));
             }
+
             singleEmitter.onSuccess(new Response<IDish>(null, false, "Dish not found"));
         });
     }
