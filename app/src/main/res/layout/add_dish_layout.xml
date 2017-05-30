@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListView
+        android:id="@+id/listDish"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="14dp" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="49dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+    <Button
+        android:id="@+id/buttonAddDish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Add" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTVaddDish"
+        android:layout_width="230dp"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/buttonAddDish"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:completionHint="Dish" />
+
+    <EditText
+        android:id="@+id/textNbOfDish"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:layout_alignBottom="@+id/buttonAddDish"
+        android:layout_toLeftOf="@+id/buttonAddDish"
+        android:layout_toRightOf="@+id/autoCompleteTVaddDish"
+        android:layout_toStartOf="@+id/buttonAddDish"
+        android:ems="10"
+        android:hint="nb"
+        android:inputType="number" />
+
+</RelativeLayo

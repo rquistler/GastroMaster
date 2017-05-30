@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvTableNText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        tools:text="Table numero" />
+
+    <TextView
+        android:id="@+id/tvNumberofDishText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="RtlHardcoded"
+        tools:layout_editor_absoluteY="201dp"
+        tools:text="Nombre de plats"
+        android:layout_below="@+id/tvTableNText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="48dp" />
+
+    <TextView
+        android:id="@+id/tvNumberofDish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvNumberofDishText"
+        android:layout_alignBottom="@+id/tvNumberofDishText"
+        android:layout_toEndOf="@+id/tvNumberofDishText"
+        android:layout_toRightOf="@+id/tvNumberofDishText"
+        tools:layout_editor_absoluteX="186dp"
+        tools:layout_editor_absoluteY="201dp"
+        tools:text="3" />
+
+    <TextView
+        android:id="@+id/tvTableN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/tvTableNText"
+        android:layout_toRightOf="@+id/tvTableNText"
+        android:textSize="18sp"
+        tools:text="6" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tvNumberofDish"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:text="Finished" />
+</RelativeLayout>
