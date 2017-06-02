@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import de.hsb.gastromaster.R;
 import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.data.order.OrderDataRepository;
@@ -41,9 +43,15 @@ public class CreateOrderFragment extends Fragment
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_create_order, container, false);
+        binding = DataBindingUtil.inflate(
+                inflater,
+                R.layout.fragment_create_order,
+                container,
+                false);
 
         binding.setView(this);
 
@@ -51,7 +59,9 @@ public class CreateOrderFragment extends Fragment
     }
 
     @Override
-    public void onViewCreated(android.view.View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view,
+                              @Nullable Bundle savedInstanceState) {
+
         super.onViewCreated(view, savedInstanceState);
 
         init();
@@ -80,8 +90,13 @@ public class CreateOrderFragment extends Fragment
     public void onCreateButtonClick(View __) {
 
         presenter.createOrder(
-                new Order(1, "", 2.0, 1, "", null));
-
+                Order.builder()
+                        .setId(1)
+                        .setTableNumber("")
+                        .setWaitressId(1)
+                        .setDate("")
+                        .setDishList(new ArrayList<>())
+                        .build());
     }
 
     @Override

@@ -20,7 +20,15 @@ android {
         versionCode configuration.versionCode
         versionName configuration.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath false
+            }
+        }
     }
+
+
 
     dexOptions {
         javaMaxHeapSize "4g"
@@ -129,6 +137,15 @@ dependencies {
     debugCompile dependencies.leakCanary
     releaseCompile dependencies.leakCanaryNoOp
     testCompile dependencies.leakCanaryNoOp
+
+    compileOnly dependencies.autoValue
+    annotationProcessor dependencies.autoValue
+    annotationProcessor dependencies.autoValueWith
+
+    testCompile "com.google.truth:truth:0.33"
+    testCompile 'org.assertj:assertj-core:3.8.0'
+    androidTestCompile 'com.squareup.assertj:assertj-android:1.1.1'
+
 }
 repositories {
     mavenCentral()

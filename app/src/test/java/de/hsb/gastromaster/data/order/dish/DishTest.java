@@ -4,8 +4,9 @@ package de.hsb.gastromaster.data.order.dish;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.hsb.gastromaster.data.order.dish.Dish;
+import de.hsb.gastromaster.data.factories.DishFactory;
 
+import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertEquals;
 
 public class DishTest {
@@ -15,29 +16,32 @@ public class DishTest {
 
     @Before
     public void setup() {
-        dish = new Dish(1, 1,"Spaghetti", 6.70);
+
+        dish = DishFactory.dish();
     }
 
     @Test
-    public void testHasId(){
+    public void testHasId() {
         assertEquals(1, dish.getId());
     }
 
     @Test
-    public void testIfIdGotNewValue(){
-        dish.setId(2);
-        assertEquals(2, dish.getId());
+    public void testIfIdGotNewValue() {
+
+        assertThat(dish.withId(2).getId())
+                .isEqualTo(2);
     }
 
     @Test
-    public void testHasOrderId(){
+    public void testHasOrderId() {
         assertEquals(1, dish.getOrderId());
     }
 
     @Test
-    public void testIfOrderIdGotNewValue(){
-        dish.setOrderId(2);
-        assertEquals(2, dish.getOrderId());
+    public void testIfOrderIdGotNewValue() {
+
+        assertThat(dish.withOrderId(2).getOrderId())
+                .isEqualTo(2);
     }
 
     @Test
@@ -49,9 +53,9 @@ public class DishTest {
 
     @Test
     public void testIfNameGotNewValue() {
-        dish.setName("Lasagne");
 
-        assertEquals(dish.getName(), "Lasagne");
+        assertThat(dish.withName("Lasagne").getName())
+                .isEqualTo("Lasagne");
     }
 
     @Test
@@ -63,9 +67,8 @@ public class DishTest {
 
     @Test
     public void testIfPriceGotNewValue() {
-        dish.setPrice(11.90);
 
-        assertEquals(dish.getPrice(), 11.90, DELTA);
+        assertThat(dish.withPrice(11.90).getPrice())
+                .isEqualTo(11.90);
     }
-
 }

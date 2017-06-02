@@ -1,59 +1,33 @@
 package de.hsb.gastromaster.data.response;
 
-
 import android.support.annotation.Nullable;
 
-public class Response<T> {
+import com.google.auto.value.AutoValue;
+
+@AutoValue
+public abstract class Response<T> {
 
     @Nullable
-    private T entity;
-    private boolean isSuccessful;
-    private String errorMessage;
+    public abstract T getEntity();
 
-    public Response(T entity,
-                    boolean isSuccessful,
-                    String errorMessage) {
+    public abstract boolean getIsSuccessful();
 
-        this.entity = entity;
-        this.isSuccessful = isSuccessful;
-        this.errorMessage = errorMessage;
+    public abstract String getErrorMessage();
+
+    public static <T> Builder<T> builder() {
+        return new AutoValue_Response.Builder()
+                .setErrorMessage("");
     }
 
-    public Response(T entity, boolean isSuccessful) {
-        this(entity, isSuccessful, "");
-    }
+    @AutoValue.Builder
+    public abstract static class Builder<T> {
 
-    @Override
-    public boolean equals(Object obj) {
+        public abstract Builder<T> setEntity(T value);
 
-        Response<T> response = (Response<T>) obj;
+        public abstract Builder<T> setIsSuccessful(boolean value);
 
-        return (response.getEntity() == null || response.getEntity().equals(this.entity))
-                && response.isSuccessful() == this.isSuccessful
-                && response.getErrorMessage().equals(this.errorMessage);
-    }
+        public abstract Builder<T> setErrorMessage(String value);
 
-    public T getEntity() {
-        return entity;
-    }
-
-    public void setEntity(T entity) {
-        this.entity = entity;
-    }
-
-    public boolean isSuccessful() {
-        return isSuccessful;
-    }
-
-    public void setSuccessful(boolean successful) {
-        isSuccessful = successful;
-    }
-
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+        public abstract Response<T> build();
     }
 }

@@ -16,12 +16,12 @@ public class OrderDataRepository implements IOrderDataRepository {
     }
 
     @Override
-    public Single<Response<Void>> addOrder(Request<IOrder> request) {
-        return orderDataStore.addOrder(request);
+    public Single<Response<Void>> addOrder(Request<Order> requestOld) {
+        return orderDataStore.addOrder(requestOld);
     }
 
     @Override
-    public Single<Response<List<IOrder>>> getAllOrders() {
+    public Single<Response<List<Order>>> getAllOrders(Request<Void> requestOld) {
         return orderDataStore.getAllOrder();
     }
 }

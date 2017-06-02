@@ -1,31 +1,26 @@
 package de.hsb.gastromaster.data.order;
 
+
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
+import de.hsb.gastromaster.data.factories.DishFactory;
+import de.hsb.gastromaster.data.factories.OrderFactory;
+import de.hsb.gastromaster.data.order.dish.Dish;
 
-import de.hsb.gastromaster.data.order.dish.IDish;
-import de.hsb.gastromaster.data.stubs.DishStub;
-
+import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class OrderTest {
 
     private static final double DELTA = 1e-15;
-    private static final String DEFAULT_DATE = "31-1-1990:19.00.32";
-    private IOrder order;
+    private Order order;
 
     @Before
     public void setup() {
-        order = new Order(
-                1,
-                "1A",
-                0.0,
-                1,
-                DEFAULT_DATE,
-                new ArrayList<>());
+
+        order = OrderFactory.order(DishFactory.dishList());
     }
 
     @Test
@@ -35,8 +30,9 @@ public class OrderTest {
 
     @Test
     public void testIfIdGotNewValue() {
-        order.setId(2);
-        assertEquals(order.getId(), 2);
+
+        assertThat(order.withId(2).getId())
+                .isEqualTo(2);
     }
 
     @Test
@@ -46,8 +42,9 @@ public class OrderTest {
 
     @Test
     public void testIfTableNumberGotNewValue() {
-        order.setTableNumber("2A");
-        assertEquals(order.getTableNumber(), "2A");
+
+        assertThat(order.withTableNumber("2A").getTableNumber())
+                .isEqualTo(2);
     }
 
     @Test
@@ -57,8 +54,9 @@ public class OrderTest {
 
     @Test
     public void testIfTotalPriceGotNewValue() {
-        order.setTotalPrice(1.0);
-        assertEquals(order.getTotalPrice(), 1.0, DELTA);
+
+        assertThat(order.withDishList(DishFactory.dishListRandom(5))
+                .getTotalPrice()).isNotEqualTo(order.getTotalPrice());
     }
 
     @Test
@@ -68,24 +66,26 @@ public class OrderTest {
 
     @Test
     public void testIfWaitressIdGotNewValue() {
-        order.setWaitressId(2);
-        assertEquals(order.getWaitressId(), 2);
+
+        assertThat(order.withWaitressId(2).getWaitressId())
+                .isEqualTo(2);
     }
 
     @Test
     public void testHasDate() {
-        assertEquals(order.getDate(), "31-1-1990:19.00.32");
+        assertEquals(order.getDate(), OrderFactory.DEFAULT_DATE);
     }
 
 
     @Test
     public void testIfDateGotNewValue() {
-        order.setDate("31-1-1990:19.00.33");
-        assertEquals(order.getDate(), "31-1-1990:19.00.33");
+
+        assertThat(order.withDate(OrderFactory.DIFFERENT_DATE).getDate())
+                .isEqualTo(OrderFactory.DIFFERENT_DATE);
     }
 
     @Test
-    public void testHasDishList(){
+    public void testHasDishList() {
         assertNotNull(order.getDishList());
     }
 
@@ -98,8 +98,11 @@ public class OrderTest {
     @Test
     public void testIfDishListGotNewDish() {
 
-        IDish dish = new DishStub();
+        Dish dish = DishFactory.dish();
+
         order.getDishList().add(dish);
-        assertEquals(order.getDishList().get(0), dish);
+
+        assertEquals(order.getDishList()
+                .get(order.getDishList().size() - 1), dish);
     }
 }

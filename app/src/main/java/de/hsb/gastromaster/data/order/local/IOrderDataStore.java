@@ -2,8 +2,8 @@ package de.hsb.gastromaster.data.order.local;
 
 import java.util.List;
 
-import de.hsb.gastromaster.data.order.IOrder;
-import de.hsb.gastromaster.data.order.dish.IDish;
+import de.hsb.gastromaster.data.order.Order;
+import de.hsb.gastromaster.data.order.dish.Dish;
 import de.hsb.gastromaster.data.request.Request;
 import de.hsb.gastromaster.data.response.Response;
 import io.reactivex.Single;
@@ -16,15 +16,15 @@ public interface IOrderDataStore {
 
     Single<Response<Integer>> getNumberOfDishes();
 
-    Single<Response<Void>> addDish(Request<IDish> request);
+    Single<Response<Void>> addDish(Request<Dish> request);
 
-    Single<Response<IDish>> getDishByIndex(Request<Integer> request);
+    Single<Response<Dish>> getDishByIndex(Request<Integer> request);
 
-    Single<Response<List<IDish>>> getAllDishes();
+    Single<Response<List<Dish>>> getAllDishes();
 
-    Single<Response<Void>> addOrder(Request<IOrder> request);
+    Single<Response<Void>> addOrder(Request<Order> request);
 
-    Single<Response<IOrder>> getOrderById(Request<Integer> request);
+    Single<Response<Order>> getOrderById(Request<Integer> request);
 
-    Single<Response<List<IOrder>>> getAllOrder();
+    Single<Response<List<Order>>> getAllOrder();
 }

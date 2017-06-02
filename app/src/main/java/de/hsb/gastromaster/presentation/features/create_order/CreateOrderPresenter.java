@@ -1,7 +1,7 @@
 package de.hsb.gastromaster.presentation.features.create_order;
 
 
-import de.hsb.gastromaster.data.order.IOrder;
+import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.data.request.Request;
 import de.hsb.gastromaster.data.response.Response;
 import de.hsb.gastromaster.domain.feature.BaseUseCase;
@@ -12,11 +12,11 @@ public class CreateOrderPresenter
         implements CreateOrderContract.Presenter {
 
     private CreateOrderContract.View view;
-    private BaseUseCase<IOrder, Void> createOrderUseCase;
+    private BaseUseCase<Order, Void> createOrderUseCase;
     private CompositeDisposable disposeBag = new CompositeDisposable();
 
     public CreateOrderPresenter(CreateOrderContract.View view,
-                                BaseUseCase<IOrder, Void> createOrderUseCase) {
+                                BaseUseCase<Order, Void> createOrderUseCase) {
         this.view = view;
         this.createOrderUseCase = createOrderUseCase;
     }
@@ -26,14 +26,14 @@ public class CreateOrderPresenter
     }
 
     @Override
-    public void createOrder(IOrder order) {
+    public void createOrder(Order order) {
 
         DisposableSingleObserver<Response<Void>> disposable = createOrderUseCase
-                .execute(new Request<>(order))
+                .execute(Request.<Order>builder().setEntity(order).build())
                 .subscribeWith(new DisposableSingleObserver<Response<Void>>() {
                     @Override
                     public void onSuccess(Response<Void> voidResponse) {
-                            view.showMessage("Successful: " + String.valueOf(voidResponse.isSuccessful()));
+                        view.showMessage("Successful: " + String.valueOf(voidResponse.getIsSuccessful()));
                     }
 
                     @Override

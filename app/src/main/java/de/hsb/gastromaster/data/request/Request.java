@@ -1,22 +1,24 @@
 package de.hsb.gastromaster.data.request;
 
+import com.google.auto.value.AutoValue;
 
-import android.support.annotation.Nullable;
+import io.reactivex.annotations.Nullable;
 
-public class Request<T> {
+@AutoValue
+public abstract class Request<T> {
 
     @Nullable
-    private T entity;
+    public abstract T getEntity();
 
-    public Request(T entity) {
-        this.entity = entity;
+    public static <T> Builder<T> builder() {
+        return new AutoValue_Request.Builder();
     }
 
-    public T getEntity() {
-        return entity;
-    }
+    @AutoValue.Builder
+    public abstract static class Builder<T> {
 
-    public void setEntity(T entity) {
-        this.entity = entity;
+        public abstract Builder<T> setEntity(T value);
+
+        public abstract Request<T> build();
     }
 }

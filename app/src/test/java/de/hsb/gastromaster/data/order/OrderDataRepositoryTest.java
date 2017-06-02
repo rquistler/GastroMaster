@@ -1,27 +1,85 @@
 package de.hsb.gastromaster.data.order;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import de.hsb.gastromaster.data.factories.DishFactory;
+import de.hsb.gastromaster.data.factories.OrderFactory;
+import de.hsb.gastromaster.data.factories.RequestFactory;
+import de.hsb.gastromaster.data.factories.ResponseFactory;
+import de.hsb.gastromaster.data.order.local.IOrderDataStore;
+import de.hsb.gastromaster.data.request.Request;
+import de.hsb.gastromaster.data.response.Response;
+import io.reactivex.Single;
+
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 public class OrderDataRepositoryTest {
 
-    private IOrderDataRepository orderDataRepository;
 
-//    @Before
-//    public void setup() {
-//
-//        orderDataRepository = Mockito.mock(IOrderDataRepository.class);
-//
-//        orderDataRepository = new OrderDataRepository(new OrderDataStoreStub());
-//    }
-//
-//    @Test
-//    public void testIfOrderWasAddedAfterAddedNewOrder() {
-//        Response<Void> response = orderDataRepository.addOrder(new Request<>(new OrderStub()));
-//        assertEquals(response.isSuccessful(), true);
-//
-//    }
-//
-//    @Test
-//    public void testIfNumberOfOdersIsZeroAfterInit() {
-//        Response<List<IOrder>> response = orderDataRepository.getAllOrders();
-//        assertEquals(response.getEntity().size(), 0);
-//    }
+    @Mock
+    private IOrderDataStore orderDataStore;
+
+    @InjectMocks
+    private OrderDataRepository orderDataRepository;
+
+    @Before
+    public void setup() {
+
+        MockitoAnnotations.initMocks(this);
+    }
+
+
+    @Test
+    public void testIfOrderWasSuccessful() {
+
+        when(orderDataStore
+                .addOrder(any(Request.class)))
+                .thenReturn(Single.create(e -> {
+                    e.onSuccess(ResponseFactory.responseVoid());
+                }));
+
+        orderDataRepository
+                .addOrder(RequestFactory.requestOrder(
+                        OrderFactory.order(DishFactory.dishList())))
+                .test()
+                .assertNoErrors()
+                .assertValue(Response::getIsSuccessful)
+                .assertValue(voidResponse -> voidResponse.getEntity() == null)
+                .assertValue(voidResponse -> voidResponse.getErrorMessage().isEmpty())
+                .assertComplete();
+
+    }
+
+    @Test
+    public void test_ifGetAllOrdersNotZeroAfterOrderAdded() {
+
+        List<Order> orderList = mock(ArrayList.class);
+
+        when(orderList.size()).thenReturn(1);
+
+        when(orderDataStore
+                .getAllOrder())
+                .thenReturn(Single.create(e -> {
+
+                    e.onSuccess(ResponseFactory.responseOrderList(
+                            OrderFactory.orderList(
+                                    DishFactory.dishList())));
+                }));
+
+        orderDataRepository
+                .getAllOrders(RequestFactory.requestVoid())
+                .test()
+                .assertNoErrors()
+                .assertValue(listResponse -> listResponse.getEntity().size() > 0)
+                .assertComplete();
+    }
 }

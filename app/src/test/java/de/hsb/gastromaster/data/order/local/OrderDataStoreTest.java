@@ -6,17 +6,18 @@ import org.junit.Test;
 
 import java.util.List;
 
-import de.hsb.gastromaster.data.order.IOrder;
-import de.hsb.gastromaster.data.order.dish.IDish;
-import de.hsb.gastromaster.data.request.Request;
+import de.hsb.gastromaster.data.factories.DishFactory;
+import de.hsb.gastromaster.data.factories.OrderFactory;
+import de.hsb.gastromaster.data.factories.RequestFactory;
+import de.hsb.gastromaster.data.factories.ResponseFactory;
+import de.hsb.gastromaster.data.order.Order;
+import de.hsb.gastromaster.data.order.dish.Dish;
 import de.hsb.gastromaster.data.response.Response;
-import de.hsb.gastromaster.data.stubs.DishStub;
-import de.hsb.gastromaster.data.stubs.OrderStub;
 import io.reactivex.observers.TestObserver;
 
 public class OrderDataStoreTest {
 
-    private IOrderDataStore orderDataStore;
+    private OrderDataStore orderDataStore;
 
     @Before
     public void setUp() {
@@ -30,7 +31,7 @@ public class OrderDataStoreTest {
                 .getNumberOfDishes()
                 .test();
 
-        Response<Integer> expected = new Response<Integer>(0, true, "");
+        Response<Integer> expected = ResponseFactory.responseInteger(0);
 
         response.assertValue(expected)
                 .assertNoErrors()
@@ -47,31 +48,23 @@ public class OrderDataStoreTest {
                 .getNumberOfDishes()
                 .test();
 
-        response.assertValue(new Response<Integer>(10, true, ""))
+        response.assertValue(ResponseFactory.responseInteger(10))
                 .assertNoErrors()
                 .assertComplete();
     }
 
-    private void createTenDishesAndAddToStore() {
-        for (int i = 0; i < 10; i++) {
-            orderDataStore.addDish(new Request<>(new DishStub())).test();
-        }
-    }
-
-    private void createTenOrdersAndAddToStore() {
-        for (int i = 0; i < 10; i++) {
-            orderDataStore.addOrder(new Request<>(new OrderStub())).test();
-        }
-    }
-
     @Test
-    public void testIsTypeOfObjectInDishListOfTypeIDish() {
+    public void testIsTypeOfObjectInDishListOfTypeDish() {
 
-        orderDataStore.addDish(new Request<>(new DishStub())).test();
+        orderDataStore
+                .addDish(RequestFactory.requestDish(DishFactory.dish()))
+                .test();
 
-        TestObserver<Response<IDish>> response = orderDataStore.getDishByIndex(new Request<>(0)).test();
+        TestObserver<Response<Dish>> response = orderDataStore
+                .getDishByIndex(RequestFactory.requestInteger(0))
+                .test();
 
-        response.assertValue(new Response<IDish>(new DishStub(), true, ""))
+        response.assertValue(ResponseFactory.responseDish(DishFactory.dish()))
                 .assertNoErrors()
                 .assertComplete();
     }
@@ -79,18 +72,30 @@ public class OrderDataStoreTest {
 
     @Test
     public void testGetDishByIndexWithInvalidIndexShouldReturnAResponseWithError() {
-        orderDataStore.addDish(new Request<>(new DishStub())).test();
-        TestObserver<Response<IDish>> response = orderDataStore.getDishByIndex(new Request<>(-1)).test();
 
-        response.assertValue(new Response<IDish>(null, false, "Dish not found"))
+        orderDataStore
+                .addDish(RequestFactory.requestDish(DishFactory.dish()))
+                .test();
+
+        TestObserver<Response<Dish>> response = orderDataStore
+                .getDishByIndex(RequestFactory.requestInteger(10))
+                .test();
+
+        response.assertValue(ResponseFactory
+                .responseDishError(null, "Dish not found"))
                 .assertNoErrors()
                 .assertComplete();
     }
 
     @Test
     public void testIfReturnsTenDishes() {
+
         createTenDishesAndAddToStore();
-        TestObserver<Response<List<IDish>>> response = orderDataStore.getAllDishes().test();
+
+        TestObserver<Response<List<Dish>>> response = orderDataStore
+                .getAllDishes()
+                .test();
+
         response.assertValue(listResponse -> listResponse.getEntity().size() == 10)
                 .assertNoErrors()
                 .assertComplete();
@@ -98,38 +103,87 @@ public class OrderDataStoreTest {
 
     @Test
     public void testIfOrderListContainsOneObjectAfterInsertedOneOrder() {
-        orderDataStore.addOrder(new Request<>(new OrderStub())).test();
-        TestObserver<Response<List<IOrder>>> response = orderDataStore.getAllOrder().test();
-        response.assertValue(listResponse -> listResponse.getEntity().size() == 1)
+
+        orderDataStore
+                .addOrder(RequestFactory.requestOrder(
+                        OrderFactory.order(
+                                DishFactory.dishList())))
+                .test();
+
+        TestObserver<Response<List<Order>>> response = orderDataStore
+                .getAllOrder()
+                .test();
+
+        response.assertValue(listResponse -> listResponse.getEntity().size() == 2)
                 .assertNoErrors()
                 .assertComplete();
     }
 
     @Test
     public void testIfReturnsTenOrders() {
+
         createTenOrdersAndAddToStore();
-        TestObserver<Response<List<IOrder>>> response = orderDataStore.getAllOrder().test();
+
+        TestObserver<Response<List<Order>>> response = orderDataStore
+                .getAllOrder()
+                .test();
+
         response.assertValue(listResponse -> listResponse.getEntity().size() == 10)
                 .assertNoErrors()
                 .assertComplete();
     }
 
     @Test
-    public void testIsTypeOfObjectInOrderListOfTypeIOrder() {
-        orderDataStore.addOrder(new Request<>(new OrderStub())).test();
-        TestObserver<Response<IOrder>> response = orderDataStore.getOrderById(new Request<>(1)).test();
-        response.assertValue(orderResonse -> orderResonse.getEntity() instanceof IOrder)
+    public void testIsTypeOfObjectInOrderListOfTypeOrder() {
+
+        orderDataStore
+                .addOrder(RequestFactory.requestOrder(
+                        OrderFactory.order(
+                                DishFactory.dishList())))
+                .test();
+
+        TestObserver<Response<Order>> response = orderDataStore
+                .getOrderById(RequestFactory.requestInteger(1))
+                .test();
+
+        response.assertValue(orderResonse -> orderResonse.getEntity() instanceof Order)
                 .assertNoErrors()
                 .assertComplete();
     }
 
     @Test
     public void testGetOrderByIdWithInvalidIdShouldReturnAResponseWithError() {
-        orderDataStore.addOrder(new Request<>(new OrderStub())).test();
-        TestObserver<Response<IOrder>> response = orderDataStore.getOrderById(new Request<>(-1)).test();
 
-        response.assertValue(new Response<IOrder>(null, false, "Order not found"))
-        .assertComplete()
-        .assertNoErrors();
+        orderDataStore
+                .addOrder(RequestFactory.requestOrder(
+                        OrderFactory.order(
+                                DishFactory.dishList())))
+                .test();
+
+        TestObserver<Response<Order>> response = orderDataStore
+                .getOrderById(RequestFactory.requestInteger(10))
+                .test();
+
+        response.assertValue(ResponseFactory.responseOrderError(null, "Order not found"))
+                .assertComplete()
+                .assertNoErrors();
+    }
+
+    private void createTenDishesAndAddToStore() {
+
+        for (int i = 0; i < 10; i++) {
+
+            orderDataStore.addDish(RequestFactory.requestDish(DishFactory.dish()));
+        }
+    }
+
+    private void createTenOrdersAndAddToStore() {
+
+        for (int i = 0; i < 10; i++) {
+
+            orderDataStore.addOrder(RequestFactory
+                    .requestOrder(OrderFactory
+                            .order(DishFactory.dishList())));
+        }
     }
 }

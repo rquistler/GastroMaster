@@ -12,7 +12,7 @@ import io.reactivex.Single;
 
 public interface IOrderDataRepository {
 
-    Single<Response<Void>> addOrder(Request<IOrder> request);
+    Single<Response<Void>> addOrder(Request<Order> request);
 
-    Single<Response<List<IOrder>>> getAllOrders();
+    Single<Response<List<Order>>> getAllOrders(Request<Void> request);
 }

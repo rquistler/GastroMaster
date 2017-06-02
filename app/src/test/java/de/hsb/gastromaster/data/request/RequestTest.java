@@ -1,34 +1,31 @@
 package de.hsb.gastromaster.data.request;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
-import de.hsb.gastromaster.data.order.dish.IDish;
-import de.hsb.gastromaster.data.stubs.DishStub;
+import de.hsb.gastromaster.data.factories.DishFactory;
+import de.hsb.gastromaster.data.factories.RequestFactory;
+import de.hsb.gastromaster.data.order.dish.Dish;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.CoreMatchers.is;
+import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
 
 
 public class RequestTest {
     @Test
     public void givenVoidRequestReturnRequestWhereEntityIsNull() {
-        Request<Void> req = new Request<Void>(null);
-        assertNull(req.getEntity());
+
+        Request<Void> request = RequestFactory.requestVoid();
+
+        assertNull(request.getEntity());
     }
 
     @Test
     public void givenIDishRequestReturnsRequestWhereEntityIsDish() {
-        Request<IDish> actual = new Request<IDish>(new DishStub());
-        assertThat(actual.getEntity(), instanceOf(IDish.class));
-    }
 
-    @Test
-    public void testRequestHasNewEntityNullAfterSetEntity() {
-        Request<IDish> actual = new Request<IDish>(new DishStub());
-        actual.setEntity(null);
-        assertThat(actual.getEntity(), is(CoreMatchers.nullValue()));
+        Request<Dish> request = RequestFactory
+                .requestDish(DishFactory.dish());
+
+        assertThat(request.getEntity()).isInstanceOf(Dish.class);
+
     }
 }

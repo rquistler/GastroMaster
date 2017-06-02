@@ -10,6 +10,8 @@ ext {
     espressoVersion = '2.2.2'
     mockitoVersion = '2.7.22'
     leakCanaryVersion = '1.5'
+    autoValueVersion = '1.4.1'
+    autoValueWithVersion = '1.0.0'
 
 
     dependencies = [
@@ -34,6 +36,9 @@ ext {
 
             daggerCompiler      : "com.google.dagger:dagger-compiler:$daggerVersion",
             dagger              : "com.google.dagger:dagger:$daggerVersion",
+
+            autoValue           : "com.google.auto.value:auto-value:$autoValueVersion",
+            autoValueWith       : "com.gabrielittner.auto.value:auto-value-with:$autoValueWithVersion",
 
             rxJava              : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
             rxAndroid           : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"

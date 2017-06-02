@@ -1,57 +1,43 @@
 package de.hsb.gastromaster.data.order.dish;
 
 
-public class Dish implements IDish {
+import com.google.auto.value.AutoValue;
 
-    private int id;
-    private int orderId;
-    private String name;
-    private double price;
+@AutoValue
+public abstract class Dish {
 
-    public Dish(int id,
-                int orderId,
-                String name,
-                double price) {
+    public abstract int getId();
 
-        this.id = id;
-        this.orderId = orderId;
-        this.name = name;
-        this.price = price;
+    public abstract int getOrderId();
+
+    public abstract String getName();
+
+    public abstract double getPrice();
+
+
+    public abstract Dish withId(int id);
+
+    public abstract Dish withOrderId(int orderId);
+
+    public abstract Dish withName(String name);
+
+    public abstract Dish withPrice(double price);
+
+
+    public static Builder builder() {
+        return new AutoValue_Dish.Builder();
     }
 
-    @Override
-    public String getName() {
-        return name;
-    }
+    @AutoValue.Builder
+    public abstract static class Builder {
+        public abstract Builder setId(int value);
 
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
+        public abstract Builder setOrderId(int value);
 
-    @Override
-    public double getPrice() {
-        return price;
-    }
+        public abstract Builder setName(String value);
 
-    @Override
-    public void setPrice(double price) {
-        this.price = price;
-    }
+        public abstract Builder setPrice(double value);
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+        public abstract Dish build();
     }
 }
