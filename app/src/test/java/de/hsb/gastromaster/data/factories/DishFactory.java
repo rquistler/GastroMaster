@@ -46,7 +46,6 @@ public final class DishFactory {
         }
 
         dishList.add(dish());
-        dishList.add(dish());
 
         return dishList;
     }

@@ -54,7 +54,7 @@ public class OrderDataStore implements IOrderDataStore {
             Response.Builder<Dish> builder = Response.builder();
 
             if (request.getEntity() >= 0 &&
-                    request.getEntity() <= dishList.size()) {
+                    request.getEntity() < dishList.size()) {
 
                 singleEmitter.onSuccess(
                         builder.setEntity(dishList.get(request.getEntity()))
@@ -63,8 +63,8 @@ public class OrderDataStore implements IOrderDataStore {
             }
 
             singleEmitter.onSuccess(
-                    builder.setEntity(dishList.get(request.getEntity()))
-                            .setIsSuccessful(true)
+                    builder.setEntity(null)
+                            .setIsSuccessful(false)
                             .setErrorMessage("Dish not found")
                             .build());
         });
@@ -119,7 +119,7 @@ public class OrderDataStore implements IOrderDataStore {
 
             singleEmitter.onSuccess(builder
                     .setEntity(null)
-                    .setIsSuccessful(true)
+                    .setIsSuccessful(false)
                     .setErrorMessage("Order not found")
                     .build());
 
@@ -133,7 +133,7 @@ public class OrderDataStore implements IOrderDataStore {
 
             singleEmitter.onSuccess(
                     Response.<List<Order>>builder()
-                            .setEntity(orderList)
+                            .setEntity(new ArrayList<>(orderList))
                             .setIsSuccessful(true)
                             .build());
         });

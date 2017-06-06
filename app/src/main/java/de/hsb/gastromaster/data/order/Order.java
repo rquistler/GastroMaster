@@ -9,11 +9,13 @@ import de.hsb.gastromaster.data.order.dish.Dish;
 @AutoValue
 public abstract class Order {
 
+    private double totalPrice;
+
     public abstract int getId();
 
     public abstract String getTableNumber();
 
-    public abstract double getTotalPrice();
+    //public abstract double getTotalPrice();
 
     public abstract int getWaitressId();
 
@@ -44,7 +46,7 @@ public abstract class Order {
 
         public abstract Builder setTableNumber(String value);
 
-        abstract Builder setTotalPrice(double value);
+        //abstract Builder setTotalPrice(double value);
 
         public abstract Builder setWaitressId(int value);
 
@@ -58,18 +60,19 @@ public abstract class Order {
 
         public Order build() {
 
-            setTotalPrice(calculateTotalPrice(getDishList()));
-
             return autoBuild();
         }
     }
 
-    private static double calculateTotalPrice(List<Dish> dishList) {
+    // Fake computed property - because object is immutable anyways
+    // So only the first call actually calculates the total price
+    // The other ones just return
+    public final double getTotalPrice() {
 
-        double totalPrice = 0;
-
-        for (Dish dish : dishList) {
-            totalPrice += dish.getPrice();
+        if (totalPrice == 0.0 && !getDishList().isEmpty()) {
+            for (Dish dish : getDishList()) {
+                totalPrice += dish.getPrice();
+            }
         }
 
         return totalPrice;

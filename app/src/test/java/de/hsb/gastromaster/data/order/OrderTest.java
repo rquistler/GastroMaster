@@ -44,19 +44,21 @@ public class OrderTest {
     public void testIfTableNumberGotNewValue() {
 
         assertThat(order.withTableNumber("2A").getTableNumber())
-                .isEqualTo(2);
+                .isEqualTo("2A");
+
     }
 
     @Test
     public void testHasTotalPrice() {
-        assertEquals(order.getTotalPrice(), 0, DELTA);
+        assertThat(order.getTotalPrice()).isNonZero();
     }
 
     @Test
     public void testIfTotalPriceGotNewValue() {
 
-        assertThat(order.withDishList(DishFactory.dishListRandom(5))
+        assertThat(order.withDishList(DishFactory.dishListRandom(10))
                 .getTotalPrice()).isNotEqualTo(order.getTotalPrice());
+
     }
 
     @Test
@@ -88,12 +90,6 @@ public class OrderTest {
     public void testHasDishList() {
         assertNotNull(order.getDishList());
     }
-
-    @Test
-    public void testIsDishListEmptyAfterInit() {
-        assertEquals(0, order.getDishList().size());
-    }
-
 
     @Test
     public void testIfDishListGotNewDish() {

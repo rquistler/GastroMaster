@@ -1,8 +1,10 @@
 package de.hsb.gastromaster.data.order.local;
 
 
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.util.List;
 
@@ -14,6 +16,8 @@ import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.data.order.dish.Dish;
 import de.hsb.gastromaster.data.response.Response;
 import io.reactivex.observers.TestObserver;
+
+import static org.mockito.Mockito.*;
 
 public class OrderDataStoreTest {
 
@@ -36,6 +40,7 @@ public class OrderDataStoreTest {
         response.assertValue(expected)
                 .assertNoErrors()
                 .assertComplete();
+
 
     }
 
@@ -114,7 +119,7 @@ public class OrderDataStoreTest {
                 .getAllOrder()
                 .test();
 
-        response.assertValue(listResponse -> listResponse.getEntity().size() == 2)
+        response.assertValue(listResponse -> !listResponse.getEntity().isEmpty())
                 .assertNoErrors()
                 .assertComplete();
     }
@@ -173,7 +178,8 @@ public class OrderDataStoreTest {
 
         for (int i = 0; i < 10; i++) {
 
-            orderDataStore.addDish(RequestFactory.requestDish(DishFactory.dish()));
+            orderDataStore.addDish(RequestFactory.requestDish(DishFactory.dish()))
+                    .test();
         }
     }
 
@@ -183,7 +189,8 @@ public class OrderDataStoreTest {
 
             orderDataStore.addOrder(RequestFactory
                     .requestOrder(OrderFactory
-                            .order(DishFactory.dishList())));
+                            .order(DishFactory.dishList())))
+                    .test();
         }
     }
 }

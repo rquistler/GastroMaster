@@ -125,6 +125,7 @@ dependencies {
     annotationProcessor dependencies.daggerCompiler
 
     testCompile dependencies.junit
+    androidTestCompile dependencies.junit
 
     testCompile dependencies.mockitoCore
     androidTestCompile dependencies.supportAnnotations
