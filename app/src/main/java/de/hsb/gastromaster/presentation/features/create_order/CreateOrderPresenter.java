@@ -5,6 +5,7 @@ import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.data.request.Request;
 import de.hsb.gastromaster.data.response.Response;
 import de.hsb.gastromaster.domain.feature.BaseUseCase;
+import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableSingleObserver;
 
@@ -28,8 +29,7 @@ public class CreateOrderPresenter
     @Override
     public void createOrder(Order order) {
 
-        DisposableSingleObserver<Response<Void>> disposable = createOrderUseCase
-                .execute(Request.<Order>builder().setEntity(order).build())
+        DisposableSingleObserver<Response<Void>> disposable = createOrderExecute(order)
                 .subscribeWith(new DisposableSingleObserver<Response<Void>>() {
                     @Override
                     public void onSuccess(Response<Void> voidResponse) {
@@ -44,5 +44,9 @@ public class CreateOrderPresenter
 
         disposeBag.add(disposable);
 
+    }
+
+    public Single<Response<Void>> createOrderExecute(Order order){
+        return createOrderUseCase.execute(Request.<Order>builder().setEntity(order).build());
     }
 }

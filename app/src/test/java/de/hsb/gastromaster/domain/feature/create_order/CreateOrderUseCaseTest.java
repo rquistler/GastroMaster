@@ -54,7 +54,7 @@ public class CreateOrderUseCaseTest {
                 .assertValue(response)
                 .assertComplete();
 
-        verify(orderDataRepository.addOrder(any(Request.class)).test());
+        verify(orderDataRepository).addOrder(request);
 
     }
 }

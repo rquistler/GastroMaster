@@ -21,6 +21,15 @@ public final class ResponseFactory {
                 .build();
     }
 
+    public static Response<Void> responseVoidError() {
+
+        return Response.<Void>builder()
+                .setEntity(null)
+                .setErrorMessage("Error")
+                .setIsSuccessful(false)
+                .build();
+    }
+
     public static Response<Integer> responseInteger(int integer) {
 
         return Response.<Integer>builder()
