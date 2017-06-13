@@ -33,7 +33,7 @@ android {
             test {
                 java.srcDir sharedTestDir
             }
-            
+
             androidTest {
                 java.srcDir sharedTestDir
             }
@@ -177,10 +177,11 @@ dependencies {
     //androidTestCompile 'org.powermock:powermock-module-junit4-rule:1.7.0RC4'
     //androidTestCompile 'org.powermock:powermock-api-mockito2:1.7.0RC4'
 
-
     // -------------------------------------------------------------------------
+    implementation 'com.android.support:support-v4:25.4.0'
 }
 
 repositories {
     mavenCentral()
+    maven {url 'https://maven.google.com'}
 }
