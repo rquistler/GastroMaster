@@ -1,0 +1,94 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="de.hsb.gastromaster.presentation.features.order_detail.OrderDetailListFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/lblOrderId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="Order ID:"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txtOrderId"
+                app:layout_constraintEnd_toStartOf="@+id/txtOrderId"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/txtOrderId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:text="-1"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txtOrderDate"
+                app:layout_constraintEnd_toStartOf="@+id/txtOrderDate"
+                app:layout_constraintStart_toStartOf="@+id/txtOrderDate" />
+
+            <EditText
+                android:id="@+id/txtOrderDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="date"
+                android:singleLine="true"
+                android:text="01.07.2017 - 04:00 PM"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/listView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/lblFinalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:labelFor="@+id/txtFinalPrice"
+                android:text="Total Price:"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txtFinalPrice"
+                app:layout_constraintEnd_toStartOf="@+id/txtFinalPrice" />
+
+            <EditText
+                android:id="@+id/txtFinalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="60,25"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="511dp"
+            android:id="@+id/listView2"
+            tools:layout_editor_absoluteY="75dp" />
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>
