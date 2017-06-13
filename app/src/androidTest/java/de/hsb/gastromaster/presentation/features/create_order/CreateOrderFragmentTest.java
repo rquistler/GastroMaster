@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import de.hsb.gastromaster.R;
 import de.hsb.gastromaster.data.order.Order;
+import de.hsb.gastromaster.factories.OrderFactory;
 import de.hsb.gastromaster.presentation.FragmentTestRule;
 
 import static android.support.test.espresso.Espresso.closeSoftKeyboard;
@@ -21,8 +22,6 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static de.hsb.gastromaster.factories.DishFactory.dishList;
-import static de.hsb.gastromaster.factories.OrderFactory.order;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -50,7 +49,7 @@ public class CreateOrderFragmentTest {
     @Test
     public void testCreateOrderAfterButtonClick() throws InterruptedException {
 
-        Order order = order(new ArrayList<>());
+        Order order = OrderFactory.order(new ArrayList<>());
 
         onView(withId(R.id.txtTableNumber)).perform(typeText(order.getTableNumber()));
         onView(withId(R.id.txtWaitressNumber)).perform(typeText(String.valueOf(order.getWaitressId())));
