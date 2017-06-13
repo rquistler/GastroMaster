@@ -1,4 +1,4 @@
-package de.hsb.gastromaster.data.factories;
+package de.hsb.gastromaster.factories;
 
 
 import de.hsb.gastromaster.data.order.Order;

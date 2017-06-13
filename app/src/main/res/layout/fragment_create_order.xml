@@ -1,106 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <data>
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:color/transparent"
+        android:text="CREATE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <variable name="view" type="de.hsb.gastromaster.presentation.features.create_order.CreateOrderFragment"/>
+    <EditText
+        android:id="@+id/txtDish"
+        android:layout_width="219dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lblTableNumber"
+        app:layout_constraintTop_toBottomOf="@+id/txtWaitressNumber" />
 
-    </data>
+    <EditText
+        android:id="@+id/txtWaitressNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lblTableNumber"
+        app:layout_constraintTop_toBottomOf="@+id/txtTableNumber" />
 
-    <android.support.constraint.ConstraintLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/txtTableNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lblTableNumber"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btnCreate"
-            android:onClick="@{(v) -> view.onCreateButtonClick(v)}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@android:color/transparent"
-            android:enabled="@{view.isEnabled}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+    <TextView
+        android:id="@+id/lblTableNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Table Number:"
+        app:layout_constraintBottom_toBottomOf="@+id/txtTableNumber"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
-            android:id="@+id/txtDish"
-            android:text="@={view.txtDish}"
-            android:layout_width="219dp"
-            android:layout_height="42dp"
-            android:ems="10"
-            android:inputType="number"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintStart_toEndOf="@+id/lblTableNumber"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/txtWaitressNumber" />
+    <TextView
+        android:id="@+id/lblWaitressNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="Waitress ID:"
+        app:layout_constraintBottom_toBottomOf="@+id/txtWaitressNumber"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblTableNumber" />
 
-        <EditText
-            android:id="@+id/txtWaitressNumber"
-            android:text="@={view.txtWaitressNumber}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/txtTableNumber"
-            app:layout_constraintStart_toEndOf="@+id/lblTableNumber"
-            android:layout_marginStart="8dp" />
-
-        <EditText
-            android:id="@+id/txtTableNumber"
-            android:text="@={view.txtTableNumber}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number"
-            app:layout_constraintStart_toEndOf="@+id/lblTableNumber"
-            android:layout_marginStart="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="8dp" />
-
-        <TextView
-            android:id="@+id/lblTableNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Table Number:"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/txtTableNumber"
-            android:layout_marginBottom="8dp" />
-
-        <TextView
-            android:id="@+id/lblWaitressNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Waitress ID:"
-            android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@+id/lblTableNumber"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/txtWaitressNumber"
-            android:layout_marginBottom="8dp" />
-
-        <TextView
-            android:id="@+id/lblDish"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            android:text="Dish"
-            app:layout_constraintBottom_toBottomOf="@+id/txtDish"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblWaitressNumber" />
-    </android.support.constraint.ConstraintLayout>
-</layout>
+    <TextView
+        android:id="@+id/lblDish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="Dish"
+        app:layout_constraintBottom_toBottomOf="@+id/txtDish"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblWaitressNumber" />
+</android.support.constraint.ConstraintLayout>

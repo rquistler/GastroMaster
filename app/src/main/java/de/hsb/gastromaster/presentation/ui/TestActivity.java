@@ -15,9 +15,6 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //FrameLayout frameLayout = new FrameLayout(this);
-        //frameLayout.setId(R.id.fragment_container);
-
         setContentView(R.layout.activity_main);
     }
 }

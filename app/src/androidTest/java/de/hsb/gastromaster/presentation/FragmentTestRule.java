@@ -17,7 +17,7 @@ public class FragmentTestRule<F extends Fragment> extends ActivityTestRule<TestA
     private F fragment;
 
     public FragmentTestRule(final Class<F> fragmentClass) {
-        super(TestActivity.class, true, false);
+        super(TestActivity.class, true, true);
         this.fragmentClass = fragmentClass;
     }
 

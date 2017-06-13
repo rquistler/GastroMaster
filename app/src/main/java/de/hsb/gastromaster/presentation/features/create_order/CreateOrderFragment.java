@@ -1,36 +1,41 @@
 package de.hsb.gastromaster.presentation.features.create_order;
 
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ObservableBoolean;
-import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Date;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hsb.gastromaster.R;
 import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.data.order.OrderDataRepository;
 import de.hsb.gastromaster.data.order.local.OrderDataStore;
-import de.hsb.gastromaster.databinding.FragmentCreateOrderBinding;
 import de.hsb.gastromaster.domain.feature.create_order.CreateOrderUseCase;
 
 public class CreateOrderFragment extends Fragment
         implements CreateOrderContract.View {
 
-    private FragmentCreateOrderBinding binding;
     private CreateOrderContract.Presenter presenter;
 
-    private ObservableField<String> txtTableNumber = new ObservableField<>();
-    private ObservableField<String> txtWaitressNumber = new ObservableField<>();
-    private ObservableField<String> txtDish = new ObservableField<>();
-    private ObservableBoolean isEnabled = new ObservableBoolean();
+    @BindView(R.id.btnCreate) Button btnCreateOrder;
+
+    @BindView(R.id.txtTableNumber) EditText edtxtTableNumber;
+
+    @BindView(R.id.txtWaitressNumber) EditText edtxtWaitessId;
+
+    @BindView(R.id.txtDish) EditText edtxtDish;
+
 
     public static CreateOrderFragment newInstance() {
 
@@ -47,15 +52,14 @@ public class CreateOrderFragment extends Fragment
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        binding = DataBindingUtil.inflate(
-                inflater,
-                R.layout.fragment_create_order,
-                container,
-                false);
+        View view = inflater
+                .inflate(R.layout.fragment_create_order,
+                        container,
+                        false);
 
-        binding.setView(this);
+        ButterKnife.bind(this, view);
 
-        return binding.getRoot();
+        return view;
     }
 
     @Override
@@ -70,31 +74,38 @@ public class CreateOrderFragment extends Fragment
     private void init() {
 
         initLayout();
-        initPresenter();
+
+        initPresenter(new CreateOrderPresenter(
+                this,
+                new CreateOrderUseCase(
+                        new OrderDataRepository(
+                                new OrderDataStore()))));
     }
 
     private void initLayout() {
 
     }
 
-    private void initPresenter() {
+    public void initPresenter(CreateOrderContract.Presenter presenter) {
 
-        presenter = new CreateOrderPresenter(
-                this,
-                new CreateOrderUseCase(
-                        new OrderDataRepository(
-                                new OrderDataStore())));
+        this.presenter = presenter;
+
         presenter.init();
     }
 
+    @OnClick(R.id.btnCreate)
     public void onCreateButtonClick(View __) {
+
+        String tableNumber = edtxtTableNumber.getText().toString();
+        int waitressId = Integer.valueOf(edtxtWaitessId.getText().toString());
+        String dishName = edtxtDish.getText().toString();
 
         presenter.createOrder(
                 Order.builder()
                         .setId(1)
-                        .setTableNumber("")
-                        .setWaitressId(1)
-                        .setDate("")
+                        .setTableNumber(tableNumber)
+                        .setWaitressId(waitressId)
+                        .setDate("1.1.1111")
                         .setDishList(new ArrayList<>())
                         .build());
     }
@@ -102,37 +113,5 @@ public class CreateOrderFragment extends Fragment
     @Override
     public void showMessage(String message) {
         Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG).show();
-    }
-
-    public ObservableField<String> getTxtTableNumber() {
-        return txtTableNumber;
-    }
-
-    public void setTxtTableNumber(ObservableField<String> txtTableNumber) {
-        this.txtTableNumber = txtTableNumber;
-    }
-
-    public ObservableField<String> getTxtWaitressNumber() {
-        return txtWaitressNumber;
-    }
-
-    public void setTxtWaitressNumber(ObservableField<String> txtWaitressNumber) {
-        this.txtWaitressNumber = txtWaitressNumber;
-    }
-
-    public ObservableField<String> getTxtDish() {
-        return txtDish;
-    }
-
-    public void setTxtDish(ObservableField<String> txtDish) {
-        this.txtDish = txtDish;
-    }
-
-    public ObservableBoolean getIsEnabled() {
-        return isEnabled;
-    }
-
-    public void setIsEnabled(ObservableBoolean isEnabled) {
-        this.isEnabled = isEnabled;
     }
 }

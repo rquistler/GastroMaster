@@ -1,30 +1,67 @@
 package de.hsb.gastromaster.presentation.features.create_order;
 
 
-import org.assertj.android.api.Assertions;
+import android.support.test.runner.AndroidJUnit4;
+
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import java.util.ArrayList;
 
 import de.hsb.gastromaster.R;
+import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.presentation.FragmentTestRule;
 
+import static android.support.test.espresso.Espresso.closeSoftKeyboard;
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static de.hsb.gastromaster.factories.DishFactory.dishList;
+import static de.hsb.gastromaster.factories.OrderFactory.order;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+@RunWith(AndroidJUnit4.class)
 public class CreateOrderFragmentTest {
+
+
     @Rule
-    public FragmentTestRule<CreateOrderFragment> mFragmentTestRule =
+    public FragmentTestRule<CreateOrderFragment> fragmentTestRule =
             new FragmentTestRule<>(CreateOrderFragment.class);
 
+    @Mock
+    private CreateOrderContract.Presenter presenter;
+
+    @Before
+    public void setUp() throws Exception {
+
+        MockitoAnnotations.initMocks(this);
+
+        fragmentTestRule.getFragment().initPresenter(presenter);
+    }
+
+
     @Test
-    public void fragment_can_be_instantiated() throws InterruptedException {
+    public void testCreateOrderAfterButtonClick() throws InterruptedException {
 
-        // Launch the activity to make the fragment visible
-        mFragmentTestRule.launchActivity(null);
+        Order order = order(new ArrayList<>());
 
-        // Then use Espresso to test the Fragment
-        onView(withId(R.id.fragment_container)).check(matches(isDisplayed()));
+        onView(withId(R.id.txtTableNumber)).perform(typeText(order.getTableNumber()));
+        onView(withId(R.id.txtWaitressNumber)).perform(typeText(String.valueOf(order.getWaitressId())));
+        onView(withId(R.id.txtDish)).perform(typeText("Lasagne"));
+
+        closeSoftKeyboard();
+
+        Thread.sleep(1000);
+
+        onView(withId(R.id.btnCreate)).perform(click());
+
+        verify(presenter).createOrder(any(Order.class));
     }
 }
