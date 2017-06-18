@@ -15,8 +15,6 @@ public abstract class Order {
 
     public abstract String getTableNumber();
 
-    //public abstract double getTotalPrice();
-
     public abstract int getWaitressId();
 
     public abstract String getDate();
@@ -45,8 +43,6 @@ public abstract class Order {
         public abstract Builder setId(int value);
 
         public abstract Builder setTableNumber(String value);
-
-        //abstract Builder setTotalPrice(double value);
 
         public abstract Builder setWaitressId(int value);
 

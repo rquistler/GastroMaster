@@ -28,15 +28,9 @@ android {
         }
 
         sourceSets {
-            String sharedTestDir = 'src/sharedTest/java/de/hsb/gastromaster/'
-
-            test {
-                java.srcDir sharedTestDir
-            }
-
-            androidTest {
-                java.srcDir sharedTestDir
-            }
+            String sharedTestDir = 'src/sharedTest/java'
+            test.java.srcDirs += sharedTestDir
+            androidTest.java.srcDirs += sharedTestDir
         }
     }
 
@@ -183,5 +177,6 @@ dependencies {
 
 repositories {
     mavenCentral()
-    maven {url 'https://maven.google.com'}
+    maven { url 'https://maven.google.com' }
+
 }
