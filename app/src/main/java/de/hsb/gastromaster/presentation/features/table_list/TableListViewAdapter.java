@@ -1,4 +1,4 @@
-package de.hsb.gastromaster.presentation.features.order_list;
+package de.hsb.gastromaster.presentation.features.table_list;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -45,4 +45,6 @@ public class TableListViewAdapter extends BaseRecyclerViewAdapter<Table> {
         txtTableNumber.setText(item.getName());
         txtNumberOrders.setText(String.valueOf(item.getTotalOrders()));
     }
+
+
 }

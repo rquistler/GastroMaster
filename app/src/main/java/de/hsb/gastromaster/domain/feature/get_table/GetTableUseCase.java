@@ -9,13 +9,14 @@ import de.hsb.gastromaster.data.table.Table;
 import de.hsb.gastromaster.domain.feature.BaseUseCase;
 import io.reactivex.Single;
 
-/**
- * Created by roman on 13/06/17.
- */
 
-public class GetTableUseUseCase extends BaseUseCase<Void, List<Table>> {
+public class GetTableUseCase extends BaseUseCase<Void, List<Table>> {
 
     private ITableDataRepository tableDataRepository;
+
+    public GetTableUseCase(ITableDataRepository dataRepository){
+        tableDataRepository = dataRepository;
+    }
 
     @Override
     public Single<Response<List<Table>>> execute(Request<Void> request) {
