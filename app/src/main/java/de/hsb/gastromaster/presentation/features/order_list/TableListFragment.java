@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import de.hsb.gastromaster.R;
 import de.hsb.gastromaster.data.table.Table;
+import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
 
 public class TableListFragment extends Fragment implements TableListContract.View {
     private RecyclerView tableList;
@@ -32,19 +33,12 @@ public class TableListFragment extends Fragment implements TableListContract.Vie
         items.add(Table.builder().setId(1).setName("2A").setOrderList(new ArrayList<>()).build());
         items.add(Table.builder().setId(1).setName("3A").setOrderList(new ArrayList<>()).build());
 
-/*        tableListAdapter = new TableListViewAdapter(items, new BaseRecyclerViewAdapter.IOnItemClick() {
+        tableListAdapter = new TableListViewAdapter(items, new BaseRecyclerViewAdapter.IOnItemClick() {
             @Override
             public void onClick(View view, int position) {
-                Toast.makeText(getActivity(),"Item Cllicked", Toast.LENGTH_LONG);
-            }
-        });*/
-        tableListAdapter = new TableListViewAdapterDemo(items, new TableListViewAdapterDemo.IOnItemClick() {
-            @Override
-            public void onClick(View view, int position) {
-                Toast.makeText(getActivity(), "Item clicked", Toast.LENGTH_LONG);
+                Toast.makeText(getActivity(),"Item Cllicked", Toast.LENGTH_LONG).show();
             }
         });
-
 
         tableList.setLayoutManager(tableListLayoutManager);
         tableList.setAdapter(tableListAdapter);

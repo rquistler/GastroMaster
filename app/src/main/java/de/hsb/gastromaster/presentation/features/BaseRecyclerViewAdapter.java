@@ -12,10 +12,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by roman on 13/06/17.
- */
-
 public abstract class BaseRecyclerViewAdapter<T> extends
         RecyclerView.Adapter<BaseRecyclerViewAdapter.BaseViewHolder> {
 
@@ -130,6 +126,7 @@ public abstract class BaseRecyclerViewAdapter<T> extends
 
         @Override
         public void onClick(View view) {
+            System.out.println("Click");
             listener.onClick(view, getAdapterPosition());
         }
     }
