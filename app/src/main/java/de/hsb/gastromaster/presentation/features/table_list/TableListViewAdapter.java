@@ -1,4 +1,4 @@
-package de.hsb.gastromaster.presentation.features.order_list;
+package de.hsb.gastromaster.presentation.features.table_list;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import de.hsb.gastromaster.R;
 import de.hsb.gastromaster.data.table.Table;
 import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
@@ -33,17 +34,17 @@ public class TableListViewAdapter extends BaseRecyclerViewAdapter<Table> {
 
     @Override
     protected View createView(ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_table_list_item, parent);
-
+                .inflate(R.layout.fragment_table_list_item, parent, false);
+        ButterKnife.bind(this, view);
         return view;
     }
 
     @Override
     protected void bindItem(Table item, RecyclerView.ViewHolder viewHolder) {
-
         txtTableNumber.setText(item.getName());
         txtNumberOrders.setText(String.valueOf(item.getTotalOrders()));
     }
+
+
 }
