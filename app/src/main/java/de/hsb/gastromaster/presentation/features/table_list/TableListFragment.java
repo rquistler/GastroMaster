@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hsb.gastromaster.GastroMasterApp;
 import de.hsb.gastromaster.R;
 import de.hsb.gastromaster.data.table.Table;
 import de.hsb.gastromaster.data.table.TableDataRepository;
@@ -44,6 +45,8 @@ public class TableListFragment extends Fragment implements
 
         View rootView = inflater.inflate(R.layout.fragment_table_list, container, false);
 
+        MainActivity mainActivity = (MainActivity) getActivity();
+
         tableList = (RecyclerView) rootView.findViewById(R.id.table_list);
         tableListLayoutManager = new LinearLayoutManager(getContext());
 
@@ -51,9 +54,7 @@ public class TableListFragment extends Fragment implements
 
         tableListAdapter = new TableListViewAdapter(items,this);
         tableListPresenter = new TableListPresenter(this,
-                new GetTableUseCase(
-                    new TableDataRepository(
-                        new TableDataStore())));
+                new GetTableUseCase(mainActivity.getGastroMasterApp().getTableDataRepository()));
 
         tableList.setLayoutManager(tableListLayoutManager);
         tableList.setAdapter(tableListAdapter);

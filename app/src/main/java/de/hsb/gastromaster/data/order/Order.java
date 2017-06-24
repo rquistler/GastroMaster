@@ -19,6 +19,8 @@ public abstract class Order {
 
     public abstract String getDate();
 
+    public abstract boolean getIsCompleted();
+
     public abstract List<Dish> getDishList();
 
 
@@ -34,7 +36,8 @@ public abstract class Order {
 
 
     public static Builder builder() {
-        return new AutoValue_Order.Builder();
+        return new AutoValue_Order.Builder()
+                .setIsCompleted(false);
     }
 
     @AutoValue.Builder
@@ -49,6 +52,8 @@ public abstract class Order {
         public abstract Builder setDate(String value);
 
         public abstract Builder setDishList(List<Dish> value);
+
+        public abstract Builder setIsCompleted(boolean value);
 
         abstract List<Dish> getDishList();
 
