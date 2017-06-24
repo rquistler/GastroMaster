@@ -33,9 +33,9 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_table_list, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_order_list, container, false);
 
-        orderList = (RecyclerView) rootView.findViewById(R.id.table_list);
+        orderList = (RecyclerView) rootView.findViewById(R.id.order_list);
         orderListLayoutManager = new LinearLayoutManager(getContext());
 
         ArrayList<Order> items = new ArrayList<>();
