@@ -12,6 +12,6 @@ public interface OrderListContract {
 
     interface Presenter<T> {
         void onItemClick(T item);
-        void init();
+        void init(String tableNumber);
     }
 }

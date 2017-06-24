@@ -2,6 +2,7 @@ package de.hsb.gastromaster.presentation.features.order_list;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hsb.gastromaster.GastroMasterApp;
 import de.hsb.gastromaster.R;
 import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.data.order.OrderDataRepository;
@@ -42,19 +44,24 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
 
         orderListAdapter = new OrderListViewAdapter(items,this);
         orderListPresenter = new OrderListPresenter(this,
-                new GetOrdersUseCase(
-                        new OrderDataRepository(
-                                new OrderDataStore())));
+                new GetOrdersUseCase(((GastroMasterApp) getActivity().getApplication()).getOrderDataRepository()));
 
         orderList.setLayoutManager(orderListLayoutManager);
         orderList.setAdapter(orderListAdapter);
 
         return rootView;
     }
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        String tableNumber = getArguments().getString("Table");
+        orderListPresenter.init(tableNumber);
+    }
+
 
     @Override
     public void setOrderList(List<Order> list) {
-
+        orderListAdapter.setList(list);
     }
 
     @Override

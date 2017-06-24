@@ -1,5 +1,6 @@
 package de.hsb.gastromaster.data.order.dish;
 
+import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
 
