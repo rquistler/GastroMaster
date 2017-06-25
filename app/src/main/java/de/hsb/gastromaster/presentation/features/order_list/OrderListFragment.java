@@ -20,6 +20,7 @@ import de.hsb.gastromaster.data.order.OrderDataRepository;
 import de.hsb.gastromaster.data.order.local.OrderDataStore;
 import de.hsb.gastromaster.domain.feature.get_orders.GetOrdersUseCase;
 import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
+import de.hsb.gastromaster.presentation.ui.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,12 +67,12 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
 
     @Override
     public void onClick(View view, int position) {
-
+        orderListPresenter.onItemClick(orderListAdapter.getItemListItem(position));
     }
 
     @Override
     public void goToOrderDetail(Order item) {
-
+        ((MainActivity)getActivity()).goToOrderDetailView(item);
     }
 
     public static OrderListFragment newInstance() {

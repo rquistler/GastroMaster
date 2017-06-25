@@ -15,4 +15,6 @@ public interface IOrderDataRepository {
     Single<Response<Void>> addOrder(Request<Order> request);
 
     Single<Response<List<Order>>> getAllOrders(Request<Void> request);
+
+    Single<Response<Order>> getOrderById(Request<Integer> request);
 }

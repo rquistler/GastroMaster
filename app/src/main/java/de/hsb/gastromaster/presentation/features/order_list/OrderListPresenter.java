@@ -23,7 +23,7 @@ public class OrderListPresenter implements OrderListContract.Presenter<Order> {
     }
     @Override
     public void onItemClick(Order item) {
-
+        fragment.goToOrderDetail(item);
     }
 
     @Override

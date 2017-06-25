@@ -24,4 +24,9 @@ public class OrderDataRepository implements IOrderDataRepository {
     public Single<Response<List<Order>>> getAllOrders(Request<Void> requestOld) {
         return orderDataStore.getAllOrder();
     }
+
+    @Override
+    public Single<Response<Order>> getOrderById(Request<Integer> request) {
+        return orderDataStore.getOrderById(request);
+    }
 }
