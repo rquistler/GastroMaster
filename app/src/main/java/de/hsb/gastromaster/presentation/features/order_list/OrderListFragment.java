@@ -3,6 +3,7 @@ package de.hsb.gastromaster.presentation.features.order_list;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,11 +14,12 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import de.hsb.gastromaster.GastroMasterApp;
 import de.hsb.gastromaster.R;
 import de.hsb.gastromaster.data.order.Order;
-import de.hsb.gastromaster.data.order.OrderDataRepository;
-import de.hsb.gastromaster.data.order.local.OrderDataStore;
+import de.hsb.gastromaster.domain.feature.create_order.CreateOrderUseCase;
 import de.hsb.gastromaster.domain.feature.get_orders.GetOrdersUseCase;
 import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
 import de.hsb.gastromaster.presentation.ui.MainActivity;
@@ -32,6 +34,9 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
     private OrderListViewAdapter orderListAdapter;
     private RecyclerView.LayoutManager orderListLayoutManager;
 
+    @BindView(R.id.btnAddOrder)
+    FloatingActionButton btnAddOrder;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,11 +50,20 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
 
         orderListAdapter = new OrderListViewAdapter(items,this);
         orderListPresenter = new OrderListPresenter(this,
-                new GetOrdersUseCase(((GastroMasterApp) getActivity().getApplication()).getOrderDataRepository()));
+                new GetOrdersUseCase(((GastroMasterApp) getActivity().getApplication()).getOrderDataRepository()),
+                new CreateOrderUseCase(((GastroMasterApp) getActivity().getApplication()).getOrderDataRepository()));
 
         orderList.setLayoutManager(orderListLayoutManager);
         orderList.setAdapter(orderListAdapter);
 
+        ButterKnife.bind(this, rootView);
+
+        btnAddOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                orderListPresenter.onAddOrderClick(null);
+            }
+        });
         return rootView;
     }
     @Override
@@ -63,6 +77,11 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
     @Override
     public void setOrderList(List<Order> list) {
         orderListAdapter.setList(list);
+    }
+
+    @Override
+    public void goToDishList(Order order) {
+        ((MainActivity)getActivity()).goToDishListView(order);
     }
 
     @Override

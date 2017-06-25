@@ -10,6 +10,7 @@ import de.hsb.gastromaster.GastroMasterApp;
 import de.hsb.gastromaster.R;
 import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.data.table.Table;
+import de.hsb.gastromaster.presentation.features.dish_list.DishListFragment;
 import de.hsb.gastromaster.presentation.features.order_detail.OrderDetailFragment;
 import de.hsb.gastromaster.presentation.features.order_list.OrderListFragment;
 import de.hsb.gastromaster.presentation.features.table_list.TableListFragment;
@@ -19,10 +20,13 @@ public class MainActivity extends AppCompatActivity {
     protected final String tableListClassName = TableListFragment.class.getSimpleName();
     protected final String orderListClassName = OrderListFragment.class.getSimpleName();
     protected final String orderDetailClassName = OrderDetailFragment.class.getSimpleName();
+    protected final String dishListClassName = DishListFragment.class.getSimpleName();
 
     protected Fragment tableListFragment;
     protected Fragment orderListFragment;
     protected Fragment orderDetailFragment;
+    protected Fragment dishListFragment;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         tableListFragment = TableListFragment.newInstance();
         orderListFragment = OrderListFragment.newInstance();
         orderDetailFragment = OrderDetailFragment.newInstance();
+        dishListFragment = DishListFragment.newInstance();
 
         goToTableListView();
     }
@@ -58,9 +63,20 @@ public class MainActivity extends AppCompatActivity {
         orderListFragment.setArguments(bundle);
 
         fm.beginTransaction()
-                .hide(tableListFragment)
                 .replace(R.id.fragment_container, orderListFragment, orderListClassName)
                 .addToBackStack(orderListClassName).commit();
+    }
+
+    public void goToDishListView(Order order) {
+        FragmentManager fm = getSupportFragmentManager();
+        Bundle bundle = new Bundle();
+        if (order != null)bundle.putInt("OrderId", order.getId());
+        else bundle.putInt("OrderId", -1);
+        dishListFragment.setArguments(bundle);
+
+        fm.beginTransaction()
+                .replace(R.id.fragment_container, dishListFragment, dishListClassName)
+                .addToBackStack(dishListClassName).commit();
     }
 
     @Override
