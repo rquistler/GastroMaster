@@ -27,15 +27,7 @@ public class TableListPresenter implements TableListContract.Presenter<Table> {
 
     @Override
     public void init(){
-
-        loadTableList();
-
-    }
-
-    public void loadTableList() {
-
-        SingleObserver<Response<List<Table>>> tables = useCase
-                .execute(Request.<Void>builder()
+        useCase.execute(Request.<Void>builder()
                         .setEntity(null)
                         .build())
                 .subscribeWith(new SingleObserver<Response<List<Table>>>() {
@@ -46,7 +38,7 @@ public class TableListPresenter implements TableListContract.Presenter<Table> {
 
                     @Override
                     public void onSuccess(Response<List<Table>> listResponse) {
-                            fragment.setTableList(listResponse.getEntity());
+                        fragment.setTableList(listResponse.getEntity());
                     }
 
                     @Override
@@ -54,5 +46,6 @@ public class TableListPresenter implements TableListContract.Presenter<Table> {
 
                     }
                 });
+
     }
 }
