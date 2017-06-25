@@ -8,12 +8,12 @@ public interface OrderListContract {
     interface View<T> {
         void goToOrderDetail(T item);
         void setOrderList(List<Order> orders);
-        void goToDishList(Order order);
+        void goToDishList(String tableNumber, Order order);
     }
 
     interface Presenter<T> {
         void onItemClick(T item);
-        void onAddOrderClick(T item);
+        void onAddOrderClick(String tableNumber, T item);
         void init(String tableNumber);
     }
 }

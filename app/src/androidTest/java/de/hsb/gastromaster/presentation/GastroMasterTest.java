@@ -74,6 +74,45 @@ public class GastroMasterTest {
         onView(withId(R.id.order_detail_dish_list)).check(withItemCount(is(2)));
         Thread.sleep(sleepTime);
     }
+    @Test
+    public void testLaunchingDishList() throws InterruptedException {
+        openTableAt(0);
+        Thread.sleep(sleepTime);
+        onView(withId(R.id.btnAddOrder)).perform(click());
+        Thread.sleep(sleepTime);
+        onView(withId(R.id.dish_list)).check(matches(isDisplayed()));
+        Thread.sleep(sleepTime);
+
+        activityRule.getActivity().onBackPressed();
+        Thread.sleep(sleepTime);
+        activityRule.getActivity().onBackPressed();
+        Thread.sleep(sleepTime);
+
+        openTableAt(1);
+        Thread.sleep(sleepTime);
+        onView(withId(R.id.btnAddOrder)).perform(click());
+        Thread.sleep(sleepTime);
+        onView(withId(R.id.dish_list)).check(matches(isDisplayed()));
+        Thread.sleep(sleepTime);
+
+        activityRule.getActivity().onBackPressed();
+        Thread.sleep(sleepTime);
+        activityRule.getActivity().onBackPressed();
+        Thread.sleep(sleepTime);
+
+        openTableAt(2);
+        Thread.sleep(sleepTime);
+        onView(withId(R.id.btnAddOrder)).perform(click());
+        Thread.sleep(sleepTime);
+        onView(withId(R.id.dish_list)).check(matches(isDisplayed()));
+        Thread.sleep(sleepTime);
+
+        activityRule.getActivity().onBackPressed();
+        Thread.sleep(sleepTime);
+        activityRule.getActivity().onBackPressed();
+        Thread.sleep(sleepTime);
+
+    }
 
     private void openTableAt(int position) {
         onView(withId(R.id.table_list)).perform(

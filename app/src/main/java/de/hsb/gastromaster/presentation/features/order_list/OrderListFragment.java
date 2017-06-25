@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 import de.hsb.gastromaster.GastroMasterApp;
 import de.hsb.gastromaster.R;
 import de.hsb.gastromaster.data.order.Order;
+import de.hsb.gastromaster.data.table.Table;
 import de.hsb.gastromaster.domain.feature.create_order.CreateOrderUseCase;
 import de.hsb.gastromaster.domain.feature.get_orders.GetOrdersUseCase;
 import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
@@ -33,6 +34,7 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
     private OrderListContract.Presenter<Order> orderListPresenter;
     private OrderListViewAdapter orderListAdapter;
     private RecyclerView.LayoutManager orderListLayoutManager;
+    private String tableNumber;
 
     @BindView(R.id.btnAddOrder)
     FloatingActionButton btnAddOrder;
@@ -61,7 +63,7 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
         btnAddOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                orderListPresenter.onAddOrderClick(null);
+                orderListPresenter.onAddOrderClick(tableNumber, null);
             }
         });
         return rootView;
@@ -69,7 +71,7 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        String tableNumber = getArguments().getString("Table");
+        tableNumber = getArguments().getString("Table");
         orderListPresenter.init(tableNumber);
     }
 
@@ -80,8 +82,8 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
     }
 
     @Override
-    public void goToDishList(Order order) {
-        ((MainActivity)getActivity()).goToDishListView(order);
+    public void goToDishList(String tableNumber, Order order) {
+        ((MainActivity)getActivity()).goToDishListView(tableNumber, order);
     }
 
     @Override

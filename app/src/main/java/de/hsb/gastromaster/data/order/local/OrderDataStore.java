@@ -12,7 +12,7 @@ import de.hsb.gastromaster.data.response.Response;
 import io.reactivex.Single;
 
 public class OrderDataStore implements IOrderDataStore {
-
+    public static int LastID = 1;
     private List<Dish> dishList = new ArrayList<>();
     private List<Order> orderList = new ArrayList<>();
 
@@ -24,19 +24,19 @@ public class OrderDataStore implements IOrderDataStore {
         dishList.add(Dish.builder().setId(5).setOrderId(0).setName("Chef Salat").setPrice(10.00).build());
         dishList.add(Dish.builder().setId(6).setOrderId(0).setName("Sparkled Water").setPrice(2.50).build());
 
-        orderList.add(Order.builder().setId(1).setTableNumber("1A").setWaitressId(1).setDate("11-6-2017:19.00.33").setDishList(Arrays.asList(dishList.get(0), dishList.get(1))).build());
-        orderList.add(Order.builder().setId(2).setTableNumber("1A").setWaitressId(1).setDate("11-6-2017:19.05.13").setDishList(Arrays.asList(dishList.get(2), dishList.get(1))).build());
+        orderList.add(Order.builder().setId(LastID++).setTableNumber("1A").setWaitressId(1).setDate("11-6-2017:19.00.33").setDishList(Arrays.asList(dishList.get(0), dishList.get(1))).build());
+        orderList.add(Order.builder().setId(LastID++).setTableNumber("1A").setWaitressId(1).setDate("11-6-2017:19.05.13").setDishList(Arrays.asList(dishList.get(2), dishList.get(1))).build());
 
-        orderList.add(Order.builder().setId(3).setTableNumber("2A").setWaitressId(1).setDate("11-6-2017:16.00.33").setDishList(Arrays.asList(dishList.get(3), dishList.get(1))).build());
-        orderList.add(Order.builder().setId(4).setTableNumber("2A").setWaitressId(1).setDate("11-6-2017:17.15.13").setDishList(Arrays.asList(dishList.get(4), dishList.get(5))).build());
-        orderList.add(Order.builder().setId(9).setTableNumber("2A").setWaitressId(1).setDate("11-6-2017:16.00.33").setDishList(Arrays.asList(dishList.get(3), dishList.get(1))).build());
-        orderList.add(Order.builder().setId(10).setTableNumber("2A").setWaitressId(1).setDate("11-6-2017:17.15.13").setDishList(Arrays.asList(dishList.get(0), dishList.get(1))).build());
+        orderList.add(Order.builder().setId(LastID++).setTableNumber("2A").setWaitressId(1).setDate("11-6-2017:16.00.33").setDishList(Arrays.asList(dishList.get(3), dishList.get(1))).build());
+        orderList.add(Order.builder().setId(LastID++).setTableNumber("2A").setWaitressId(1).setDate("11-6-2017:17.15.13").setDishList(Arrays.asList(dishList.get(4), dishList.get(5))).build());
+        orderList.add(Order.builder().setId(LastID++).setTableNumber("2A").setWaitressId(1).setDate("11-6-2017:16.00.33").setDishList(Arrays.asList(dishList.get(3), dishList.get(1))).build());
+        orderList.add(Order.builder().setId(LastID++).setTableNumber("2A").setWaitressId(1).setDate("11-6-2017:17.15.13").setDishList(Arrays.asList(dishList.get(0), dishList.get(1))).build());
 
-        orderList.add(Order.builder().setId(5).setTableNumber("3A").setWaitressId(2).setDate("11-6-2017:10.00.00").setDishList(Arrays.asList(dishList.get(0), dishList.get(5))).build());
+        orderList.add(Order.builder().setId(LastID++).setTableNumber("3A").setWaitressId(2).setDate("11-6-2017:10.00.00").setDishList(Arrays.asList(dishList.get(0), dishList.get(5))).build());
 
-        orderList.add(Order.builder().setId(6).setTableNumber("4A").setWaitressId(2).setDate("11-6-2017:18.04.03").setDishList(Arrays.asList(dishList.get(2), dishList.get(1))).build());
-        orderList.add(Order.builder().setId(7).setTableNumber("4A").setWaitressId(2).setDate("11-6-2017:16.25.33").setDishList(Arrays.asList(dishList.get(3), dishList.get(1))).build());
-        orderList.add(Order.builder().setId(8).setTableNumber("4A").setWaitressId(2).setDate("11-6-2017:17.05.13").setDishList(Arrays.asList(dishList.get(4), dishList.get(5))).build());
+        orderList.add(Order.builder().setId(LastID++).setTableNumber("4A").setWaitressId(2).setDate("11-6-2017:18.04.03").setDishList(Arrays.asList(dishList.get(2), dishList.get(1))).build());
+        orderList.add(Order.builder().setId(LastID++).setTableNumber("4A").setWaitressId(2).setDate("11-6-2017:16.25.33").setDishList(Arrays.asList(dishList.get(3), dishList.get(1))).build());
+        orderList.add(Order.builder().setId(LastID++).setTableNumber("4A").setWaitressId(2).setDate("11-6-2017:17.05.13").setDishList(Arrays.asList(dishList.get(4), dishList.get(5))).build());
     }
 
     @Override
@@ -110,7 +110,6 @@ public class OrderDataStore implements IOrderDataStore {
     public Single<Response<Void>> addOrder(Request<Order> request) {
 
         return Single.create(singleEmitter -> {
-
             orderList.add(request.getEntity());
 
             singleEmitter.onSuccess(

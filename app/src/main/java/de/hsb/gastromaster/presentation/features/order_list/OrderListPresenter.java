@@ -31,8 +31,8 @@ public class OrderListPresenter implements OrderListContract.Presenter<Order> {
     }
 
     @Override
-    public void onAddOrderClick(Order order) {
-        fragment.goToDishList(order);
+    public void onAddOrderClick(String tableNumber, Order order) {
+        fragment.goToDishList(tableNumber, order);
     }
 
     @Override

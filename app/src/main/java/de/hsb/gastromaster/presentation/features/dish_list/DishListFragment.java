@@ -16,9 +16,12 @@ import java.util.List;
 import butterknife.ButterKnife;
 import de.hsb.gastromaster.GastroMasterApp;
 import de.hsb.gastromaster.R;
+import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.data.order.dish.Dish;
+import de.hsb.gastromaster.domain.feature.create_order.CreateOrderUseCase;
 import de.hsb.gastromaster.domain.feature.get_dishes.GetDishesUseCase;
 import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
+import de.hsb.gastromaster.presentation.ui.MainActivity;
 
 public class DishListFragment extends Fragment implements DishListContract.View<Dish>, BaseRecyclerViewAdapter.IOnItemClick {
 
@@ -26,6 +29,9 @@ public class DishListFragment extends Fragment implements DishListContract.View<
     private DishListPresenter dishListPresenter;
     private DishListViewAdapter dishListViewAdapter;
     private RecyclerView.LayoutManager dishListLayoutManager;
+
+    private int orderId;
+    private String tableNumber;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,7 +45,8 @@ public class DishListFragment extends Fragment implements DishListContract.View<
         dishListViewAdapter = new DishListViewAdapter(items, this);
 
         dishListPresenter = new DishListPresenter(this,
-                new GetDishesUseCase(((GastroMasterApp) getActivity().getApplication()).getOrderDataRepository()));
+                new GetDishesUseCase(((GastroMasterApp) getActivity().getApplication()).getOrderDataRepository()),
+                new CreateOrderUseCase(((GastroMasterApp) getActivity().getApplication()).getOrderDataRepository()));
 
         dishList.setLayoutManager(dishListLayoutManager);
         dishList.setAdapter(dishListViewAdapter);
@@ -52,7 +59,8 @@ public class DishListFragment extends Fragment implements DishListContract.View<
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        int orderId = getArguments().getInt("OrderId");
+        orderId = getArguments().getInt("OrderId");
+        tableNumber = getArguments().getString("Table");
         dishListPresenter.init(orderId);
     }
 
@@ -68,11 +76,10 @@ public class DishListFragment extends Fragment implements DishListContract.View<
     }
 
     @Override
-    public void addOrderWithDish(Dish dish) {
-//        erstelle neue Order und gehe zu OrderDetail
-//        hier im Fragment erzeuge ich die Order mittels usecase und für ihr die tableNumber und den
-//        Dish hinzu. Dann wir die OrderDetail mit der neuen Order geladen.
+    public void newOrderAdded(Order newOrder) {
+        ((MainActivity)getActivity()).goToOrderDetailView(newOrder);
     }
+
 
     public static DishListFragment newInstance() {
         
@@ -85,6 +92,6 @@ public class DishListFragment extends Fragment implements DishListContract.View<
 
     @Override
     public void onClick(View view, int position) {
-        dishListPresenter.onDishClick(dishListViewAdapter.getItemListItem(position), getArguments().getInt("OrderId"));
+        dishListPresenter.onDishClick(tableNumber, dishListViewAdapter.getItemListItem(position), getArguments().getInt("OrderId"));
     }
 }

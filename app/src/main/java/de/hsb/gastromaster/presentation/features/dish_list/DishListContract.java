@@ -9,11 +9,11 @@ public interface DishListContract {
     interface View<T>{
         void onAddDishClick(T dish);
         void setDishList(List<Dish> dishes);
-        void addOrderWithDish(T dish);
+        void newOrderAdded(Order newOrder);
     }
 
     interface Presenter<T>{
         void init(int orderId);
-        void onDishClick(Dish dish, int orderId);
+        void onDishClick(String tableNumber, T dish, int orderId);
     }
 }

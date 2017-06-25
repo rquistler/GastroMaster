@@ -1,5 +1,8 @@
 package de.hsb.gastromaster.presentation.ui;
 
+import android.app.ActionBar;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -36,10 +39,8 @@ public class MainActivity extends AppCompatActivity {
         orderListFragment = OrderListFragment.newInstance();
         orderDetailFragment = OrderDetailFragment.newInstance();
         dishListFragment = DishListFragment.newInstance();
-
         goToTableListView();
     }
-
     public void goToTableListView() {
         getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, tableListFragment, tableListClassName)
@@ -67,11 +68,17 @@ public class MainActivity extends AppCompatActivity {
                 .addToBackStack(orderListClassName).commit();
     }
 
-    public void goToDishListView(Order order) {
+    public void goToDishListView(String tableNumber, Order order) {
         FragmentManager fm = getSupportFragmentManager();
         Bundle bundle = new Bundle();
-        if (order != null)bundle.putInt("OrderId", order.getId());
-        else bundle.putInt("OrderId", -1);
+        if (order != null) {
+            bundle.putInt("OrderId", order.getId());
+            bundle.putString("Table", order.getTableNumber());
+        }
+        else{
+            bundle.putInt("OrderId", -1);
+            bundle.putString("Table", tableNumber);
+        }
         dishListFragment.setArguments(bundle);
 
         fm.beginTransaction()
