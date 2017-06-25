@@ -1,139 +1,141 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- TODO: Update blank fragment layout -->
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="de.hsb.gastromaster.presentation.features.order_detail.OrderDetailFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
 
 
+    <TextView
+        android:id="@+id/lblOrderId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="Order ID:"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp" />
 
-            <TextView
-                android:id="@+id/lblOrderId"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="Order ID:"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="8dp" />
+    <TextView
+        android:id="@+id/txtOrderId"
+        android:layout_width="26dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="-1"
+        app:layout_constraintEnd_toEndOf="@+id/txtWaitressId"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp" />
 
-            <TextView
-                android:id="@+id/txtOrderId"
-                android:layout_width="26dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:text="-1"
-                app:layout_constraintStart_toEndOf="@+id/lblOrderId"
-                android:layout_marginStart="8dp"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="8dp" />
+    <TextView
+        android:id="@+id/txtOrderDate"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:singleLine="true"
+        android:text="01.07.2017 - 04:00 PM"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp" />
 
-            <TextView
-                android:id="@+id/txtOrderDate"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:ems="10"
-                android:singleLine="true"
-                android:text="01.07.2017 - 04:00 PM"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp" />
+    <TextView
+        android:id="@+id/lblFinalPrice"
+        android:layout_width="0dp"
+        android:layout_height="21dp"
+        android:gravity="center"
+        android:labelFor="@+id/txtFinalPrice"
+        android:text="Total Price:"
+        app:layout_constraintStart_toStartOf="@+id/lblDate"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/order_detail_dish_list"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/lblDate" />
 
-            <TextView
-                android:id="@+id/lblFinalPrice"
-                android:layout_width="0dp"
-                android:layout_height="21dp"
-                android:gravity="center"
-                android:labelFor="@+id/txtFinalPrice"
-                android:text="Total Price:"
-                app:layout_constraintEnd_toStartOf="@+id/txtFinalPrice"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/txtOrderDate" />
+    <TextView
+        android:id="@+id/txtFinalPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="60,25"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/lblCurrency"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/order_detail_dish_list"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/txtOrderDate" />
 
-            <TextView
-                android:id="@+id/txtFinalPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:text="60,25"
-                tools:layout_editor_absoluteY="35dp"
-                app:layout_constraintEnd_toStartOf="@+id/lblCurrency"
-                android:layout_marginEnd="0dp" />
+    <TextView
+        android:id="@+id/lblCurrency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="€"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/txtOrderDate" />
 
-            <TextView
-                android:id="@+id/lblCurrency"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="€"
-                tools:layout_editor_absoluteY="35dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp" />
+    <TextView
+        android:id="@+id/lblDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date:"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/txtOrderDate"
+        android:layout_marginEnd="8dp" />
 
-            <TextView
-                android:id="@+id/lblDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Date:"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toStartOf="@+id/txtOrderDate"
-                android:layout_marginEnd="8dp" />
+    <TextView
+        android:id="@+id/lblWaitressId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Waitress ID:"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/lblOrderId" />
 
-            <TextView
-                android:id="@+id/lblWaitressId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Waitress ID:"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/lblOrderId" />
-
-            <TextView
-                android:id="@+id/txtWaitressId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="-123"
-                tools:layout_editor_absoluteY="35dp"
-                app:layout_constraintStart_toEndOf="@+id/lblWaitressId"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp" />
+    <TextView
+        android:id="@+id/txtWaitressId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-123"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/lblWaitressId"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/order_detail_dish_list"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/lblOrderId" />
 
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/order_detail_dish_list"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            android:scrollbars="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/txtWaitressId"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
->
-        </android.support.v7.widget.RecyclerView>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/order_detail_dish_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/lblWaitressId"></android.support.v7.widget.RecyclerView>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btnAddDish"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_add" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnAddDish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp" />
 
-    </android.support.constraint.ConstraintLayout>
-</FrameLayout>
+</android.support.constraint.ConstraintLayout>
