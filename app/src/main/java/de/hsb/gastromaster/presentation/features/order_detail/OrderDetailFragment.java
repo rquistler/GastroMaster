@@ -50,7 +50,7 @@ public class OrderDetailFragment extends Fragment implements OrderDetailContract
 
         MainActivity mainActivity = (MainActivity) getActivity();
 
-        dishList = (RecyclerView) rootView.findViewById(R.id.dish_list);
+        dishList = (RecyclerView) rootView.findViewById(R.id.order_detail_dish_list);
         dishListLayoutManager = new LinearLayoutManager(getContext());
 
         ArrayList<Dish> items = new ArrayList<>();

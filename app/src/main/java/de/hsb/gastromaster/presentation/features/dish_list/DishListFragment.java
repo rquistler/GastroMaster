@@ -29,9 +29,9 @@ public class DishListFragment extends Fragment implements DishListContract.View<
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_order_list, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_dish_list, container, false);
 
-        dishList = (RecyclerView) rootView.findViewById(R.id.order_list);
+        dishList = (RecyclerView) rootView.findViewById(R.id.dish_list);
         dishListLayoutManager = new LinearLayoutManager(getContext());
 
         ArrayList<Dish> items = new ArrayList<>();
