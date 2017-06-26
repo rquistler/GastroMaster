@@ -35,4 +35,9 @@ public class OrderDataRepository implements IOrderDataRepository {
     public Single<Response<List<Dish>>> getAllDishes(Request<Void> request) {
         return orderDataStore.getAllDishes();
     }
+
+    @Override
+    public Single<Response<Void>> updateOrder(Request<Order> order) {
+        return orderDataStore.updateOrder(order);
+    }
 }

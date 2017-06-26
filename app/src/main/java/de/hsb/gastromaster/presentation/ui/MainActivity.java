@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putInt("OrderId", order.getId());
         orderDetailFragment.setArguments(bundle);
-        getSupportFragmentManager().beginTransaction()
+        fm.beginTransaction()
                 .replace(R.id.fragment_container, orderDetailFragment, orderDetailClassName)
                 .addToBackStack(orderDetailClassName).commit();
     }
@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putString("Table", table.getName());
         orderListFragment.setArguments(bundle);
-
         fm.beginTransaction()
                 .replace(R.id.fragment_container, orderListFragment, orderListClassName)
                 .addToBackStack(orderListClassName).commit();
@@ -80,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
             bundle.putString("Table", tableNumber);
         }
         dishListFragment.setArguments(bundle);
-
         fm.beginTransaction()
                 .replace(R.id.fragment_container, dishListFragment, dishListClassName)
                 .addToBackStack(dishListClassName).commit();

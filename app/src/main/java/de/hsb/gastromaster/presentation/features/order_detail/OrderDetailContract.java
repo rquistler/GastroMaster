@@ -13,7 +13,7 @@ public interface OrderDetailContract {
     }
 
     interface Presenter<T>{
-        void onAddDishClick(T item);
+        void onAddDishClick();
         void init(int orderId);
 
     }

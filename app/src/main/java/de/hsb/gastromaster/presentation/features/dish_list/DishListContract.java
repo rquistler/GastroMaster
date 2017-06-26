@@ -10,6 +10,7 @@ public interface DishListContract {
         void onAddDishClick(T dish);
         void setDishList(List<Dish> dishes);
         void newOrderAdded(Order newOrder);
+        void onOrderUpdated(Order order);
     }
 
     interface Presenter<T>{

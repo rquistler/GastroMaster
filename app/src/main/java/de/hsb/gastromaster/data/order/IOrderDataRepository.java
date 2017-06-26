@@ -17,4 +17,6 @@ public interface IOrderDataRepository {
     Single<Response<Order>> getOrderById(Request<Integer> request);
 
     Single<Response<List<Dish>>> getAllDishes(Request<Void> request);
+
+    Single<Response<Void>> updateOrder(Request<Order> order);
 }

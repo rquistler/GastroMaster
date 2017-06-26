@@ -3,6 +3,7 @@ package de.hsb.gastromaster.presentation.features.order_detail;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +30,9 @@ public class OrderDetailFragment extends Fragment implements OrderDetailContract
     private OrderDetailPresenter orderDetailPresenter;
     private OrderDetailViewAdapter dishListViewAdapter;
     private RecyclerView.LayoutManager dishListLayoutManager;
+
+    @BindView(R.id.btnAddDish)
+    FloatingActionButton btnAddDish;
 
     @BindView(R.id.txtOrderId)
     TextView txtOrderId;
@@ -64,6 +68,10 @@ public class OrderDetailFragment extends Fragment implements OrderDetailContract
 
         ButterKnife.bind(this, rootView);
 
+        btnAddDish.setOnClickListener(
+                v -> orderDetailPresenter.onAddDishClick()
+        );
+
         return rootView;
     }
 
@@ -76,7 +84,7 @@ public class OrderDetailFragment extends Fragment implements OrderDetailContract
 
     @Override
     public void goToAddDish(Order order) {
-//        ((MainActivity)getActivity()).goToAddDishView(order);
+        ((MainActivity)getActivity()).goToDishListView(order.getTableNumber(), order);
     }
 
     @Override
@@ -89,9 +97,7 @@ public class OrderDetailFragment extends Fragment implements OrderDetailContract
     }
 
     @Override
-    public void onClick(View view, int position) {
-    // on dish item click
-    }
+    public void onClick(View view, int position) {}
 
 
     public static OrderDetailFragment newInstance() {

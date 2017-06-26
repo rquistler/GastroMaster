@@ -20,6 +20,8 @@ import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.data.order.dish.Dish;
 import de.hsb.gastromaster.domain.feature.create_order.CreateOrderUseCase;
 import de.hsb.gastromaster.domain.feature.get_dishes.GetDishesUseCase;
+import de.hsb.gastromaster.domain.feature.get_order.GetOrderUseCase;
+import de.hsb.gastromaster.domain.feature.update_order.UpdateOrderUseCase;
 import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
 import de.hsb.gastromaster.presentation.ui.MainActivity;
 
@@ -46,7 +48,9 @@ public class DishListFragment extends Fragment implements DishListContract.View<
 
         dishListPresenter = new DishListPresenter(this,
                 new GetDishesUseCase(((GastroMasterApp) getActivity().getApplication()).getOrderDataRepository()),
-                new CreateOrderUseCase(((GastroMasterApp) getActivity().getApplication()).getOrderDataRepository()));
+                new CreateOrderUseCase(((GastroMasterApp) getActivity().getApplication()).getOrderDataRepository()),
+                new GetOrderUseCase(((GastroMasterApp) getActivity().getApplication()).getOrderDataRepository()),
+                new UpdateOrderUseCase(((GastroMasterApp) getActivity().getApplication()).getOrderDataRepository()));
 
         dishList.setLayoutManager(dishListLayoutManager);
         dishList.setAdapter(dishListViewAdapter);
@@ -80,6 +84,10 @@ public class DishListFragment extends Fragment implements DishListContract.View<
         ((MainActivity)getActivity()).goToOrderDetailView(newOrder);
     }
 
+    @Override
+    public void onOrderUpdated(Order order) {
+        ((MainActivity)getActivity()).goToOrderDetailView(order);
+    }
 
     public static DishListFragment newInstance() {
         

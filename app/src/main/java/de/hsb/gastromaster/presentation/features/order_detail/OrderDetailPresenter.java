@@ -13,6 +13,7 @@ public class OrderDetailPresenter implements OrderDetailContract.Presenter<Order
 
     private OrderDetailContract.View<Dish> fragment;
     private GetOrderUseCase useCase;
+    public Order currentOrder;
 
     public OrderDetailPresenter(OrderDetailContract.View<Dish> fragment,
                               GetOrderUseCase useCase){
@@ -22,8 +23,8 @@ public class OrderDetailPresenter implements OrderDetailContract.Presenter<Order
 
 
     @Override
-    public void onAddDishClick(Order item) {
-
+    public void onAddDishClick() {
+        fragment.goToAddDish(currentOrder);
     }
 
     @Override
@@ -39,9 +40,8 @@ public class OrderDetailPresenter implements OrderDetailContract.Presenter<Order
 
                     @Override
                     public void onSuccess(Response<Order> orderResponse) {
-
-                        fragment.loadOrder(orderResponse.getEntity());
-//                        fragment.goToAddDish(orderResponse.getEntity());
+                        currentOrder = orderResponse.getEntity();
+                        fragment.loadOrder(currentOrder);
                     }
 
                     @Override

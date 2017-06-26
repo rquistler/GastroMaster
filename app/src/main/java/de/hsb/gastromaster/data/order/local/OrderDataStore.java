@@ -159,5 +159,23 @@ public class OrderDataStore implements IOrderDataStore {
         });
     }
 
+    @Override
+    public Single<Response<Void>> updateOrder(Request<Order> request) {
+        return Single.create(singleEmitter -> {
+            for (int i = 0; i<orderList.size(); i++){
+                if (orderList.get(i).getId() == request.getEntity().getId()){
+                    orderList.set(i,request.getEntity());
+                    break;
+                }
+            }
+
+            singleEmitter.onSuccess(
+                    Response.<Void>builder()
+                            .setEntity(null)
+                            .setIsSuccessful(true)
+                            .build());
+        });
+    }
+
 
 }
