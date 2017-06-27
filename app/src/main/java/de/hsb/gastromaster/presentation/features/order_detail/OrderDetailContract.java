@@ -10,12 +10,13 @@ public interface OrderDetailContract {
     interface View<T>{
         void goToAddDish(Order order);
         void loadOrder(Order order);
+        void onOrderUpdated(int orderId);
     }
 
     interface Presenter<T>{
         void onAddDishClick();
         void init(int orderId);
-
+        void onItemLongClick(Dish item);
     }
 
 }

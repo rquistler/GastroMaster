@@ -25,7 +25,7 @@ class DishListPresenter implements DishListContract.Presenter<Dish>{
     private CreateOrderUseCase createOrderUseCase;
     private GetOrderUseCase getOrderUseCase;
     private UpdateOrderUseCase updateOrderUseCase;
-    private List<Dish> allDishes;
+
     private Order order;
 
     public DishListPresenter(DishListContract.View<Dish> fragment,
