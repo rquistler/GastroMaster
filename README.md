@@ -1,6 +1,6 @@
 # Gastro Master
 
-### [**MANUAL**](https://docs.google.com/presentation/d/1P-EcBMydWA9E-H5Sq2RaCd-CU_n1Ptb49y3ldpVaTtg/edit?usp=sharing)
+### [**MANUAL**](https://docs.google.com/document/d/1yvAAOebav86d2c6mhpUur8YLNJSuMkPx4NxIZjK-1hc/edit?usp=sharing)
 
 Our app help waitresses to take orders from a customer.
 Normally a waitress notes the orders on a piece of paper.
