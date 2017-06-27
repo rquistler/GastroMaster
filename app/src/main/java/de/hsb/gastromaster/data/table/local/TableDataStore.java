@@ -39,7 +39,6 @@ public class TableDataStore implements ITableDataStore {
                     orderList = listResponse.getEntity();
 
                 });
-        matchOrdersWithTables();
     }
 
     public void matchOrdersWithTables(){
@@ -51,9 +50,22 @@ public class TableDataStore implements ITableDataStore {
             }
         }
     }
+
+    private void updateOrders(){
+        orderDataStore.getAllOrder()
+                .subscribe((listResponse, throwable) -> {
+                    orderList = listResponse.getEntity();
+
+                });
+
+        for (Table table : tableList) {
+            table.getOrderList().clear();
+        }
+        matchOrdersWithTables();
+    }
     @Override
     public Single<Response<List<Table>>> getAllTables() {
-
+        updateOrders();
         return Single.create(singleEmitter -> {
 
             singleEmitter.onSuccess(

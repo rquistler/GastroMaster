@@ -6,6 +6,7 @@ import java.util.List;
 import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.data.request.Request;
 import de.hsb.gastromaster.data.response.Response;
+import de.hsb.gastromaster.domain.feature.create_order.CreateOrderUseCase;
 import de.hsb.gastromaster.domain.feature.get_orders.GetOrdersUseCase;
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
@@ -13,22 +14,30 @@ import io.reactivex.disposables.Disposable;
 
 public class OrderListPresenter implements OrderListContract.Presenter<Order> {
     private OrderListContract.View<Order> fragment;
-    private GetOrdersUseCase useCase;
+    private GetOrdersUseCase getOrdersUseCase;
+    private CreateOrderUseCase createOrderUseCase;
     private List<Order> allOrders;
 
     public OrderListPresenter(OrderListContract.View<Order> fragment,
-                              GetOrdersUseCase useCase){
-        this.useCase = useCase;
+                              GetOrdersUseCase getOrdersUseCase, CreateOrderUseCase createOrderUseCase){
+        this.getOrdersUseCase = getOrdersUseCase;
+        this.createOrderUseCase = createOrderUseCase;
         this.fragment = fragment;
+
     }
     @Override
     public void onItemClick(Order item) {
+        fragment.goToOrderDetail(item);
+    }
 
+    @Override
+    public void onAddOrderClick(String tableNumber, Order order) {
+        fragment.goToDishList(tableNumber, order);
     }
 
     @Override
     public void init(String tableNumber) {
-        useCase.execute(Request.<Void>builder()
+        getOrdersUseCase.execute(Request.<Void>builder()
                 .setEntity(null)
                 .build())
                 .subscribeWith(new SingleObserver<Response<List<Order>>>() {

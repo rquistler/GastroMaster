@@ -1,6 +1,5 @@
-package de.hsb.gastromaster.domain.feature.get_orders;
+package de.hsb.gastromaster.domain.feature.update_order;
 
-import java.util.List;
 
 import de.hsb.gastromaster.data.order.IOrderDataRepository;
 import de.hsb.gastromaster.data.order.Order;
@@ -9,17 +8,15 @@ import de.hsb.gastromaster.data.response.Response;
 import de.hsb.gastromaster.domain.feature.BaseUseCase;
 import io.reactivex.Single;
 
-
-public class GetOrdersUseCase extends BaseUseCase<Void, List<Order>> {
-
+public class UpdateOrderUseCase extends BaseUseCase<Order, Void> {
     private IOrderDataRepository orderDataRepository;
 
-    public GetOrdersUseCase(IOrderDataRepository orderDataRepository) {
+    public UpdateOrderUseCase(IOrderDataRepository orderDataRepository) {
         this.orderDataRepository = orderDataRepository;
     }
 
     @Override
-    public Single<Response<List<Order>>> execute(Request<Void> request) {
-        return orderDataRepository.getAllOrders(request);
+    public Single<Response<Void>> execute(Request<Order> request) {
+        return orderDataRepository.updateOrder(request);
     }
 }

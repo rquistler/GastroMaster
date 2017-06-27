@@ -68,14 +68,12 @@ public abstract class Order {
     // Fake computed property - because object is immutable anyways
     // So only the first call actually calculates the total price
     // The other ones just return
-    public final double getTotalPrice() {
-
-        if (totalPrice == 0.0 && !getDishList().isEmpty()) {
-            for (Dish dish : getDishList()) {
-                totalPrice += dish.getPrice();
-            }
+    public double getTotalPrice() {
+        totalPrice = 0.0;
+        for (Dish dish :
+                getDishList()) {
+            totalPrice += dish.getPrice();
         }
-
         return totalPrice;
     }
 }

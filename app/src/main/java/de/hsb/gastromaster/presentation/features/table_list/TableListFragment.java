@@ -63,9 +63,15 @@ public class TableListFragment extends Fragment implements
     }
 
     @Override
+    public void onResume() {
+        tableListPresenter.init();
+        super.onResume();
+
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         tableListPresenter.init();
     }
 
