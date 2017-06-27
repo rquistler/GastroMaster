@@ -9,10 +9,18 @@ import de.hsb.gastromaster.data.table.local.ITableDataStore;
 import io.reactivex.Single;
 
 
+/**
+ * The type Table data repository.
+ */
 public class TableDataRepository implements ITableDataRepository {
 
     private ITableDataStore tableDataStore;
 
+    /**
+     * Instantiates a new Table data repository.
+     *
+     * @param tableDataStore the table data store
+     */
     public TableDataRepository(ITableDataStore tableDataStore) {
         this.tableDataStore = tableDataStore;
     }

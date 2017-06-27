@@ -19,6 +19,9 @@ import de.hsb.gastromaster.domain.feature.update_order.UpdateOrderUseCase;
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
 
+/**
+ * The type Dish list presenter.
+ */
 class DishListPresenter implements DishListContract.Presenter<Dish>{
     private DishListContract.View<Dish> fragment;
     private GetDishesUseCase getDishesUserCase;
@@ -28,6 +31,15 @@ class DishListPresenter implements DishListContract.Presenter<Dish>{
 
     private Order order;
 
+    /**
+     * Instantiates a new Dish list presenter.
+     *
+     * @param fragment           the fragment
+     * @param getDishesUserCase  the get dishes user case
+     * @param createOrderUseCase the create order use case
+     * @param getOrderUseCase    the get order use case
+     * @param updateOrderUseCase the update order use case
+     */
     public DishListPresenter(DishListContract.View<Dish> fragment,
                              GetDishesUseCase getDishesUserCase, CreateOrderUseCase createOrderUseCase, GetOrderUseCase getOrderUseCase, UpdateOrderUseCase updateOrderUseCase){
         this.getDishesUserCase = getDishesUserCase;

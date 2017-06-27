@@ -16,15 +16,42 @@ import de.hsb.gastromaster.presentation.features.order_list.OrderListFragment;
 import de.hsb.gastromaster.presentation.features.table_list.TableListFragment;
 
 
+/**
+ * The type Main activity.
+ */
 public class MainActivity extends AppCompatActivity {
+    /**
+     * The constant TABLE_LIST_CLASS_NAME.
+     */
     public static final String TABLE_LIST_CLASS_NAME = TableListFragment.class.getSimpleName();
+    /**
+     * The constant ORDER_LIST_CLASS_NAME.
+     */
     public static final String ORDER_LIST_CLASS_NAME = OrderListFragment.class.getSimpleName();
+    /**
+     * The constant ORDER_DETAIL_CLASS_NAME.
+     */
     public static final String ORDER_DETAIL_CLASS_NAME = OrderDetailFragment.class.getSimpleName();
+    /**
+     * The constant DISH_LIST_CLASS_NAME.
+     */
     public static final String DISH_LIST_CLASS_NAME = DishListFragment.class.getSimpleName();
 
+    /**
+     * The Table list fragment.
+     */
     protected Fragment tableListFragment;
+    /**
+     * The Order list fragment.
+     */
     protected Fragment orderListFragment;
+    /**
+     * The Order detail fragment.
+     */
     protected Fragment orderDetailFragment;
+    /**
+     * The Dish list fragment.
+     */
     protected Fragment dishListFragment;
 
     @Override
@@ -38,6 +65,10 @@ public class MainActivity extends AppCompatActivity {
         dishListFragment = DishListFragment.newInstance();
         goToTableListView();
     }
+
+    /**
+     * Go to table list view.
+     */
     public void goToTableListView() {
         getSupportFragmentManager().popBackStackImmediate(ORDER_LIST_CLASS_NAME, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         getSupportFragmentManager().beginTransaction()
@@ -45,6 +76,11 @@ public class MainActivity extends AppCompatActivity {
                     .addToBackStack(TABLE_LIST_CLASS_NAME).commit();
     }
 
+    /**
+     * Go to order detail view.
+     *
+     * @param order the order
+     */
     public void goToOrderDetailView(Order order) {
         FragmentManager fm = getSupportFragmentManager();
         Bundle bundle = new Bundle();
@@ -57,6 +93,11 @@ public class MainActivity extends AppCompatActivity {
                 .addToBackStack(ORDER_DETAIL_CLASS_NAME).commit();
     }
 
+    /**
+     * Go to order list view.
+     *
+     * @param table the table
+     */
     public void goToOrderListView(Table table) {
         FragmentManager fm = getSupportFragmentManager();
         Bundle bundle = new Bundle();
@@ -68,6 +109,12 @@ public class MainActivity extends AppCompatActivity {
                 .addToBackStack(ORDER_LIST_CLASS_NAME).commit();
     }
 
+    /**
+     * Go to dish list view.
+     *
+     * @param tableNumber the table number
+     * @param order       the order
+     */
     public void goToDishListView(String tableNumber, Order order) {
         FragmentManager fm = getSupportFragmentManager();
         Bundle bundle = new Bundle();
@@ -96,7 +143,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Get gastro master app gastro master app.
+     *
+     * @return the gastro master app
+     */
     public GastroMasterApp getGastroMasterApp(){
         return (((GastroMasterApp) getApplication()));
     }

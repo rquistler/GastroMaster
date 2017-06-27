@@ -8,9 +8,17 @@ import de.hsb.gastromaster.data.response.Response;
 import de.hsb.gastromaster.domain.feature.BaseUseCase;
 import io.reactivex.Single;
 
+/**
+ * The type Update order use case.
+ */
 public class UpdateOrderUseCase extends BaseUseCase<Order, Void> {
     private IOrderDataRepository orderDataRepository;
 
+    /**
+     * Instantiates a new Update order use case.
+     *
+     * @param orderDataRepository the order data repository
+     */
     public UpdateOrderUseCase(IOrderDataRepository orderDataRepository) {
         this.orderDataRepository = orderDataRepository;
     }

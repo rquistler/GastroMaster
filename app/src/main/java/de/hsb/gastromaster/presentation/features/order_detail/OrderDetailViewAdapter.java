@@ -15,14 +15,29 @@ import de.hsb.gastromaster.R;
 import de.hsb.gastromaster.data.order.dish.Dish;
 import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
 
+/**
+ * The type Order detail view adapter.
+ */
 public class OrderDetailViewAdapter extends BaseRecyclerViewAdapter<Dish> {
 
+    /**
+     * The Txt dish name.
+     */
     @BindView(R.id.txtName)
     TextView txtDishName;
 
+    /**
+     * The Txt dish price.
+     */
     @BindView(R.id.txtPrice)
     TextView txtDishPrice;
 
+    /**
+     * Instantiates a new Order detail view adapter.
+     *
+     * @param itemList the item list
+     * @param listener the listener
+     */
     public OrderDetailViewAdapter(List<Dish> itemList, IOnItemClick listener) {
         super(itemList, listener);
     }

@@ -10,11 +10,15 @@ import io.reactivex.Single;
 /**
  * Created by cschaf on 09-May-17.
  */
-
 public class CreateOrderUseCase extends BaseUseCase<Order, Void>  {
 
     private IOrderDataRepository orderDataRepository;
 
+    /**
+     * Instantiates a new Create order use case.
+     *
+     * @param orderDataRepository the order data repository
+     */
     public CreateOrderUseCase(IOrderDataRepository orderDataRepository) {
         this.orderDataRepository = orderDataRepository;
     }

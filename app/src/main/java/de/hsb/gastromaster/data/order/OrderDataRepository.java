@@ -8,10 +8,18 @@ import de.hsb.gastromaster.data.request.Request;
 import de.hsb.gastromaster.data.response.Response;
 import io.reactivex.Single;
 
+/**
+ * The type Order data repository.
+ */
 public class OrderDataRepository implements IOrderDataRepository {
 
     private IOrderDataStore orderDataStore;
 
+    /**
+     * Instantiates a new Order data repository.
+     *
+     * @param orderDataStore the order data store
+     */
     public OrderDataRepository(IOrderDataStore orderDataStore) {
         this.orderDataStore = orderDataStore;
     }

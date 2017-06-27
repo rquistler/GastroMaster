@@ -14,6 +14,9 @@ import de.hsb.gastromaster.data.table.TableDataRepository;
 import de.hsb.gastromaster.data.table.local.TableDataStore;
 
 
+/**
+ * The Gastro master app.
+ */
 public class GastroMasterApp extends Application {
 
     private static OrderDataStore orderDataStore;
@@ -60,10 +63,20 @@ public class GastroMasterApp extends Application {
         tableDataRepository = new TableDataRepository(tableDataStore);
     }
 
+    /**
+     * Get order data repository order data repository.
+     *
+     * @return the order data repository
+     */
     public IOrderDataRepository getOrderDataRepository(){
         return orderDataRepository;
     }
 
+    /**
+     * Get table data repository table data repository.
+     *
+     * @return the table data repository
+     */
     public ITableDataRepository getTableDataRepository(){
         return tableDataRepository;
     }

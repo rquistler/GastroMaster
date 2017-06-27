@@ -25,6 +25,9 @@ import de.hsb.gastromaster.domain.feature.update_order.UpdateOrderUseCase;
 import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
 import de.hsb.gastromaster.presentation.ui.MainActivity;
 
+/**
+ * The type Dish list fragment.
+ */
 public class DishListFragment extends Fragment implements DishListContract.View<Dish>, BaseRecyclerViewAdapter.IOnItemClick {
 
     private RecyclerView dishList;
@@ -89,6 +92,11 @@ public class DishListFragment extends Fragment implements DishListContract.View<
         ((MainActivity)getActivity()).goToOrderDetailView(order);
     }
 
+    /**
+     * New instance dish list fragment.
+     *
+     * @return the dish list fragment
+     */
     public static DishListFragment newInstance() {
         
         Bundle args = new Bundle();

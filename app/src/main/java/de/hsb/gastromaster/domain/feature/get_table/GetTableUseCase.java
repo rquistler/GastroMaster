@@ -10,10 +10,18 @@ import de.hsb.gastromaster.domain.feature.BaseUseCase;
 import io.reactivex.Single;
 
 
+/**
+ * The type Get table use case.
+ */
 public class GetTableUseCase extends BaseUseCase<Void, List<Table>> {
 
     private ITableDataRepository tableDataRepository;
 
+    /**
+     * Instantiates a new Get table use case.
+     *
+     * @param dataRepository the data repository
+     */
     public GetTableUseCase(ITableDataRepository dataRepository){
         tableDataRepository = dataRepository;
     }

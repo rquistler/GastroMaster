@@ -37,6 +37,9 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
     private RecyclerView.LayoutManager orderListLayoutManager;
     private String tableNumber;
 
+    /**
+     * The Btn add order.
+     */
     @BindView(R.id.btnAddOrder)
     FloatingActionButton btnAddOrder;
 
@@ -98,6 +101,11 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
         ((MainActivity)getActivity()).goToOrderDetailView(item);
     }
 
+    /**
+     * New instance order list fragment.
+     *
+     * @return the order list fragment
+     */
     public static OrderListFragment newInstance() {
         Bundle args = new Bundle();
         OrderListFragment fragment = new OrderListFragment();

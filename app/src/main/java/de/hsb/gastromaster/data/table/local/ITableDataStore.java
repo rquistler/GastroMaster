@@ -9,8 +9,12 @@ import io.reactivex.Single;
 /**
  * Created by roman on 13/06/17.
  */
-
 public interface ITableDataStore {
 
+    /**
+     * Gets all tables.
+     *
+     * @return the all tables
+     */
     Single<Response<List<Table>>> getAllTables();
 }

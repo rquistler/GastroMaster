@@ -9,6 +9,9 @@ import android.widget.FrameLayout;
 
 import de.hsb.gastromaster.R;
 
+/**
+ * The type Test activity.
+ */
 @VisibleForTesting
 public class TestActivity extends AppCompatActivity {
     @Override

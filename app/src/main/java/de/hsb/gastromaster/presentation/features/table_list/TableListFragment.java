@@ -21,6 +21,9 @@ import de.hsb.gastromaster.domain.feature.get_table.GetTableUseCase;
 import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
 import de.hsb.gastromaster.presentation.ui.MainActivity;
 
+/**
+ * The type Table list fragment.
+ */
 public class TableListFragment extends Fragment implements
         TableListContract.View<Table>, BaseRecyclerViewAdapter.IOnItemClick {
 
@@ -29,6 +32,11 @@ public class TableListFragment extends Fragment implements
     private TableListViewAdapter tableListAdapter;
     private RecyclerView.LayoutManager tableListLayoutManager;
 
+    /**
+     * New instance table list fragment.
+     *
+     * @return the table list fragment
+     */
     public static TableListFragment newInstance() {
 
         Bundle args = new Bundle();

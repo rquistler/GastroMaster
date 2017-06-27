@@ -10,10 +10,18 @@ import de.hsb.gastromaster.domain.feature.BaseUseCase;
 import io.reactivex.Single;
 
 
+/**
+ * The type Get orders use case.
+ */
 public class GetOrdersUseCase extends BaseUseCase<Void, List<Order>> {
 
     private IOrderDataRepository orderDataRepository;
 
+    /**
+     * Instantiates a new Get orders use case.
+     *
+     * @param orderDataRepository the order data repository
+     */
     public GetOrdersUseCase(IOrderDataRepository orderDataRepository) {
         this.orderDataRepository = orderDataRepository;
     }

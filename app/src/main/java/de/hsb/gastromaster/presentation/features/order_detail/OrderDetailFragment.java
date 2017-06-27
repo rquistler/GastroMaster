@@ -25,6 +25,9 @@ import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
 import de.hsb.gastromaster.presentation.ui.MainActivity;
 
 
+/**
+ * The type Order detail fragment.
+ */
 public class OrderDetailFragment extends Fragment implements OrderDetailContract.View<Dish>, BaseRecyclerViewAdapter.IOnItemClick {
 
     private RecyclerView dishList;
@@ -32,18 +35,33 @@ public class OrderDetailFragment extends Fragment implements OrderDetailContract
     private OrderDetailViewAdapter dishListViewAdapter;
     private RecyclerView.LayoutManager dishListLayoutManager;
 
+    /**
+     * The Btn add dish.
+     */
     @BindView(R.id.btnAddDish)
     FloatingActionButton btnAddDish;
 
+    /**
+     * The Txt order id.
+     */
     @BindView(R.id.txtOrderId)
     TextView txtOrderId;
 
+    /**
+     * The Txt order date.
+     */
     @BindView(R.id.txtOrderDate)
     TextView txtOrderDate;
 
+    /**
+     * The Txt order total price.
+     */
     @BindView(R.id.txtFinalPrice)
     TextView txtOrderTotalPrice;
 
+    /**
+     * The Txt waitress id.
+     */
     @BindView(R.id.txtWaitressId)
     TextView txtWaitressId;
 
@@ -112,6 +130,11 @@ public class OrderDetailFragment extends Fragment implements OrderDetailContract
     }
 
 
+    /**
+     * New instance order detail fragment.
+     *
+     * @return the order detail fragment
+     */
     public static OrderDetailFragment newInstance() {
 
         Bundle args = new Bundle();

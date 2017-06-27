@@ -12,13 +12,26 @@ import de.hsb.gastromaster.domain.feature.update_order.UpdateOrderUseCase;
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
 
+/**
+ * The type Order detail presenter.
+ */
 public class OrderDetailPresenter implements OrderDetailContract.Presenter<Order>{
 
     private OrderDetailContract.View<Dish> fragment;
     private GetOrderUseCase getOrderUseCase;
     private UpdateOrderUseCase updateOrderUseCase;
+    /**
+     * The Current order.
+     */
     public Order currentOrder;
 
+    /**
+     * Instantiates a new Order detail presenter.
+     *
+     * @param fragment           the fragment
+     * @param useCase            the use case
+     * @param updateOrderUseCase the update order use case
+     */
     public OrderDetailPresenter(OrderDetailContract.View<Dish> fragment,
                                 GetOrderUseCase useCase, UpdateOrderUseCase updateOrderUseCase){
         this.getOrderUseCase = useCase;

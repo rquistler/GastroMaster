@@ -23,20 +23,40 @@ import de.hsb.gastromaster.data.order.OrderDataRepository;
 import de.hsb.gastromaster.data.order.local.OrderDataStore;
 import de.hsb.gastromaster.domain.feature.create_order.CreateOrderUseCase;
 
+/**
+ * The type Create order fragment.
+ */
 public class CreateOrderFragment extends Fragment
         implements CreateOrderContract.View {
 
     private CreateOrderContract.Presenter presenter;
 
+    /**
+     * The Btn create order.
+     */
     @BindView(R.id.btnCreate) Button btnCreateOrder;
 
+    /**
+     * The Edtxt table number.
+     */
     @BindView(R.id.txtTableNumber) EditText edtxtTableNumber;
 
+    /**
+     * The Edtxt waitess id.
+     */
     @BindView(R.id.txtWaitressNumber) EditText edtxtWaitessId;
 
+    /**
+     * The Edtxt dish.
+     */
     @BindView(R.id.txtDish) EditText edtxtDish;
 
 
+    /**
+     * New instance create order fragment.
+     *
+     * @return the create order fragment
+     */
     public static CreateOrderFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -86,6 +106,11 @@ public class CreateOrderFragment extends Fragment
 
     }
 
+    /**
+     * Init presenter.
+     *
+     * @param presenter the presenter
+     */
     public void initPresenter(CreateOrderContract.Presenter presenter) {
 
         this.presenter = presenter;
@@ -93,6 +118,11 @@ public class CreateOrderFragment extends Fragment
         presenter.init();
     }
 
+    /**
+     * On create button click.
+     *
+     * @param __ the __
+     */
     @OnClick(R.id.btnCreate)
     public void onCreateButtonClick(View __) {
 

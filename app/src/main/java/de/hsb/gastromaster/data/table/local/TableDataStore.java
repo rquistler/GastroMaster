@@ -17,6 +17,9 @@ import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
 
 
+/**
+ * The type Table data store.
+ */
 public class TableDataStore implements ITableDataStore {
     private IOrderDataStore orderDataStore;
     private List<Table> tableList = new ArrayList<>();
@@ -24,10 +27,18 @@ public class TableDataStore implements ITableDataStore {
     private List<Order> orderList;
 
 
+    /**
+     * Instantiates a new Table data store.
+     *
+     * @param orderDataStore the order data store
+     */
     public TableDataStore(IOrderDataStore orderDataStore) {
         this.orderDataStore = orderDataStore;
     }
 
+    /**
+     * Init.
+     */
     public void init(){
         tableList.add(Table.builder().setId(1).setName("1A").setOrderList(new ArrayList<Order>()).build());
         tableList.add(Table.builder().setId(2).setName("2A").setOrderList(new ArrayList<Order>()).build());
@@ -41,6 +52,9 @@ public class TableDataStore implements ITableDataStore {
                 });
     }
 
+    /**
+     * Match orders with tables.
+     */
     public void matchOrdersWithTables(){
         for (Table table : tableList) {
             for (Order order : orderList) {

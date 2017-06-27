@@ -10,9 +10,17 @@ import de.hsb.gastromaster.domain.feature.BaseUseCase;
 import io.reactivex.Single;
 
 
+/**
+ * The type Get dishes use case.
+ */
 public class GetDishesUseCase extends BaseUseCase<Void, List<Dish>> {
     private IOrderDataRepository orderDataRepository;
 
+    /**
+     * Instantiates a new Get dishes use case.
+     *
+     * @param orderDataRepository the order data repository
+     */
     public GetDishesUseCase(IOrderDataRepository orderDataRepository) {
         this.orderDataRepository = orderDataRepository;
     }

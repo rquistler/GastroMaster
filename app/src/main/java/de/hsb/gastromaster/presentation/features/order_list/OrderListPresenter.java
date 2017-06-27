@@ -14,12 +14,22 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableSingleObserver;
 
 
+/**
+ * The type Order list presenter.
+ */
 public class OrderListPresenter implements OrderListContract.Presenter<Order> {
     private OrderListContract.View<Order> fragment;
     private GetOrdersUseCase getOrdersUseCase;
     private RemoveOrderUseCase removeOrderUseCase;
     private List<Order> allOrders;
 
+    /**
+     * Instantiates a new Order list presenter.
+     *
+     * @param fragment           the fragment
+     * @param getOrdersUseCase   the get orders use case
+     * @param removeOrderUseCase the remove order use case
+     */
     public OrderListPresenter(OrderListContract.View<Order> fragment,
                               GetOrdersUseCase getOrdersUseCase, RemoveOrderUseCase removeOrderUseCase) {
         this.getOrdersUseCase = getOrdersUseCase;

@@ -10,6 +10,9 @@ import org.hamcrest.Matcher;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static org.hamcrest.core.Is.is;
 
+/**
+ * ViewAssertion for check the number of rows of a RecyclerView
+ */
 public class RecyclerViewItemCountAssertion implements ViewAssertion {
     private final Matcher<Integer> matcher;
 

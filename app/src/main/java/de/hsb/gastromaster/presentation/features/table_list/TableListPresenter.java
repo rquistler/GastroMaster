@@ -9,11 +9,20 @@ import de.hsb.gastromaster.domain.feature.get_table.GetTableUseCase;
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
 
+/**
+ * The type Table list presenter.
+ */
 public class TableListPresenter implements TableListContract.Presenter<Table> {
 
     private TableListContract.View<Table> fragment;
     private GetTableUseCase useCase;
 
+    /**
+     * Instantiates a new Table list presenter.
+     *
+     * @param fragment the fragment
+     * @param useCase  the use case
+     */
     public TableListPresenter(TableListContract.View<Table> fragment,
                               GetTableUseCase useCase){
         this.useCase = useCase;

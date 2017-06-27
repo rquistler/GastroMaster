@@ -17,15 +17,26 @@ import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
 /**
  * Created by roman on 14/06/17.
  */
-
 public class TableListViewAdapter extends BaseRecyclerViewAdapter<Table> {
 
+    /**
+     * The Txt table number.
+     */
     @BindView(R.id.txtTableNumber)
     TextView txtTableNumber;
 
+    /**
+     * The Txt number orders.
+     */
     @BindView(R.id.txtNumberOrders)
     TextView txtNumberOrders;
 
+    /**
+     * Instantiates a new Table list view adapter.
+     *
+     * @param itemList the item list
+     * @param listener the listener
+     */
     public TableListViewAdapter(List<Table> itemList,
                                 IOnItemClick listener) {
 
