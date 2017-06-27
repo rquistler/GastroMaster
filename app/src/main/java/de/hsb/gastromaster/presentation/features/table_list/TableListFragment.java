@@ -81,6 +81,11 @@ public class TableListFragment extends Fragment implements
     }
 
     @Override
+    public void onLongClick(View view, int position) {
+
+    }
+
+    @Override
     public void goToOrderList(Table item) {
         ((MainActivity) getActivity()).goToOrderListView(item);
     }

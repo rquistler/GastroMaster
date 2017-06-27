@@ -112,7 +112,7 @@ public abstract class BaseRecyclerViewAdapter<T> extends
     // ViewHolder
     // --------------------
     public static class BaseViewHolder extends RecyclerView.ViewHolder
-            implements View.OnClickListener {
+            implements View.OnClickListener, View.OnLongClickListener{
 
         private IOnItemClick listener;
 
@@ -122,17 +122,25 @@ public abstract class BaseRecyclerViewAdapter<T> extends
             this.listener = listener;
 
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            System.out.println("Click");
             listener.onClick(view, getAdapterPosition());
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            if (view == null)return false;
+            listener.onLongClick(view, getAdapterPosition());
+            return true;
         }
     }
 
     public interface IOnItemClick {
         void onClick(View view, int position);
+        void onLongClick(View view, int position);
     }
 
 

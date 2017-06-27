@@ -22,6 +22,7 @@ import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.data.table.Table;
 import de.hsb.gastromaster.domain.feature.create_order.CreateOrderUseCase;
 import de.hsb.gastromaster.domain.feature.get_orders.GetOrdersUseCase;
+import de.hsb.gastromaster.domain.feature.remove_order.RemoveOrderUseCase;
 import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
 import de.hsb.gastromaster.presentation.ui.MainActivity;
 
@@ -53,19 +54,14 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
         orderListAdapter = new OrderListViewAdapter(items,this);
         orderListPresenter = new OrderListPresenter(this,
                 new GetOrdersUseCase(((GastroMasterApp) getActivity().getApplication()).getOrderDataRepository()),
-                new CreateOrderUseCase(((GastroMasterApp) getActivity().getApplication()).getOrderDataRepository()));
+                new RemoveOrderUseCase(((GastroMasterApp) getActivity().getApplication()).getOrderDataRepository()));
 
         orderList.setLayoutManager(orderListLayoutManager);
         orderList.setAdapter(orderListAdapter);
 
         ButterKnife.bind(this, rootView);
 
-        btnAddOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                orderListPresenter.onAddOrderClick(tableNumber, null);
-            }
-        });
+        btnAddOrder.setOnClickListener(v -> orderListPresenter.onAddOrderClick(tableNumber, null));
         return rootView;
     }
     @Override
@@ -82,20 +78,24 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
     }
 
     @Override
-    public void goToDishList(String tableNumber, Order order) {
-        ((MainActivity)getActivity()).goToDishListView(tableNumber, order);
-    }
+    public void goToDishList(String tableNumber, Order order) {((MainActivity)getActivity()).goToDishListView(tableNumber, order);}
+
+    @Override
+    public void onItemRemoved() {
+        orderListPresenter.init(tableNumber);}
 
     @Override
     public void onClick(View view, int position) {
-        orderListPresenter.onItemClick(orderListAdapter.getItemListItem(position));
+        orderListPresenter.onItemClick(orderListAdapter.getItemListItem(position));}
+
+    @Override
+    public void onLongClick(View view, int position) {
+        orderListPresenter.onItemLongClick(orderListAdapter.getItemListItem(position));
     }
 
     @Override
     public void goToOrderDetail(Order item) {
-
         ((MainActivity)getActivity()).goToOrderDetailView(item);
-
     }
 
     public static OrderListFragment newInstance() {
