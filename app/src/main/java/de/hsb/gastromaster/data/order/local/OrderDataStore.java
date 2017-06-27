@@ -162,9 +162,9 @@ public class OrderDataStore implements IOrderDataStore {
     @Override
     public Single<Response<Void>> updateOrder(Request<Order> request) {
         return Single.create(singleEmitter -> {
-            for (int i = 0; i<orderList.size(); i++){
-                if (orderList.get(i).getId() == request.getEntity().getId()){
-                    orderList.set(i,request.getEntity());
+            for (int i = 0; i < orderList.size(); i++) {
+                if (orderList.get(i).getId() == request.getEntity().getId()) {
+                    orderList.set(i, request.getEntity());
                     break;
                 }
             }
@@ -177,5 +177,19 @@ public class OrderDataStore implements IOrderDataStore {
         });
     }
 
-
+    @Override
+    public Single<Response<Void>> removeOrder(Request<Order> order) {
+        return Single.create(singleEmitter -> {
+            for (int i = 0; i < orderList.size(); i++) {
+                if (order.getEntity().getId() == orderList.get(i).getId()) {
+                    orderList.remove(i);
+                }
+            }
+            singleEmitter.onSuccess(
+                    Response.<Void>builder()
+                            .setEntity(null)
+                            .setIsSuccessful(true)
+                            .build());
+        });
+    }
 }

@@ -29,4 +29,6 @@ public interface IOrderDataStore {
     Single<Response<List<Order>>> getAllOrder();
 
     Single<Response<Void>> updateOrder(Request<Order> order);
+
+    Single<Response<Void>> removeOrder(Request<Order> order);
 }

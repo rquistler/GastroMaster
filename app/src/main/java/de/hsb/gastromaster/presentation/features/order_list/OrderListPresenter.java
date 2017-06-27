@@ -8,23 +8,26 @@ import de.hsb.gastromaster.data.request.Request;
 import de.hsb.gastromaster.data.response.Response;
 import de.hsb.gastromaster.domain.feature.create_order.CreateOrderUseCase;
 import de.hsb.gastromaster.domain.feature.get_orders.GetOrdersUseCase;
+import de.hsb.gastromaster.domain.feature.remove_order.RemoveOrderUseCase;
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableSingleObserver;
 
 
 public class OrderListPresenter implements OrderListContract.Presenter<Order> {
     private OrderListContract.View<Order> fragment;
     private GetOrdersUseCase getOrdersUseCase;
-    private CreateOrderUseCase createOrderUseCase;
+    private RemoveOrderUseCase removeOrderUseCase;
     private List<Order> allOrders;
 
     public OrderListPresenter(OrderListContract.View<Order> fragment,
-                              GetOrdersUseCase getOrdersUseCase, CreateOrderUseCase createOrderUseCase){
+                              GetOrdersUseCase getOrdersUseCase, RemoveOrderUseCase removeOrderUseCase) {
         this.getOrdersUseCase = getOrdersUseCase;
-        this.createOrderUseCase = createOrderUseCase;
+        this.removeOrderUseCase = removeOrderUseCase;
         this.fragment = fragment;
 
     }
+
     @Override
     public void onItemClick(Order item) {
         fragment.goToOrderDetail(item);
@@ -52,11 +55,34 @@ public class OrderListPresenter implements OrderListContract.Presenter<Order> {
                         ArrayList<Order> result = new ArrayList<>();
 
                         for (Order order : allOrders) {
-                            if (order.getTableNumber().equals(tableNumber)){
+                            if (order.getTableNumber().equals(tableNumber)) {
                                 result.add(order);
                             }
                         }
                         fragment.setOrderList(result);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+                });
+    }
+
+    @Override
+    public void onItemLongClick(Order order) {
+        removeOrderUseCase.execute(Request.<Order>builder()
+                .setEntity(order)
+                .build())
+                .subscribeWith(new SingleObserver<Response<Void>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(Response<Void> response) {
+                        fragment.onItemRemoved();
                     }
 
                     @Override

@@ -9,11 +9,13 @@ public interface OrderListContract {
         void goToOrderDetail(T item);
         void setOrderList(List<Order> orders);
         void goToDishList(String tableNumber, Order order);
+        void onItemRemoved();
     }
 
     interface Presenter<T> {
         void onItemClick(T item);
         void onAddOrderClick(String tableNumber, T item);
         void init(String tableNumber);
+        void onItemLongClick(T itemListItem);
     }
 }

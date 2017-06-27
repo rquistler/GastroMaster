@@ -40,4 +40,9 @@ public class OrderDataRepository implements IOrderDataRepository {
     public Single<Response<Void>> updateOrder(Request<Order> order) {
         return orderDataStore.updateOrder(order);
     }
+
+    @Override
+    public Single<Response<Void>> removeOrder(Request<Order> order) {
+        return orderDataStore.removeOrder(order);
+    }
 }

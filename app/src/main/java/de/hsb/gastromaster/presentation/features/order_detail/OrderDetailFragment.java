@@ -99,6 +99,11 @@ public class OrderDetailFragment extends Fragment implements OrderDetailContract
     @Override
     public void onClick(View view, int position) {}
 
+    @Override
+    public void onLongClick(View view, int position) {
+
+    }
+
 
     public static OrderDetailFragment newInstance() {
 

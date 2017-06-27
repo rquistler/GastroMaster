@@ -102,4 +102,9 @@ public class DishListFragment extends Fragment implements DishListContract.View<
     public void onClick(View view, int position) {
         dishListPresenter.onDishClick(tableNumber, dishListViewAdapter.getItemListItem(position), getArguments().getInt("OrderId"));
     }
+
+    @Override
+    public void onLongClick(View view, int position) {
+
+    }
 }
