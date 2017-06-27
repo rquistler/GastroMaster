@@ -1,3 +1,12 @@
+<!--
+  ~ @author Christian Schaf
+  ~ @author Roman Quistler
+  ~ @author Nassim Bendida
+  ~
+  ~ Date: 27.6.2017
+  ~ Copyright (c) by Hochschule Bremen
+  -->
+
 <resources>
 
     <!-- Base application theme. -->
@@ -7,5 +16,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
 
 </resources>

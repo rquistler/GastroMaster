@@ -1,10 +1,17 @@
 ext {
 
-    supportLibraryVersion = '25.3.1'
-    daggerVersion = '2.10'
-    rxJavaVersion = '2.0.8'
+    supportLibraryVersion = '25.4.0'
+    supportTestVersion = '0.5'
+    constraintLayoutVersion= '1.0.2'
+    daggerVersion = '2.11-rc2'
+    rxJavaVersion = '2.1.0'
     rxAndroidVersion = '2.0.1'
     junitVersion = '4.12'
+    espressoVersion = '2.2.2'
+    mockitoVersion = '2.8.9'
+    leakCanaryVersion = '1.5'
+    autoValueVersion = '1.4.1'
+    autoValueWithVersion = '1.0.0'
 
 
     dependencies = [
@@ -14,11 +21,24 @@ ext {
             cardView            : "com.android.support:cardview-v7:$supportLibraryVersion",
             supportV4           : "com.android.support:support-v4:$supportLibraryVersion",
             supportDesign       : "com.android.support:design:$supportLibraryVersion",
+            supportAnnotations  : "com.android.support:support-annotations:$supportLibraryVersion",
+            constraintLayout    : "com.android.support.constraint:constraint-layout:$constraintLayoutVersion",
 
             junit               : "junit:junit:$junitVersion",
+            espresso            : "com.android.support.test.espresso:espresso-core:$espressoVersion",
+            mockitoCore         : "org.mockito:mockito-core:$mockitoVersion",
+            mockitoAndroid      : "org.mockito:mockito-android:$mockitoVersion",
+            supportTestRunner   : "com.android.support.test:runner:$supportTestVersion",
+            supportTestRules    : "com.android.support.test:rules:$supportTestVersion",
+
+            leakCanary          : "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion",
+            leakCanaryNoOp      : "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion",
 
             daggerCompiler      : "com.google.dagger:dagger-compiler:$daggerVersion",
             dagger              : "com.google.dagger:dagger:$daggerVersion",
+
+            autoValue           : "com.google.auto.value:auto-value:$autoValueVersion",
+            autoValueWith       : "com.gabrielittner.auto.value:auto-value-with:$autoValueWithVersion",
 
             rxJava              : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
             rxAndroid           : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"

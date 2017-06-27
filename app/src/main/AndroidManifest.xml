@@ -1,7 +1,17 @@
+<!--
+  ~ @author Christian Schaf
+  ~ @author Roman Quistler
+  ~ @author Nassim Bendida
+  ~
+  ~ Date: 27.6.2017
+  ~ Copyright (c) by Hochschule Bremen
+  -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.hsb.gastromaster">
 
     <application
+        android:name=".GastroMasterApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -9,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".presentation.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

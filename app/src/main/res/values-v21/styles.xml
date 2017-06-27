@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ @author Christian Schaf
+  ~ @author Roman Quistler
+  ~ @author Nassim Bendida
+  ~
+  ~ Date: 27.6.2017
+  ~ Copyright (c) by Hochschule Bremen
+  -->
+
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor">@color/colorAccent</item>
+    </style>
+</resources>

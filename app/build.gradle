@@ -20,7 +20,21 @@ android {
         versionCode configuration.versionCode
         versionName configuration.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath false
+            }
+        }
+
+        sourceSets {
+            String sharedTestDir = 'src/sharedTest/java'
+            test.java.srcDirs += sharedTestDir
+            androidTest.java.srcDirs += sharedTestDir
+        }
     }
+
+
 
     dexOptions {
         javaMaxHeapSize "4g"
@@ -52,7 +66,7 @@ android {
 
             minifyEnabled true
             shrinkResources true
-            debuggable false
+            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -98,7 +112,8 @@ dependencies {
     Map<String, String> dependencies = globalConf.dependencies
 
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+
+    androidTestCompile(dependencies.espresso, {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
@@ -107,12 +122,68 @@ dependencies {
     compile dependencies.cardView
     compile dependencies.supportV4
     compile dependencies.supportDesign
+    compile dependencies.constraintLayout
 
     compile dependencies.rxJava
     compile dependencies.rxAndroid
 
-    compile dependencies.dagger
+    debugCompile dependencies.leakCanary
+    releaseCompile dependencies.leakCanaryNoOp
+    testCompile dependencies.leakCanaryNoOp
 
-    annotationProcessor dependencies.daggerCompiler
+    compileOnly dependencies.autoValue
+    annotationProcessor dependencies.autoValue
+    annotationProcessor dependencies.autoValueWith
+
+    compile 'com.jakewharton:butterknife:8.6.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+
+    // TEST -------------------------------------------------------------------
     testCompile dependencies.junit
+    //androidTestCompile dependencies.junit
+
+    testCompile dependencies.mockitoCore
+    testCompile dependencies.mockitoAndroid
+    androidTestCompile dependencies.mockitoAndroid
+    androidTestCompile dependencies.mockitoCore
+
+    androidTestCompile dependencies.supportAnnotations
+    androidTestCompile dependencies.supportTestRunner
+    androidTestCompile dependencies.supportTestRules
+
+    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2') {
+        exclude module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+    }
+
+    testCompile "com.google.truth:truth:0.33"
+    testCompile 'org.assertj:assertj-core:3.8.0'
+    androidTestCompile 'com.squareup.assertj:assertj-android:1.1.1'
+
+    androidTestCompile('org.powermock:powermock-module-junit4:1.7.0RC4', {
+        exclude group: 'org.mockito', module: 'mockito-core'
+    })
+
+    androidTestCompile('org.powermock:powermock-api-support:1.7.0RC4', {
+        exclude group: 'org.mockito', module: 'mockito-core'
+    })
+
+//    androidTestCompile('org.powermock:powermock-api-mockito2:1.7.0RC4', {
+//        exclude group: 'org.mockito', module: 'mockito-core'
+//    })
+
+    //androidTestCompile 'org.powermock:powermock-module-junit4-rule-agent:1.7.0RC4'
+    //androidTestCompile 'org.powermock:powermock-module-junit4-rule:1.7.0RC4'
+    //androidTestCompile 'org.powermock:powermock-api-mockito2:1.7.0RC4'
+
+    // -------------------------------------------------------------------------
+    implementation 'com.android.support:support-v4:25.4.0'
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://maven.google.com' }
+
 }
