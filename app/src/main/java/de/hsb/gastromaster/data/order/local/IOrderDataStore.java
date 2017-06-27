@@ -17,9 +17,6 @@ import de.hsb.gastromaster.data.request.Request;
 import de.hsb.gastromaster.data.response.Response;
 import io.reactivex.Single;
 
-/**
- * Created by cschaf on 09-May-17.
- */
 public interface IOrderDataStore {
 
     /**

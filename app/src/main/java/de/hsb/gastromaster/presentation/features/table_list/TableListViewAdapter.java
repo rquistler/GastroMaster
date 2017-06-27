@@ -23,9 +23,6 @@ import de.hsb.gastromaster.R;
 import de.hsb.gastromaster.data.table.Table;
 import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
 
-/**
- * Created by roman on 14/06/17.
- */
 public class TableListViewAdapter extends BaseRecyclerViewAdapter<Table> {
 
     /**

@@ -15,9 +15,6 @@ import java.util.List;
 
 import de.hsb.gastromaster.data.order.Order;
 
-/**
- * Created by roman on 13/06/17.
- */
 @AutoValue
 public abstract class Table {
 
