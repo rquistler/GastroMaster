@@ -20,6 +20,7 @@ import de.hsb.gastromaster.R;
 import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.data.order.dish.Dish;
 import de.hsb.gastromaster.domain.feature.get_order.GetOrderUseCase;
+import de.hsb.gastromaster.domain.feature.update_order.UpdateOrderUseCase;
 import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
 import de.hsb.gastromaster.presentation.ui.MainActivity;
 
@@ -61,7 +62,8 @@ public class OrderDetailFragment extends Fragment implements OrderDetailContract
 
         dishListViewAdapter = new OrderDetailViewAdapter(items,this);
         orderDetailPresenter = new OrderDetailPresenter(this,
-                new GetOrderUseCase(mainActivity.getGastroMasterApp().getOrderDataRepository()));
+                new GetOrderUseCase(mainActivity.getGastroMasterApp().getOrderDataRepository()),
+                new UpdateOrderUseCase(mainActivity.getGastroMasterApp().getOrderDataRepository()));
 
         dishList.setLayoutManager(dishListLayoutManager);
         dishList.setAdapter(dishListViewAdapter);
@@ -97,11 +99,16 @@ public class OrderDetailFragment extends Fragment implements OrderDetailContract
     }
 
     @Override
+    public void onOrderUpdated(int orderId) {
+        orderDetailPresenter.init(orderId);
+    }
+
+    @Override
     public void onClick(View view, int position) {}
 
     @Override
     public void onLongClick(View view, int position) {
-
+        orderDetailPresenter.onItemLongClick(dishListViewAdapter.getItemListItem(position));
     }
 
 
