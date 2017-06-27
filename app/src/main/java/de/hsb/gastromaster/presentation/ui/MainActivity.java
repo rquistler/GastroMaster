@@ -1,8 +1,5 @@
 package de.hsb.gastromaster.presentation.ui;
 
-import android.app.ActionBar;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,10 +17,10 @@ import de.hsb.gastromaster.presentation.features.table_list.TableListFragment;
 
 
 public class MainActivity extends AppCompatActivity {
-    protected final String tableListClassName = TableListFragment.class.getSimpleName();
-    protected final String orderListClassName = OrderListFragment.class.getSimpleName();
-    protected final String orderDetailClassName = OrderDetailFragment.class.getSimpleName();
-    protected final String dishListClassName = DishListFragment.class.getSimpleName();
+    public static final String TABLE_LIST_CLASS_NAME = TableListFragment.class.getSimpleName();
+    public static final String ORDER_LIST_CLASS_NAME = OrderListFragment.class.getSimpleName();
+    public static final String ORDER_DETAIL_CLASS_NAME = OrderDetailFragment.class.getSimpleName();
+    public static final String DISH_LIST_CLASS_NAME = DishListFragment.class.getSimpleName();
 
     protected Fragment tableListFragment;
     protected Fragment orderListFragment;
@@ -42,9 +39,10 @@ public class MainActivity extends AppCompatActivity {
         goToTableListView();
     }
     public void goToTableListView() {
+        getSupportFragmentManager().popBackStackImmediate(ORDER_LIST_CLASS_NAME, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, tableListFragment, tableListClassName)
-                    .addToBackStack(tableListClassName).commit();
+                    .replace(R.id.fragment_container, tableListFragment, TABLE_LIST_CLASS_NAME)
+                    .addToBackStack(TABLE_LIST_CLASS_NAME).commit();
     }
 
     public void goToOrderDetailView(Order order) {
@@ -52,9 +50,11 @@ public class MainActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putInt("OrderId", order.getId());
         orderDetailFragment.setArguments(bundle);
+        fm.popBackStackImmediate(DISH_LIST_CLASS_NAME, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        fm.popBackStackImmediate(ORDER_DETAIL_CLASS_NAME, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         fm.beginTransaction()
-                .replace(R.id.fragment_container, orderDetailFragment, orderDetailClassName)
-                .addToBackStack(orderDetailClassName).commit();
+                .replace(R.id.fragment_container, orderDetailFragment, ORDER_DETAIL_CLASS_NAME)
+                .addToBackStack(ORDER_DETAIL_CLASS_NAME).commit();
     }
 
     public void goToOrderListView(Table table) {
@@ -62,9 +62,10 @@ public class MainActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putString("Table", table.getName());
         orderListFragment.setArguments(bundle);
+        fm.popBackStackImmediate(ORDER_DETAIL_CLASS_NAME, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         fm.beginTransaction()
-                .replace(R.id.fragment_container, orderListFragment, orderListClassName)
-                .addToBackStack(orderListClassName).commit();
+                .replace(R.id.fragment_container, orderListFragment, ORDER_LIST_CLASS_NAME)
+                .addToBackStack(ORDER_LIST_CLASS_NAME).commit();
     }
 
     public void goToDishListView(String tableNumber, Order order) {
@@ -79,9 +80,11 @@ public class MainActivity extends AppCompatActivity {
             bundle.putString("Table", tableNumber);
         }
         dishListFragment.setArguments(bundle);
+        fm.popBackStackImmediate(ORDER_DETAIL_CLASS_NAME, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         fm.beginTransaction()
-                .replace(R.id.fragment_container, dishListFragment, dishListClassName)
-                .addToBackStack(dishListClassName).commit();
+                .replace(R.id.fragment_container, dishListFragment, DISH_LIST_CLASS_NAME)
+                .addToBackStack(DISH_LIST_CLASS_NAME)
+                .commit();
     }
 
     @Override

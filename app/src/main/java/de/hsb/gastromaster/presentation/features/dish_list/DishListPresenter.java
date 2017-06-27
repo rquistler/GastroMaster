@@ -74,7 +74,7 @@ class DishListPresenter implements DishListContract.Presenter<Dish>{
         }
         else{
 //            Wegen Backstackfehlern deaktiviert!
-//            updateOrder(orderId, dish);
+            updateOrder(orderId, dish);
         }
 
     }

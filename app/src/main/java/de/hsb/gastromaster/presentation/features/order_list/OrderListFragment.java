@@ -93,7 +93,9 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
 
     @Override
     public void goToOrderDetail(Order item) {
+
         ((MainActivity)getActivity()).goToOrderDetailView(item);
+
     }
 
     public static OrderListFragment newInstance() {
