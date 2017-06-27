@@ -18,22 +18,34 @@ import de.hsb.gastromaster.data.factories.DishFactory;
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertEquals;
 
+/**
+ * The type Dish test.
+ */
 public class DishTest {
 
     private Dish dish;
     private static final double DELTA = 1e-15;
 
+    /**
+     * Sets .
+     */
     @Before
     public void setup() {
 
         dish = DishFactory.dish();
     }
 
+    /**
+     * Test has id.
+     */
     @Test
     public void testHasId() {
         assertEquals(1, dish.getId());
     }
 
+    /**
+     * Test if id got new value.
+     */
     @Test
     public void testIfIdGotNewValue() {
 
@@ -41,11 +53,17 @@ public class DishTest {
                 .isEqualTo(2);
     }
 
+    /**
+     * Test has order id.
+     */
     @Test
     public void testHasOrderId() {
         assertEquals(1, dish.getOrderId());
     }
 
+    /**
+     * Test if order id got new value.
+     */
     @Test
     public void testIfOrderIdGotNewValue() {
 
@@ -53,6 +71,9 @@ public class DishTest {
                 .isEqualTo(2);
     }
 
+    /**
+     * Test has name.
+     */
     @Test
     public void testHasName() {
 
@@ -60,6 +81,9 @@ public class DishTest {
     }
 
 
+    /**
+     * Test if name got new value.
+     */
     @Test
     public void testIfNameGotNewValue() {
 
@@ -67,6 +91,9 @@ public class DishTest {
                 .isEqualTo("Lasagne");
     }
 
+    /**
+     * Test has price.
+     */
     @Test
     public void testHasPrice() {
 
@@ -74,6 +101,9 @@ public class DishTest {
     }
 
 
+    /**
+     * Test if price got new value.
+     */
     @Test
     public void testIfPriceGotNewValue() {
 

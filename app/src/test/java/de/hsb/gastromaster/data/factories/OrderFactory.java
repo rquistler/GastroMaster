@@ -16,14 +16,29 @@ import java.util.List;
 import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.data.order.dish.Dish;
 
+/**
+ * The type Order factory.
+ */
 public final class OrderFactory {
 
+    /**
+     * The constant DEFAULT_DATE.
+     */
     public static final String DEFAULT_DATE = "31-1-1990:19.00.32";
+    /**
+     * The constant DIFFERENT_DATE.
+     */
     public static final String DIFFERENT_DATE = "31-1-1990:19.00.33";
 
     private OrderFactory() {
     }
 
+    /**
+     * Order order.
+     *
+     * @param dishList the dish list
+     * @return the order
+     */
     public static Order order(List<Dish> dishList) {
         return Order.builder()
                 .setId(1)
@@ -34,6 +49,12 @@ public final class OrderFactory {
                 .build();
     }
 
+    /**
+     * Order list list.
+     *
+     * @param dishList the dish list
+     * @return the list
+     */
     public static List<Order> orderList(List<Dish> dishList) {
 
         List<Order> orderList = new ArrayList<>();
@@ -44,6 +65,13 @@ public final class OrderFactory {
         return orderList;
     }
 
+    /**
+     * Order list random list.
+     *
+     * @param dishList the dish list
+     * @param size     the size
+     * @return the list
+     */
     public static List<Order> orderListRandom(List<Dish> dishList, int size) {
 
         List<Order> orderList = new ArrayList<>();

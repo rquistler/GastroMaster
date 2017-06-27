@@ -18,7 +18,7 @@ import de.hsb.gastromaster.data.response.Response;
 import io.reactivex.Single;
 
 /**
- * The type Order data repository.
+ * The Order repository.
  */
 public class OrderDataRepository implements IOrderDataRepository {
 

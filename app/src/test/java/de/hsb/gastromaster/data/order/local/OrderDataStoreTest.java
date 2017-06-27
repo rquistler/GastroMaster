@@ -24,15 +24,24 @@ import de.hsb.gastromaster.data.order.dish.Dish;
 import de.hsb.gastromaster.data.response.Response;
 import io.reactivex.observers.TestObserver;
 
+/**
+ * The type Order data store test.
+ */
 public class OrderDataStoreTest {
 
     private OrderDataStore orderDataStore;
 
+    /**
+     * Sets up.
+     */
     @Before
     public void setUp() {
         orderDataStore = new OrderDataStore();
     }
 
+    /**
+     * Test store is empty after initialization.
+     */
     @Test
     public void testStoreIsEmptyAfterInitialization() {
 
@@ -49,6 +58,9 @@ public class OrderDataStoreTest {
 
     }
 
+    /**
+     * Test contains ten dishes after inserted ten dishes.
+     */
     @Test
     public void testContainsTenDishesAfterInsertedTenDishes() {
 
@@ -63,6 +75,9 @@ public class OrderDataStoreTest {
                 .assertComplete();
     }
 
+    /**
+     * Test is type of object in dish list of type dish.
+     */
     @Test
     public void testIsTypeOfObjectInDishListOfTypeDish() {
 
@@ -80,6 +95,9 @@ public class OrderDataStoreTest {
     }
 
 
+    /**
+     * Test get dish by index with invalid index should return a response with error.
+     */
     @Test
     public void testGetDishByIndexWithInvalidIndexShouldReturnAResponseWithError() {
 
@@ -97,6 +115,9 @@ public class OrderDataStoreTest {
                 .assertComplete();
     }
 
+    /**
+     * Test if returns ten dishes.
+     */
     @Test
     public void testIfReturnsTenDishes() {
 
@@ -111,6 +132,9 @@ public class OrderDataStoreTest {
                 .assertComplete();
     }
 
+    /**
+     * Test if order list contains one object after inserted one order.
+     */
     @Test
     public void testIfOrderListContainsOneObjectAfterInsertedOneOrder() {
 
@@ -129,6 +153,9 @@ public class OrderDataStoreTest {
                 .assertComplete();
     }
 
+    /**
+     * Test if returns ten orders.
+     */
     @Test
     public void testIfReturnsTenOrders() {
 
@@ -143,6 +170,9 @@ public class OrderDataStoreTest {
                 .assertComplete();
     }
 
+    /**
+     * Test is type of object in order list of type order.
+     */
     @Test
     public void testIsTypeOfObjectInOrderListOfTypeOrder() {
 
@@ -161,6 +191,9 @@ public class OrderDataStoreTest {
                 .assertComplete();
     }
 
+    /**
+     * Test get order by id with invalid id should return a response with error.
+     */
     @Test
     public void testGetOrderByIdWithInvalidIdShouldReturnAResponseWithError() {
 

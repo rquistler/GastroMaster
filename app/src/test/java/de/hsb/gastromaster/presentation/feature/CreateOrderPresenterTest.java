@@ -30,6 +30,9 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * The type Create order presenter test.
+ */
 public class CreateOrderPresenterTest {
 
     @InjectMocks
@@ -38,21 +41,32 @@ public class CreateOrderPresenterTest {
     @Mock
     private CreateOrderUseCase createOrderUseCase;
 
+    /**
+     * The View.
+     */
     @Mock
     CreateOrderContract.View view;
 
+    /**
+     * Sets up.
+     *
+     * @throws Exception the exception
+     */
     @Before
     public void setUp() throws Exception {
 
         MockitoAnnotations.initMocks(this);
     }
 
+    /**
+     * Test.
+     */
     @Test
-    public void test() {
-
+    public void testFillOutFieldsForCreateOrder() {
+        // Mocking the execute of the createOrderUseCase
         when(createOrderUseCase.execute(any(Request.class)))
                 .thenReturn(Single.just(ResponseFactory.responseVoid()));
-
+        // Action phase
         createOrderPresenter.createOrder(OrderFactory.order(
                 DishFactory.dishList()));
 
@@ -60,9 +74,8 @@ public class CreateOrderPresenterTest {
                 DishFactory.dishList()))
                 .test()
                 .assertValue(voidResponse -> voidResponse.getIsSuccessful());
-
+        // Verify
         verify(createOrderUseCase, VerificationModeFactory.atLeastOnce()).execute(any());
-
         verify(view).showMessage("Successful: true");
     }
 }

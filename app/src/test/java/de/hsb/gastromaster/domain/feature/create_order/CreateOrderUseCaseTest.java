@@ -30,6 +30,9 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * The type Create order use case test.
+ */
 public class CreateOrderUseCaseTest {
 
     @Mock
@@ -38,12 +41,22 @@ public class CreateOrderUseCaseTest {
     @InjectMocks
     private CreateOrderUseCase createOrderUseCase;
 
+    /**
+     * Sets up.
+     *
+     * @throws Exception the exception
+     */
     @Before
     public void setUp() throws Exception {
 
         MockitoAnnotations.initMocks(this);
     }
 
+    /**
+     * Test if correct return type.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testIfCorrectReturnType() throws Exception {
 

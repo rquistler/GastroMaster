@@ -19,7 +19,13 @@ import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertNull;
 
 
+/**
+ * The type Request test.
+ */
 public class RequestTest {
+    /**
+     * Given void request return request where entity is null.
+     */
     @Test
     public void givenVoidRequestReturnRequestWhereEntityIsNull() {
 
@@ -28,6 +34,9 @@ public class RequestTest {
         assertNull(request.getEntity());
     }
 
+    /**
+     * Given i dish request returns request where entity is dish.
+     */
     @Test
     public void givenIDishRequestReturnsRequestWhereEntityIsDish() {
 

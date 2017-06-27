@@ -15,6 +15,9 @@ import java.util.List;
 
 import de.hsb.gastromaster.data.order.dish.Dish;
 
+/**
+ * The type Dish factory.
+ */
 public final class DishFactory {
 
     private static final String DISH = "Dish";
@@ -22,6 +25,11 @@ public final class DishFactory {
     private DishFactory() {
     }
 
+    /**
+     * Dish dish.
+     *
+     * @return the dish
+     */
     public static Dish dish() {
         return Dish.builder()
                 .setId(1)
@@ -31,6 +39,11 @@ public final class DishFactory {
                 .build();
     }
 
+    /**
+     * Dish list list.
+     *
+     * @return the list
+     */
     public static List<Dish> dishList() {
 
         List<Dish> dishList = new ArrayList<>();
@@ -41,6 +54,12 @@ public final class DishFactory {
         return dishList;
     }
 
+    /**
+     * Dish list random list.
+     *
+     * @param size the size
+     * @return the list
+     */
     public static List<Dish> dishListRandom(int size) {
 
         List<Dish> dishList = new ArrayList<>();

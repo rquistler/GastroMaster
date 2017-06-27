@@ -31,6 +31,9 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+/**
+ * The type Order data repository test.
+ */
 public class OrderDataRepositoryTest {
 
 
@@ -40,6 +43,9 @@ public class OrderDataRepositoryTest {
     @InjectMocks
     private OrderDataRepository orderDataRepository;
 
+    /**
+     * Sets .
+     */
     @Before
     public void setup() {
 
@@ -47,6 +53,9 @@ public class OrderDataRepositoryTest {
     }
 
 
+    /**
+     * Test if order was successful.
+     */
     @Test
     public void testIfOrderWasSuccessful() {
 
@@ -68,6 +77,9 @@ public class OrderDataRepositoryTest {
 
     }
 
+    /**
+     * Test if get all orders not zero after order added.
+     */
     @Test
     public void test_ifGetAllOrdersNotZeroAfterOrderAdded() {
 
