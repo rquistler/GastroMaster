@@ -6,7 +6,6 @@
  * Date: 27.6.2017
  * Copyright (c) by Hochschule Bremen
  */
-
 package de.hsb.gastromaster.data.order;
 
 import org.junit.Before;

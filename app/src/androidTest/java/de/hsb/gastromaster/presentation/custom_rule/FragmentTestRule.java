@@ -7,7 +7,7 @@
  * Copyright (c) by Hochschule Bremen
  */
 
-package de.hsb.gastromaster.presentation;
+package de.hsb.gastromaster.presentation.custom_rule;
 
 
 import android.support.test.rule.ActivityTestRule;

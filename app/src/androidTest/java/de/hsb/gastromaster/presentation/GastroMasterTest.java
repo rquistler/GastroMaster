@@ -36,7 +36,7 @@ import static android.support.test.espresso.action.ViewActions.longClick;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static de.hsb.gastromaster.presentation.Assertions.RecyclerViewItemCountAssertion.withItemCount;
+import static de.hsb.gastromaster.presentation.custom_assertion.RecyclerViewItemCountAssertion.withItemCount;
 import static org.hamcrest.core.Is.is;
 
 @RunWith(AndroidJUnit4.class)
@@ -164,7 +164,8 @@ public class GastroMasterTest {
     }
 
     public static Matcher<RecyclerView.ViewHolder> withHolderTimeView(final String text) {
-        return new BoundedMatcher<RecyclerView.ViewHolder, BaseRecyclerViewAdapter.BaseViewHolder>(BaseRecyclerViewAdapter.BaseViewHolder.class) {
+        return new BoundedMatcher<RecyclerView.ViewHolder,
+                BaseRecyclerViewAdapter.BaseViewHolder>(BaseRecyclerViewAdapter.BaseViewHolder.class) {
 
             @Override
             public void describeTo(Description description) {

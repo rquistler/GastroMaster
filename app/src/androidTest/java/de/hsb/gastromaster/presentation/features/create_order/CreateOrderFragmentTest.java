@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import de.hsb.gastromaster.R;
 import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.factories.OrderFactory;
-import de.hsb.gastromaster.presentation.FragmentTestRule;
+import de.hsb.gastromaster.presentation.custom_rule.FragmentTestRule;
 
 import static android.support.test.espresso.Espresso.closeSoftKeyboard;
 import static android.support.test.espresso.Espresso.onView;

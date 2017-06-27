@@ -7,7 +7,7 @@
  * Copyright (c) by Hochschule Bremen
  */
 
-package de.hsb.gastromaster.presentation.Assertions;
+package de.hsb.gastromaster.presentation.custom_assertion;
 
 import android.support.test.espresso.NoMatchingViewException;
 import android.support.test.espresso.ViewAssertion;
