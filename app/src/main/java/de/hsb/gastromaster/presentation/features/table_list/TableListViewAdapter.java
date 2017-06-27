@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.features.table_list;
 
 import android.support.v7.widget.RecyclerView;
@@ -14,18 +23,26 @@ import de.hsb.gastromaster.R;
 import de.hsb.gastromaster.data.table.Table;
 import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
 
-/**
- * Created by roman on 14/06/17.
- */
-
 public class TableListViewAdapter extends BaseRecyclerViewAdapter<Table> {
 
+    /**
+     * The Txt table number.
+     */
     @BindView(R.id.txtTableNumber)
     TextView txtTableNumber;
 
+    /**
+     * The Txt number orders.
+     */
     @BindView(R.id.txtNumberOrders)
     TextView txtNumberOrders;
 
+    /**
+     * Instantiates a new Table list view adapter.
+     *
+     * @param itemList the item list
+     * @param listener the listener
+     */
     public TableListViewAdapter(List<Table> itemList,
                                 IOnItemClick listener) {
 

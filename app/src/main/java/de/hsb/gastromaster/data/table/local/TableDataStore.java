@@ -1,22 +1,27 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.data.table.local;
 
-import android.support.design.widget.TabLayout;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import de.hsb.gastromaster.data.order.Order;
-import de.hsb.gastromaster.data.order.dish.Dish;
 import de.hsb.gastromaster.data.order.local.IOrderDataStore;
-import de.hsb.gastromaster.data.order.local.OrderDataStore;
 import de.hsb.gastromaster.data.response.Response;
 import de.hsb.gastromaster.data.table.Table;
 import io.reactivex.Single;
-import io.reactivex.SingleObserver;
-import io.reactivex.disposables.Disposable;
 
 
+/**
+ * The type Table data store.
+ */
 public class TableDataStore implements ITableDataStore {
     private IOrderDataStore orderDataStore;
     private List<Table> tableList = new ArrayList<>();
@@ -24,11 +29,19 @@ public class TableDataStore implements ITableDataStore {
     private List<Order> orderList;
 
 
+    /**
+     * Instantiates a new Table data store.
+     *
+     * @param orderDataStore the order data store
+     */
     public TableDataStore(IOrderDataStore orderDataStore) {
         this.orderDataStore = orderDataStore;
     }
 
-    public void init(){
+    /**
+     * Init.
+     */
+    public void init() {
         tableList.add(Table.builder().setId(1).setName("1A").setOrderList(new ArrayList<Order>()).build());
         tableList.add(Table.builder().setId(2).setName("2A").setOrderList(new ArrayList<Order>()).build());
         tableList.add(Table.builder().setId(3).setName("3A").setOrderList(new ArrayList<Order>()).build());
@@ -41,17 +54,20 @@ public class TableDataStore implements ITableDataStore {
                 });
     }
 
-    public void matchOrdersWithTables(){
+    /**
+     * Match orders with tables.
+     */
+    public void matchOrdersWithTables() {
         for (Table table : tableList) {
             for (Order order : orderList) {
-               if (table.getName().equals(order.getTableNumber())){
-                   table.getOrderList().add(order);
-               }
+                if (table.getName().equals(order.getTableNumber())) {
+                    table.getOrderList().add(order);
+                }
             }
         }
     }
 
-    private void updateOrders(){
+    private void updateOrders() {
         orderDataStore.getAllOrder()
                 .subscribe((listResponse, throwable) -> {
                     orderList = listResponse.getEntity();
@@ -63,6 +79,7 @@ public class TableDataStore implements ITableDataStore {
         }
         matchOrdersWithTables();
     }
+
     @Override
     public Single<Response<List<Table>>> getAllTables() {
         updateOrders();

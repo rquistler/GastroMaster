@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster;
 
 import android.app.Application;
@@ -9,11 +18,13 @@ import de.hsb.gastromaster.data.order.IOrderDataRepository;
 import de.hsb.gastromaster.data.order.OrderDataRepository;
 import de.hsb.gastromaster.data.order.local.OrderDataStore;
 import de.hsb.gastromaster.data.table.ITableDataRepository;
-import de.hsb.gastromaster.data.table.Table;
 import de.hsb.gastromaster.data.table.TableDataRepository;
 import de.hsb.gastromaster.data.table.local.TableDataStore;
 
 
+/**
+ * The Gastro master app.
+ */
 public class GastroMasterApp extends Application {
 
     private static OrderDataStore orderDataStore;
@@ -47,7 +58,7 @@ public class GastroMasterApp extends Application {
         initSingletons();
     }
 
-    private void initSingletons(){
+    private void initSingletons() {
 
         orderDataStore = new OrderDataStore();
         tableDataStore = new TableDataStore(orderDataStore);
@@ -60,11 +71,21 @@ public class GastroMasterApp extends Application {
         tableDataRepository = new TableDataRepository(tableDataStore);
     }
 
-    public IOrderDataRepository getOrderDataRepository(){
+    /**
+     * Get order data repository order data repository.
+     *
+     * @return the order data repository
+     */
+    public IOrderDataRepository getOrderDataRepository() {
         return orderDataRepository;
     }
 
-    public ITableDataRepository getTableDataRepository(){
+    /**
+     * Get table data repository table data repository.
+     *
+     * @return the table data repository
+     */
+    public ITableDataRepository getTableDataRepository() {
         return tableDataRepository;
     }
 

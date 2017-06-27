@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.features.order_list;
 
 
@@ -16,18 +25,36 @@ import de.hsb.gastromaster.R;
 import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
 
+/**
+ * The type Order list view adapter.
+ */
 public class OrderListViewAdapter extends BaseRecyclerViewAdapter<Order> {
 
+    /**
+     * The Order id.
+     */
     @BindView(R.id.lblValueForId)
     TextView orderId;
 
+    /**
+     * The Order date.
+     */
     @BindView(R.id.lblValueForDate)
     TextView orderDate;
 
+    /**
+     * The Order complete.
+     */
     @BindView(R.id.cbxOrderComplete)
     CheckBox orderComplete;
 
 
+    /**
+     * Instantiates a new Order list view adapter.
+     *
+     * @param itemList the item list
+     * @param listener the listener
+     */
     public OrderListViewAdapter(List<Order> itemList, IOnItemClick listener) {
         super(itemList, listener);
     }

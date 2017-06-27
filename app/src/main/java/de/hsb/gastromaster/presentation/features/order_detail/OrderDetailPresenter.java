@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.features.order_detail;
 
 
@@ -12,15 +21,28 @@ import de.hsb.gastromaster.domain.feature.update_order.UpdateOrderUseCase;
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
 
-public class OrderDetailPresenter implements OrderDetailContract.Presenter<Order>{
+/**
+ * The type Order detail presenter.
+ */
+public class OrderDetailPresenter implements OrderDetailContract.Presenter<Order> {
 
     private OrderDetailContract.View<Dish> fragment;
     private GetOrderUseCase getOrderUseCase;
     private UpdateOrderUseCase updateOrderUseCase;
+    /**
+     * The Current order.
+     */
     public Order currentOrder;
 
+    /**
+     * Instantiates a new Order detail presenter.
+     *
+     * @param fragment           the fragment
+     * @param useCase            the use case
+     * @param updateOrderUseCase the update order use case
+     */
     public OrderDetailPresenter(OrderDetailContract.View<Dish> fragment,
-                                GetOrderUseCase useCase, UpdateOrderUseCase updateOrderUseCase){
+                                GetOrderUseCase useCase, UpdateOrderUseCase updateOrderUseCase) {
         this.getOrderUseCase = useCase;
         this.updateOrderUseCase = updateOrderUseCase;
         this.fragment = fragment;
@@ -63,16 +85,16 @@ public class OrderDetailPresenter implements OrderDetailContract.Presenter<Order
     }
 
     private void updateOrder(Dish dish) {
-            ArrayList<Dish> newDishList = new ArrayList<>();
-            boolean deleted = false;
-            for (Dish each : currentOrder.getDishList()) {
-                if (each.getId() == dish.getId() && !deleted){
-                    deleted = true;
-                    continue;
-                }
-                newDishList.add(each);
+        ArrayList<Dish> newDishList = new ArrayList<>();
+        boolean deleted = false;
+        for (Dish each : currentOrder.getDishList()) {
+            if (each.getId() == dish.getId() && !deleted) {
+                deleted = true;
+                continue;
             }
-            currentOrder = currentOrder.withDishList(newDishList);
+            newDishList.add(each);
+        }
+        currentOrder = currentOrder.withDishList(newDishList);
 
         updateOrderUseCase.execute(Request.<Order>builder()
                 .setEntity(currentOrder)

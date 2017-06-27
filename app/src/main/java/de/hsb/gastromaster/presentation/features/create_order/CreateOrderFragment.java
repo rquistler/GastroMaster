@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.features.create_order;
 
 
@@ -12,7 +21,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,20 +31,44 @@ import de.hsb.gastromaster.data.order.OrderDataRepository;
 import de.hsb.gastromaster.data.order.local.OrderDataStore;
 import de.hsb.gastromaster.domain.feature.create_order.CreateOrderUseCase;
 
+/**
+ * The type Create order fragment.
+ */
 public class CreateOrderFragment extends Fragment
         implements CreateOrderContract.View {
 
     private CreateOrderContract.Presenter presenter;
 
-    @BindView(R.id.btnCreate) Button btnCreateOrder;
+    /**
+     * The Btn create order.
+     */
+    @BindView(R.id.btnCreate)
+    Button btnCreateOrder;
 
-    @BindView(R.id.txtTableNumber) EditText edtxtTableNumber;
+    /**
+     * The Edtxt table number.
+     */
+    @BindView(R.id.txtTableNumber)
+    EditText edtxtTableNumber;
 
-    @BindView(R.id.txtWaitressNumber) EditText edtxtWaitessId;
+    /**
+     * The Edtxt waitess id.
+     */
+    @BindView(R.id.txtWaitressNumber)
+    EditText edtxtWaitessId;
 
-    @BindView(R.id.txtDish) EditText edtxtDish;
+    /**
+     * The Edtxt dish.
+     */
+    @BindView(R.id.txtDish)
+    EditText edtxtDish;
 
 
+    /**
+     * New instance create order fragment.
+     *
+     * @return the create order fragment
+     */
     public static CreateOrderFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -86,6 +118,11 @@ public class CreateOrderFragment extends Fragment
 
     }
 
+    /**
+     * Init presenter.
+     *
+     * @param presenter the presenter
+     */
     public void initPresenter(CreateOrderContract.Presenter presenter) {
 
         this.presenter = presenter;
@@ -93,6 +130,11 @@ public class CreateOrderFragment extends Fragment
         presenter.init();
     }
 
+    /**
+     * On create button click.
+     *
+     * @param __ the __
+     */
     @OnClick(R.id.btnCreate)
     public void onCreateButtonClick(View __) {
 

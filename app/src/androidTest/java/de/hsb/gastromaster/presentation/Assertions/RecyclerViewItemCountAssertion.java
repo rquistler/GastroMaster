@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.Assertions;
 
 import android.support.test.espresso.NoMatchingViewException;
@@ -10,6 +19,9 @@ import org.hamcrest.Matcher;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static org.hamcrest.core.Is.is;
 
+/**
+ * ViewAssertion for check the number of rows of a RecyclerView
+ */
 public class RecyclerViewItemCountAssertion implements ViewAssertion {
     private final Matcher<Integer> matcher;
 

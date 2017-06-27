@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.features.dish_list;
 
 
@@ -25,6 +34,9 @@ import de.hsb.gastromaster.domain.feature.update_order.UpdateOrderUseCase;
 import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
 import de.hsb.gastromaster.presentation.ui.MainActivity;
 
+/**
+ * The type Dish list fragment.
+ */
 public class DishListFragment extends Fragment implements DishListContract.View<Dish>, BaseRecyclerViewAdapter.IOnItemClick {
 
     private RecyclerView dishList;
@@ -81,18 +93,23 @@ public class DishListFragment extends Fragment implements DishListContract.View<
 
     @Override
     public void newOrderAdded(Order newOrder) {
-        ((MainActivity)getActivity()).goToOrderDetailView(newOrder);
+        ((MainActivity) getActivity()).goToOrderDetailView(newOrder);
     }
 
     @Override
     public void onOrderUpdated(Order order) {
-        ((MainActivity)getActivity()).goToOrderDetailView(order);
+        ((MainActivity) getActivity()).goToOrderDetailView(order);
     }
 
+    /**
+     * New instance dish list fragment.
+     *
+     * @return the dish list fragment
+     */
     public static DishListFragment newInstance() {
-        
+
         Bundle args = new Bundle();
-        
+
         DishListFragment fragment = new DishListFragment();
         fragment.setArguments(args);
         return fragment;

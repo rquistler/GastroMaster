@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.features.order_detail;
 
 
@@ -25,6 +34,9 @@ import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
 import de.hsb.gastromaster.presentation.ui.MainActivity;
 
 
+/**
+ * The type Order detail fragment.
+ */
 public class OrderDetailFragment extends Fragment implements OrderDetailContract.View<Dish>, BaseRecyclerViewAdapter.IOnItemClick {
 
     private RecyclerView dishList;
@@ -32,18 +44,33 @@ public class OrderDetailFragment extends Fragment implements OrderDetailContract
     private OrderDetailViewAdapter dishListViewAdapter;
     private RecyclerView.LayoutManager dishListLayoutManager;
 
+    /**
+     * The Btn add dish.
+     */
     @BindView(R.id.btnAddDish)
     FloatingActionButton btnAddDish;
 
+    /**
+     * The Txt order id.
+     */
     @BindView(R.id.txtOrderId)
     TextView txtOrderId;
 
+    /**
+     * The Txt order date.
+     */
     @BindView(R.id.txtOrderDate)
     TextView txtOrderDate;
 
+    /**
+     * The Txt order total price.
+     */
     @BindView(R.id.txtFinalPrice)
     TextView txtOrderTotalPrice;
 
+    /**
+     * The Txt waitress id.
+     */
     @BindView(R.id.txtWaitressId)
     TextView txtWaitressId;
 
@@ -60,7 +87,7 @@ public class OrderDetailFragment extends Fragment implements OrderDetailContract
 
         ArrayList<Dish> items = new ArrayList<>();
 
-        dishListViewAdapter = new OrderDetailViewAdapter(items,this);
+        dishListViewAdapter = new OrderDetailViewAdapter(items, this);
         orderDetailPresenter = new OrderDetailPresenter(this,
                 new GetOrderUseCase(mainActivity.getGastroMasterApp().getOrderDataRepository()),
                 new UpdateOrderUseCase(mainActivity.getGastroMasterApp().getOrderDataRepository()));
@@ -86,7 +113,7 @@ public class OrderDetailFragment extends Fragment implements OrderDetailContract
 
     @Override
     public void goToAddDish(Order order) {
-        ((MainActivity)getActivity()).goToDishListView(order.getTableNumber(), order);
+        ((MainActivity) getActivity()).goToDishListView(order.getTableNumber(), order);
     }
 
     @Override
@@ -104,7 +131,8 @@ public class OrderDetailFragment extends Fragment implements OrderDetailContract
     }
 
     @Override
-    public void onClick(View view, int position) {}
+    public void onClick(View view, int position) {
+    }
 
     @Override
     public void onLongClick(View view, int position) {
@@ -112,6 +140,11 @@ public class OrderDetailFragment extends Fragment implements OrderDetailContract
     }
 
 
+    /**
+     * New instance order detail fragment.
+     *
+     * @return the order detail fragment
+     */
     public static OrderDetailFragment newInstance() {
 
         Bundle args = new Bundle();

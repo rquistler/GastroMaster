@@ -1,7 +1,14 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.BoundedMatcher;
 import android.support.test.filters.LargeTest;
@@ -23,14 +30,12 @@ import de.hsb.gastromaster.R;
 import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
 import de.hsb.gastromaster.presentation.ui.MainActivity;
 
-import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.longClick;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static de.hsb.gastromaster.presentation.Assertions.RecyclerViewItemCountAssertion.withItemCount;
 import static org.hamcrest.core.Is.is;
 
@@ -44,15 +49,16 @@ public class GastroMasterTest {
             MainActivity.class);
 
     @Before
-    public void init(){
+    public void init() {
         fragmentManager = activityRule.getActivity().getSupportFragmentManager();
         fragmentManager.beginTransaction();
     }
 
     @Test
-    public void testIfTableListIsShownAfterAppStarted(){
+    public void testIfTableListIsShownAfterAppStarted() {
         onView(withId(R.id.table_list)).check(matches(isDisplayed()));
     }
+
     @Test
     public void testIfTableListIsNotEmptyAfterAppStarted() throws InterruptedException {
         onView(withId(R.id.table_list)).check(withItemCount(is(4)));
@@ -76,6 +82,7 @@ public class GastroMasterTest {
         openOrderAt(0);
         onView(withId(R.id.order_detail_dish_list)).check(withItemCount(is(2)));
     }
+
     @Test
     public void testLaunchingDishList() throws InterruptedException {
         performClickOnTable(0);
@@ -96,7 +103,7 @@ public class GastroMasterTest {
     }
 
     @Test
-    public void testRemoveOrder(){
+    public void testRemoveOrder() {
         openTableAt(0);
         onView(withId(R.id.order_list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, longClick()));
         onView(withId(R.id.order_list)).check(matches(isDisplayed()));
@@ -107,7 +114,7 @@ public class GastroMasterTest {
     }
 
     @Test
-    public void testAddDishToOrder(){
+    public void testAddDishToOrder() {
         openTableAt(0);
         onView(withId(R.id.order_list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         onView(withId(R.id.btnAddDish)).perform(click());
@@ -118,7 +125,7 @@ public class GastroMasterTest {
     }
 
     @Test
-    public void testRemoveDishfromOrder(){
+    public void testRemoveDishfromOrder() {
         openTableAt(0);
         onView(withId(R.id.order_list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         onView(withId(R.id.order_detail_dish_list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, longClick()));
@@ -129,7 +136,7 @@ public class GastroMasterTest {
     }
 
     @After
-    public void cleanUp(){
+    public void cleanUp() {
     }
 
     private void performClickOnTable(int position) {

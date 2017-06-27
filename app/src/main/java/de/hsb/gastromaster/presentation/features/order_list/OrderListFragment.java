@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.features.order_list;
 
 
@@ -19,8 +28,6 @@ import butterknife.ButterKnife;
 import de.hsb.gastromaster.GastroMasterApp;
 import de.hsb.gastromaster.R;
 import de.hsb.gastromaster.data.order.Order;
-import de.hsb.gastromaster.data.table.Table;
-import de.hsb.gastromaster.domain.feature.create_order.CreateOrderUseCase;
 import de.hsb.gastromaster.domain.feature.get_orders.GetOrdersUseCase;
 import de.hsb.gastromaster.domain.feature.remove_order.RemoveOrderUseCase;
 import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
@@ -37,6 +44,9 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
     private RecyclerView.LayoutManager orderListLayoutManager;
     private String tableNumber;
 
+    /**
+     * The Btn add order.
+     */
     @BindView(R.id.btnAddOrder)
     FloatingActionButton btnAddOrder;
 
@@ -51,7 +61,7 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
 
         ArrayList<Order> items = new ArrayList<>();
 
-        orderListAdapter = new OrderListViewAdapter(items,this);
+        orderListAdapter = new OrderListViewAdapter(items, this);
         orderListPresenter = new OrderListPresenter(this,
                 new GetOrdersUseCase(((GastroMasterApp) getActivity().getApplication()).getOrderDataRepository()),
                 new RemoveOrderUseCase(((GastroMasterApp) getActivity().getApplication()).getOrderDataRepository()));
@@ -64,6 +74,7 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
         btnAddOrder.setOnClickListener(v -> orderListPresenter.onAddOrderClick(tableNumber, null));
         return rootView;
     }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -78,15 +89,19 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
     }
 
     @Override
-    public void goToDishList(String tableNumber, Order order) {((MainActivity)getActivity()).goToDishListView(tableNumber, order);}
+    public void goToDishList(String tableNumber, Order order) {
+        ((MainActivity) getActivity()).goToDishListView(tableNumber, order);
+    }
 
     @Override
     public void onItemRemoved() {
-        orderListPresenter.init(tableNumber);}
+        orderListPresenter.init(tableNumber);
+    }
 
     @Override
     public void onClick(View view, int position) {
-        orderListPresenter.onItemClick(orderListAdapter.getItemListItem(position));}
+        orderListPresenter.onItemClick(orderListAdapter.getItemListItem(position));
+    }
 
     @Override
     public void onLongClick(View view, int position) {
@@ -95,9 +110,14 @@ public class OrderListFragment extends Fragment implements OrderListContract.Vie
 
     @Override
     public void goToOrderDetail(Order item) {
-        ((MainActivity)getActivity()).goToOrderDetailView(item);
+        ((MainActivity) getActivity()).goToOrderDetailView(item);
     }
 
+    /**
+     * New instance order list fragment.
+     *
+     * @return the order list fragment
+     */
     public static OrderListFragment newInstance() {
         Bundle args = new Bundle();
         OrderListFragment fragment = new OrderListFragment();

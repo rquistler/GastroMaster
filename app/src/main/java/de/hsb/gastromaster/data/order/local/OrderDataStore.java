@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.data.order.local;
 
 
@@ -11,11 +20,20 @@ import de.hsb.gastromaster.data.request.Request;
 import de.hsb.gastromaster.data.response.Response;
 import io.reactivex.Single;
 
+/**
+ * The type Order data store.
+ */
 public class OrderDataStore implements IOrderDataStore {
+    /**
+     * The constant LastID.
+     */
     public static int LastID = 1;
     private List<Dish> dishList = new ArrayList<>();
     private List<Order> orderList = new ArrayList<>();
 
+    /**
+     * Init.
+     */
     public void init() {
         dishList.add(Dish.builder().setId(1).setOrderId(0).setName("Spaghetti").setPrice(6.70).build());
         dishList.add(Dish.builder().setId(2).setOrderId(0).setName("Coca Cola").setPrice(3.50).build());

@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.domain.feature.get_table;
 
 import java.util.List;
@@ -10,11 +19,19 @@ import de.hsb.gastromaster.domain.feature.BaseUseCase;
 import io.reactivex.Single;
 
 
+/**
+ * The type Get table use case.
+ */
 public class GetTableUseCase extends BaseUseCase<Void, List<Table>> {
 
     private ITableDataRepository tableDataRepository;
 
-    public GetTableUseCase(ITableDataRepository dataRepository){
+    /**
+     * Instantiates a new Get table use case.
+     *
+     * @param dataRepository the data repository
+     */
+    public GetTableUseCase(ITableDataRepository dataRepository) {
         tableDataRepository = dataRepository;
     }
 

@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.features.create_order;
 
 
@@ -9,6 +18,9 @@ import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableSingleObserver;
 
+/**
+ * The type Create order presenter.
+ */
 public class CreateOrderPresenter
         implements CreateOrderContract.Presenter {
 
@@ -16,6 +28,12 @@ public class CreateOrderPresenter
     private BaseUseCase<Order, Void> createOrderUseCase;
     private CompositeDisposable disposeBag = new CompositeDisposable();
 
+    /**
+     * Instantiates a new Create order presenter.
+     *
+     * @param view               the view
+     * @param createOrderUseCase the create order use case
+     */
     public CreateOrderPresenter(CreateOrderContract.View view,
                                 BaseUseCase<Order, Void> createOrderUseCase) {
         this.view = view;
@@ -46,7 +64,13 @@ public class CreateOrderPresenter
 
     }
 
-    public Single<Response<Void>> createOrderExecute(Order order){
+    /**
+     * Create order execute single.
+     *
+     * @param order the order
+     * @return the single
+     */
+    public Single<Response<Void>> createOrderExecute(Order order) {
         return createOrderUseCase.execute(Request.<Order>builder().setEntity(order).build());
     }
 }

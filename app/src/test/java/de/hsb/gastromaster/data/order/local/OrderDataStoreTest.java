@@ -1,10 +1,17 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.data.order.local;
 
 
-import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import java.util.List;
 
@@ -16,8 +23,6 @@ import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.data.order.dish.Dish;
 import de.hsb.gastromaster.data.response.Response;
 import io.reactivex.observers.TestObserver;
-
-import static org.mockito.Mockito.*;
 
 public class OrderDataStoreTest {
 
