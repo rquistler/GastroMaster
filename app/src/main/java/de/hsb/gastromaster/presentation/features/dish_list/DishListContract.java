@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.features.dish_list;
 
 import java.util.List;
@@ -14,7 +23,7 @@ public interface DishListContract {
      *
      * @param <T> the type parameter
      */
-    interface View<T>{
+    interface View<T> {
         /**
          * On add dish click.
          *
@@ -49,7 +58,7 @@ public interface DishListContract {
      *
      * @param <T> the type parameter
      */
-    interface Presenter<T>{
+    interface Presenter<T> {
         /**
          * Init.
          *

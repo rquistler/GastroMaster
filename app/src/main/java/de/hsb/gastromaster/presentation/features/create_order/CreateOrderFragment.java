@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.features.create_order;
 
 
@@ -12,7 +21,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,22 +42,26 @@ public class CreateOrderFragment extends Fragment
     /**
      * The Btn create order.
      */
-    @BindView(R.id.btnCreate) Button btnCreateOrder;
+    @BindView(R.id.btnCreate)
+    Button btnCreateOrder;
 
     /**
      * The Edtxt table number.
      */
-    @BindView(R.id.txtTableNumber) EditText edtxtTableNumber;
+    @BindView(R.id.txtTableNumber)
+    EditText edtxtTableNumber;
 
     /**
      * The Edtxt waitess id.
      */
-    @BindView(R.id.txtWaitressNumber) EditText edtxtWaitessId;
+    @BindView(R.id.txtWaitressNumber)
+    EditText edtxtWaitessId;
 
     /**
      * The Edtxt dish.
      */
-    @BindView(R.id.txtDish) EditText edtxtDish;
+    @BindView(R.id.txtDish)
+    EditText edtxtDish;
 
 
     /**

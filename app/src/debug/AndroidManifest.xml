@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ @author Christian Schaf
+  ~ @author Roman Quistler
+  ~ @author Nassim Bendida
+  ~
+  ~ Date: 27.6.2017
+  ~ Copyright (c) by Hochschule Bremen
+  -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
     <application>
-        <activity android:name="de.hsb.gastromaster.presentation.ui.TestActivity"/>
+        <activity android:name="de.hsb.gastromaster.presentation.ui.TestActivity" />
     </application>
 </manifest>

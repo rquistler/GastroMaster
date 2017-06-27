@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.features.create_order;
 
 
@@ -61,7 +70,7 @@ public class CreateOrderPresenter
      * @param order the order
      * @return the single
      */
-    public Single<Response<Void>> createOrderExecute(Order order){
+    public Single<Response<Void>> createOrderExecute(Order order) {
         return createOrderUseCase.execute(Request.<Order>builder().setEntity(order).build());
     }
 }

@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.features.order_list;
 
 import java.util.ArrayList;
@@ -6,12 +15,10 @@ import java.util.List;
 import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.data.request.Request;
 import de.hsb.gastromaster.data.response.Response;
-import de.hsb.gastromaster.domain.feature.create_order.CreateOrderUseCase;
 import de.hsb.gastromaster.domain.feature.get_orders.GetOrdersUseCase;
 import de.hsb.gastromaster.domain.feature.remove_order.RemoveOrderUseCase;
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableSingleObserver;
 
 
 /**

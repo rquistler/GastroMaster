@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.features.dish_list;
 
 import android.support.v7.widget.RecyclerView;
@@ -39,6 +48,7 @@ class DishListViewAdapter extends BaseRecyclerViewAdapter<Dish> {
     public DishListViewAdapter(List<Dish> itemList, IOnItemClick listener) {
         super(itemList, listener);
     }
+
     @Override
     protected View createView(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())

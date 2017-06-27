@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.features.table_list;
 
 
@@ -8,7 +17,7 @@ import de.hsb.gastromaster.data.table.Table;
 /**
  * The interface Table list contract.
  */
-public interface TableListContract{
+public interface TableListContract {
 
     /**
      * The interface View.

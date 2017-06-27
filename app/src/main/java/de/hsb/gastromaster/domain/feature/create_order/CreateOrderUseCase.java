@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.domain.feature.create_order;
 
 import de.hsb.gastromaster.data.order.IOrderDataRepository;
@@ -10,7 +19,7 @@ import io.reactivex.Single;
 /**
  * Created by cschaf on 09-May-17.
  */
-public class CreateOrderUseCase extends BaseUseCase<Order, Void>  {
+public class CreateOrderUseCase extends BaseUseCase<Order, Void> {
 
     private IOrderDataRepository orderDataRepository;
 

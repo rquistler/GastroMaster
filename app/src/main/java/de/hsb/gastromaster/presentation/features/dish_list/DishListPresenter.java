@@ -1,10 +1,18 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.features.dish_list;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import de.hsb.gastromaster.data.order.Order;
@@ -22,7 +30,7 @@ import io.reactivex.disposables.Disposable;
 /**
  * The type Dish list presenter.
  */
-class DishListPresenter implements DishListContract.Presenter<Dish>{
+class DishListPresenter implements DishListContract.Presenter<Dish> {
     private DishListContract.View<Dish> fragment;
     private GetDishesUseCase getDishesUserCase;
     private CreateOrderUseCase createOrderUseCase;
@@ -41,7 +49,7 @@ class DishListPresenter implements DishListContract.Presenter<Dish>{
      * @param updateOrderUseCase the update order use case
      */
     public DishListPresenter(DishListContract.View<Dish> fragment,
-                             GetDishesUseCase getDishesUserCase, CreateOrderUseCase createOrderUseCase, GetOrderUseCase getOrderUseCase, UpdateOrderUseCase updateOrderUseCase){
+                             GetDishesUseCase getDishesUserCase, CreateOrderUseCase createOrderUseCase, GetOrderUseCase getOrderUseCase, UpdateOrderUseCase updateOrderUseCase) {
         this.getDishesUserCase = getDishesUserCase;
         this.createOrderUseCase = createOrderUseCase;
         this.getOrderUseCase = getOrderUseCase;
@@ -50,6 +58,7 @@ class DishListPresenter implements DishListContract.Presenter<Dish>{
 
 
     }
+
     @Override
     public void init(int orderId) {
         getDishesUserCase.execute(Request.<Void>builder()
@@ -75,7 +84,7 @@ class DishListPresenter implements DishListContract.Presenter<Dish>{
 
     @Override
     public void onDishClick(String tableNumber, Dish dish, int orderId) {
-        if (orderId == -1){
+        if (orderId == -1) {
             Order newOrder = Order.builder().setId(OrderDataStore.LastID++)
                     .setDate(new SimpleDateFormat("MM-dd-yyyy:HH.mm.ss").format(Calendar.getInstance().getTime()))
                     .setDishList(Arrays.asList(dish))
@@ -83,8 +92,7 @@ class DishListPresenter implements DishListContract.Presenter<Dish>{
                     .setWaitressId(1).build();
 
             createOrder(newOrder);
-        }
-        else{
+        } else {
 //            Wegen Backstackfehlern deaktiviert!
             updateOrder(orderId, dish);
         }
@@ -127,6 +135,7 @@ class DishListPresenter implements DishListContract.Presenter<Dish>{
                     public void onSuccess(Response<Order> listResponse) {
                         order = listResponse.getEntity();
                     }
+
                     @Override
                     public void onError(Throwable e) {
 
@@ -134,7 +143,7 @@ class DishListPresenter implements DishListContract.Presenter<Dish>{
                 });
 
 
-        if (order != null){
+        if (order != null) {
             ArrayList<Dish> newDishList = new ArrayList<>();
             for (Dish each : order.getDishList()) {
                 newDishList.add(each);

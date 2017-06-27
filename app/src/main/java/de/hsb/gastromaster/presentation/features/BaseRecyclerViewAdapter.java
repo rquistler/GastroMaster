@@ -1,11 +1,18 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.features;
 
 import android.support.annotation.StringDef;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -178,7 +185,7 @@ public abstract class BaseRecyclerViewAdapter<T> extends
     // ViewHolder
     // --------------------
     public static class BaseViewHolder extends RecyclerView.ViewHolder
-            implements View.OnClickListener, View.OnLongClickListener{
+            implements View.OnClickListener, View.OnLongClickListener {
 
         private IOnItemClick listener;
 
@@ -204,7 +211,7 @@ public abstract class BaseRecyclerViewAdapter<T> extends
 
         @Override
         public boolean onLongClick(View view) {
-            if (view == null)return false;
+            if (view == null) return false;
             listener.onLongClick(view, getAdapterPosition());
             return true;
         }

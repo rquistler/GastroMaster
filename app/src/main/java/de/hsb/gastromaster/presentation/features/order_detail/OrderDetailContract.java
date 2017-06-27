@@ -1,6 +1,13 @@
-package de.hsb.gastromaster.presentation.features.order_detail;
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
 
-import java.util.List;
+package de.hsb.gastromaster.presentation.features.order_detail;
 
 import de.hsb.gastromaster.data.order.Order;
 import de.hsb.gastromaster.data.order.dish.Dish;
@@ -15,7 +22,7 @@ public interface OrderDetailContract {
      *
      * @param <T> the type parameter
      */
-    interface View<T>{
+    interface View<T> {
         /**
          * Go to add dish.
          *
@@ -43,7 +50,7 @@ public interface OrderDetailContract {
      *
      * @param <T> the type parameter
      */
-    interface Presenter<T>{
+    interface Presenter<T> {
         /**
          * On add dish click.
          */

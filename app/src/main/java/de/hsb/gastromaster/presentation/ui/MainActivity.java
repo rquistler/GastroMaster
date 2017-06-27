@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.ui;
 
 import android.os.Bundle;
@@ -72,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
     public void goToTableListView() {
         getSupportFragmentManager().popBackStackImmediate(ORDER_LIST_CLASS_NAME, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, tableListFragment, TABLE_LIST_CLASS_NAME)
-                    .addToBackStack(TABLE_LIST_CLASS_NAME).commit();
+                .replace(R.id.fragment_container, tableListFragment, TABLE_LIST_CLASS_NAME)
+                .addToBackStack(TABLE_LIST_CLASS_NAME).commit();
     }
 
     /**
@@ -121,8 +130,7 @@ public class MainActivity extends AppCompatActivity {
         if (order != null) {
             bundle.putInt("OrderId", order.getId());
             bundle.putString("Table", order.getTableNumber());
-        }
-        else{
+        } else {
             bundle.putInt("OrderId", -1);
             bundle.putString("Table", tableNumber);
         }
@@ -135,8 +143,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed(){
-        if (getSupportFragmentManager().getBackStackEntryCount() == 1){
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
             finish();
         }
         getSupportFragmentManager().popBackStack();
@@ -148,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return the gastro master app
      */
-    public GastroMasterApp getGastroMasterApp(){
+    public GastroMasterApp getGastroMasterApp() {
         return (((GastroMasterApp) getApplication()));
     }
 }

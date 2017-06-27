@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.features.table_list;
 
 import android.os.Bundle;
@@ -12,11 +21,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.hsb.gastromaster.GastroMasterApp;
 import de.hsb.gastromaster.R;
 import de.hsb.gastromaster.data.table.Table;
-import de.hsb.gastromaster.data.table.TableDataRepository;
-import de.hsb.gastromaster.data.table.local.TableDataStore;
 import de.hsb.gastromaster.domain.feature.get_table.GetTableUseCase;
 import de.hsb.gastromaster.presentation.features.BaseRecyclerViewAdapter;
 import de.hsb.gastromaster.presentation.ui.MainActivity;
@@ -60,7 +66,7 @@ public class TableListFragment extends Fragment implements
 
         ArrayList<Table> items = new ArrayList<>();
 
-        tableListAdapter = new TableListViewAdapter(items,this);
+        tableListAdapter = new TableListViewAdapter(items, this);
         tableListPresenter = new TableListPresenter(this,
                 new GetTableUseCase(mainActivity.getGastroMasterApp().getTableDataRepository()));
 

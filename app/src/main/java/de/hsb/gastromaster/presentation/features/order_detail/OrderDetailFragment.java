@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.features.order_detail;
 
 
@@ -78,7 +87,7 @@ public class OrderDetailFragment extends Fragment implements OrderDetailContract
 
         ArrayList<Dish> items = new ArrayList<>();
 
-        dishListViewAdapter = new OrderDetailViewAdapter(items,this);
+        dishListViewAdapter = new OrderDetailViewAdapter(items, this);
         orderDetailPresenter = new OrderDetailPresenter(this,
                 new GetOrderUseCase(mainActivity.getGastroMasterApp().getOrderDataRepository()),
                 new UpdateOrderUseCase(mainActivity.getGastroMasterApp().getOrderDataRepository()));
@@ -104,7 +113,7 @@ public class OrderDetailFragment extends Fragment implements OrderDetailContract
 
     @Override
     public void goToAddDish(Order order) {
-        ((MainActivity)getActivity()).goToDishListView(order.getTableNumber(), order);
+        ((MainActivity) getActivity()).goToDishListView(order.getTableNumber(), order);
     }
 
     @Override
@@ -122,7 +131,8 @@ public class OrderDetailFragment extends Fragment implements OrderDetailContract
     }
 
     @Override
-    public void onClick(View view, int position) {}
+    public void onClick(View view, int position) {
+    }
 
     @Override
     public void onLongClick(View view, int position) {

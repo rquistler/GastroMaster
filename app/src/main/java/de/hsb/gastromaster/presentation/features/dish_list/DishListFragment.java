@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.presentation.features.dish_list;
 
 
@@ -84,12 +93,12 @@ public class DishListFragment extends Fragment implements DishListContract.View<
 
     @Override
     public void newOrderAdded(Order newOrder) {
-        ((MainActivity)getActivity()).goToOrderDetailView(newOrder);
+        ((MainActivity) getActivity()).goToOrderDetailView(newOrder);
     }
 
     @Override
     public void onOrderUpdated(Order order) {
-        ((MainActivity)getActivity()).goToOrderDetailView(order);
+        ((MainActivity) getActivity()).goToOrderDetailView(order);
     }
 
     /**
@@ -98,9 +107,9 @@ public class DishListFragment extends Fragment implements DishListContract.View<
      * @return the dish list fragment
      */
     public static DishListFragment newInstance() {
-        
+
         Bundle args = new Bundle();
-        
+
         DishListFragment fragment = new DishListFragment();
         fragment.setArguments(args);
         return fragment;

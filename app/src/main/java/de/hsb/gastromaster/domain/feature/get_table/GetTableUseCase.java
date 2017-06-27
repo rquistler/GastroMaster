@@ -1,3 +1,12 @@
+/*
+ * @author Christian Schaf
+ * @author Roman Quistler
+ * @author Nassim Bendida
+ *
+ * Date: 27.6.2017
+ * Copyright (c) by Hochschule Bremen
+ */
+
 package de.hsb.gastromaster.domain.feature.get_table;
 
 import java.util.List;
@@ -22,7 +31,7 @@ public class GetTableUseCase extends BaseUseCase<Void, List<Table>> {
      *
      * @param dataRepository the data repository
      */
-    public GetTableUseCase(ITableDataRepository dataRepository){
+    public GetTableUseCase(ITableDataRepository dataRepository) {
         tableDataRepository = dataRepository;
     }
 
