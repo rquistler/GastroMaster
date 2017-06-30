@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply from: "../buildsystem/config.gradle"
 apply from: "../buildsystem/quality/quality.gradle"
+apply plugin: 'me.tatarka.retrolambda'
 
 
 def globalConf = rootProject.ext
@@ -131,7 +132,7 @@ dependencies {
     releaseCompile dependencies.leakCanaryNoOp
     testCompile dependencies.leakCanaryNoOp
 
-    compileOnly dependencies.autoValue
+    provided dependencies.autoValue
     annotationProcessor dependencies.autoValue
     annotationProcessor dependencies.autoValueWith
 
@@ -143,7 +144,6 @@ dependencies {
     //androidTestCompile dependencies.junit
 
     testCompile dependencies.mockitoCore
-    testCompile dependencies.mockitoAndroid
     androidTestCompile dependencies.mockitoAndroid
     androidTestCompile dependencies.mockitoCore
 
@@ -179,7 +179,7 @@ dependencies {
     //androidTestCompile 'org.powermock:powermock-api-mockito2:1.7.0RC4'
 
     // -------------------------------------------------------------------------
-    implementation 'com.android.support:support-v4:25.4.0'
+    compile 'com.android.support:support-v4:25.4.0'
 }
 
 repositories {
